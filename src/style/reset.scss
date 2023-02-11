@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  li {
+    list-style-type: none;
+  }
+  
+  html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+  }
+  
+  a {
+    color: grey;
+    text-decoration: none;
+  }
+  
+  button {
+    cursor: pointer;
+    outline: none;
+    outline-offset: none;
+    background: white;
+    border: 1px solid black;
+  }
+  
+  input, textarea {
+    outline: none;
+    border: solid 1px white;
+  }
+  

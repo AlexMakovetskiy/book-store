@@ -1,0 +1,11 @@
+.edittext-conteiner {
+    background: white;
+    border: 1px solid #E7E7E7;
+    padding: 12px 20px;
+
+    &__writeline {
+        width: 100%;
+        font-size: 1.6rem;
+        line-height: 3.2rem;
+    }
+}
