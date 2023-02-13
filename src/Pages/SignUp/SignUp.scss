@@ -16,10 +16,7 @@ $custom-grey: #E7E7E7;
             width: 100%;
         }
 
-        &__signin-wrapper {
-            color: #a8a8a8;
-            border-bottom: 2px solid transparent;
-        }
+
 
         &__signin-wrapper__title,
         &__signup-wrapper__title {
@@ -37,6 +34,14 @@ $custom-grey: #E7E7E7;
 
         &__signup-wrapper {
             border-bottom: 2px solid #313037;
+        }
+
+        &__signin-wrapper {
+            border-bottom: 2px solid transparent;
+
+            &__title {
+                color: #a8a8a8;
+            }
         }
     }
 

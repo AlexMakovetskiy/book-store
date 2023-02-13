@@ -1,53 +1,66 @@
 import React from "react";
-import { Input } from "../../components/Input/Input";
 
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Accaunt.scss';
 
 export const Accaunt = () => {
+    const navigate = useNavigate();
+
+    const LogOut = () => {
+        localStorage.removeItem('currentUser');
+        document.location.href="http://localhost:3000/";
+    }
     return (
         <main className="accaunt">
-            <Link to='/'>
-                <button className="accaunt__arrow-btn">
+                <button className="accaunt__arrow-btn" onClick={() => navigate(-1)}>
                     <img src="/assets/vector/pages/profile/Icon-Arrow.svg" alt="arrow" className="profile__arrow-btn__arrow" />
                 </button>
-            </Link>
             <h1 className="accaunt__title">accaunt</h1>
             <form action="/" className="accaunt-data">
                 <h2 className="accaunt-data__title">profile</h2>
                 <div className="accaunt-data-content">
                     <div className="accaunt-data-content__name-wrapper">
                         <h3 className="profile-data-content__name-wrapper__title">Name</h3>
-                        <Input placeholder="Name Surname"></Input>
+                        <div className="accaunt-data-content__name-wrapper__nameedit-wrapper edittext-conteiner">
+                            <input type="text" className="accaunt-data-content__name-wrapper__nameedit-wrapper__textedit" placeholder="Name Surname"/>
+                        </div>
                     </div>
                     <div className="accaunt-data-content__email-wrapper">
                         <h3 className="profile-data-content__email-wrapper__title">Email</h3>
-                        <Input type='email' placeholder="Email"></Input>
+                        <div className="accaunt-data-content__name-wrapper__emailedit-wrapper edittext-conteiner">
+                            <input type="email" className="accaunt-data-content__email-wrapper__nameedit-wrapper__textedit" placeholder="Email"/>
+                        </div>
                     </div>
                 </div>
                 <h2 className="accaunt-data__title">password</h2>
                 <div className="password-data-content">
                     <h3 className="password-data-content__title">Current password</h3>
                     <div className="password-data-content__current-password-block">
-                        <Input type='password' placeholder="Your password"></Input>
+                        <div className="accaunt-data-content__password-wrapper__passwordedit-wrapper edittext-conteiner">
+                            <input type="password" className="accaunt-data-content__password-wrapper__passwordedit-wrapper__textedit" value='password' disabled/>
+                        </div>
                     </div>
                     <div className="change-password-conteiner">
                         <div className="change-password-conteiner__new-password-conteiner">
                             <h4 className="change-password-conteiner__new-password-conteiner__title">New password</h4>
-                            <Input type='password' placeholder="New password"></Input>
+                            <div className="change-password-conteiner__new-password-conteiner__new-passwordedit-wrapper edittext-conteiner">
+                                <input type="password" className="change-password-conteiner__new-password-conteiner__new-passwordedit-wrapper__textedit" placeholder="New password"/>
+                            </div>
                         </div>
                         <div className="change-password-conteiner__confirm-new-password-conteiner">
                             <h4 className="change-password-conteiner__confirm-new-password-conteiner__title">New password</h4>
-                            <Input type='password' placeholder="Confirm new password"></Input>
+                            <div className="change-password-conteiner__confirm-new-password-conteiner__confirm-new-passwordedit-wrapper edittext-conteiner">
+                                <input type="password" className="change-password-conteiner__confirm-new-password-conteiner__confirm-new-passwordedit-wrapper__textedit" placeholder="Confirm new password"/>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className="action-tools">
                     <button className="action-tools__save-action custom-btn">save changes</button>
-                    <button className="action-tools__cancel-action custom-btn">cancel</button>
+                    <button className="action-tools__cancel-action custom-btn" onClick={LogOut}>cancel</button>
                 </div>
             </form>
         
