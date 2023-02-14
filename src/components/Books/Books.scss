@@ -1,0 +1,13 @@
+.books-wrapper {
+    width: 100%;
+    min-height: 550px;
+
+    &__books {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 32px;
+        width: 100%;
+    }
+}
+

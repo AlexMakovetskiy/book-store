@@ -1,7 +1,8 @@
-import React from 'react';
-import './Header.scss';
-
 import { Link } from "react-router-dom";
+
+import '../../style/reset.scss';
+import '../../style/common.scss';
+import './Header.scss';
 
 export function Header () {
     return (
@@ -19,7 +20,7 @@ export function Header () {
                         <img src="/assets/vector/header/Toolbox/favorites.svg" alt="favorites" className="tools__link__logo" />
                     </div>
                 </Link>
-                <Link to='/busket'>
+                <Link to='/signin'>
                     <div className='tools__link busket'>
                         <img src="/assets/vector/header/Toolbox/busket.svg" alt="busket" className="tools__link__logo" />
                     </div>

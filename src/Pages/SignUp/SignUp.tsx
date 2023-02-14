@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
 import {  Link } from "react-router-dom";
 
 import '../../style/reset.scss';
@@ -46,7 +45,7 @@ export const SignUp = () => {
         <main className='signup-form small-conteiner signup'>
             <div className="top-panel">
             <div className="top-panel__signin-wrapper">
-                <Link to="/"><h2 className="top-panel__signin-wrapper__title">sign in</h2></Link>
+                <Link to="/signin"><h2 className="top-panel__signin-wrapper__title">sign in</h2></Link>
             </div>
             <div className="top-panel__signup-wrapper">
                 <h2 className="top-panel__signup-wrapper__title">sign up</h2>
