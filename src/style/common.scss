@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100;200;300;400;500;600;700;800&family=Bebas+Neue&display=swap');
+
+body {
+    padding: 0;
+    background-color: white;
+}
+
+.large-conteiner {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.small-conteiner {
+    width: 100%;
+    max-width: 544px;
+    margin: 0 auto;
+}
+
+input, h3, h4, h5, a, .custom-font {
+    font-family: 'Anek Bangla', Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #313037;
+}
+
+h1, h2, .custom-btn {
+    font-family: 'Bebas Neue', Tahoma, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    color: #313037;
+}
+
+.custom-btn {
+    width: 100%;
+    background: #313037;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.edittext-conteiner {
+    background: white;
+    border: 1px solid #E7E7E7;
+    padding: 12px 20px;
+    font-size: 1.6rem;
+    line-height: 3.2rem;
+
+    input {
+        width: 100%;
+    }
+}
+
+

@@ -1,0 +1,14 @@
+
+.bottom-panel {
+    padding: 36px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #E7E7E7;
+
+    &__title {
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+        color: #A8A8A8;
+    }
+}

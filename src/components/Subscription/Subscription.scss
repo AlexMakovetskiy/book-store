@@ -1,0 +1,38 @@
+.subscribe-wrapper {
+    margin: 128px auto;
+    max-width: 992px;
+    background: #fffaff;
+
+    &__title {
+        font-size: 4rem;
+        line-height: 6rem;
+    }
+
+    &__subtitle {
+        padding-bottom: 32px;
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+        color: #A8A8A8;
+    }
+
+    .action-conteiner {
+        display: flex;
+        justify-content: space-between;
+        gap: 32px;
+
+        &__insert-email-conteiner {
+            width: 100%;
+            border: 1px solid transparent;
+        }
+
+        &__send-email {
+            padding: 16px 40px;
+            max-width: 148px;
+            font-size: 1.8rem;
+            line-height: 2.4rem;
+            letter-spacing: 0.05em;
+        }
+    }
+
+
+}
