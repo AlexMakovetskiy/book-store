@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import useDispatchTyped from "../../hooks/useDispatchTyped";
+import { updateUserData } from "../../store/slicers/userSlicer";
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
@@ -10,10 +13,9 @@ export const SignIn = () => {
       email: '',
       password: '',
     });
-    const [user, setUser] = useState({
-      name: 'name',
-      email: "email"
-    });
+
+    const dispatch = useDispatchTyped();
+    const navigator = useNavigate();
 
     const handleChange = (event: { target: { name: string; value: string; }; }) => {
       setState((prevState) => ({
@@ -29,12 +31,12 @@ export const SignIn = () => {
         return alert('This user is not registered');
       for (const storageUser of storageUsers) {
         if(storageUser.email === state.email && storageUser.password === state.password) {
-          setUser((prevState) => {
-            prevState.name = storageUser.nameSurname;
-            prevState.email = storageUser.email;
-            return prevState; 
-          });
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          dispatch(updateUserData({
+            name: storageUser.nameSurname,
+            email: storageUser.email,
+            isLogin: true
+          }));
+          navigator('/');
         }
       }
     }

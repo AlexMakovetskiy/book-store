@@ -1,49 +1,40 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import { getBooksData } from '../thunks/getBooksData';
-
-interface IBook {
-    authors: string
-    desc: string
-    error: string
-    image: string | undefined
-    isbn10: string
-    isbn13: string
-    language: string
-    pages: string
-    price: number
-    publisher: string
-    rating: string
-    subtitle: string
-    title: string
-    url: string
-    year: string
-};
+import { IBook } from "../../interfaces/books";
 
 interface IBooksInitialState {
     books: IBook[],
     error: string | null,
+    loading: boolean,
 };
 
 const initialState :IBooksInitialState = {
     books: [],
     error: null,
+    loading: false,
 };
 
-const booksSearchSlice = createSlice({
+const booksListSlice = createSlice({
     name: "Books",
     initialState,
     reducers: {},
     extraReducers(builder){
     builder.addCase(getBooksData.fulfilled, (state, action: PayloadAction<any>) => {
+        state.loading =false;
         state.books = action.payload.books ?? [];
     });
 
     builder.addCase(getBooksData.rejected, (state, action: PayloadAction<any>) => {
+        state.loading =false;
         state.error = action.payload.message;
-    })
+    });
+
+    builder.addCase(getBooksData.pending, (state: IBooksInitialState) => {
+        state.loading = true;
+    });
     }
 });
 
-export const {} = booksSearchSlice.actions;
+export const {} = booksListSlice.actions;
 
-export default booksSearchSlice.reducer;
+export default booksListSlice.reducer;
