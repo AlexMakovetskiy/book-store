@@ -1,0 +1,27 @@
+import useDispatchTyped from "../../hooks/useDispatchTyped";
+import useSelectorTyped from "../../hooks/useSelectorTyped";
+import { setFavoriteBook } from "../../store/slicers/BookFavoritesSliser";
+import { IFavoriteBookObject } from "../../interfaces/store/reduce/bookSlice";
+
+import "../../style/reset.scss";
+import "../../style/common.scss";
+import "./AddFavoriteBook.scss";
+
+export function AddFavoriteBook ({bookData} :IFavoriteBookObject) {
+    const dispatch = useDispatchTyped();
+    const favoriteBookList = useSelectorTyped((state) => state.BookFavoritesSliser.favoritebooks);
+    
+    const handleClick = () => {
+        dispatch(setFavoriteBook(bookData));
+    }
+
+    const isFavoriteBook = favoriteBookList.find((favoriteBook) => favoriteBook.isbn13 === bookData.isbn13);
+
+    return (
+        <div className="addfavorites-conteiner">
+            <button className={isFavoriteBook ? "action-activated" : "action-deactivated"} onClick={handleClick}>
+                <img src="/assets/vector/pages/bookInfo/favorites.svg" alt="logo" className="heart-logo"/>
+            </button>
+        </div>
+    );
+}

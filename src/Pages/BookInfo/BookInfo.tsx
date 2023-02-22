@@ -7,6 +7,7 @@ import { getBooksInfoData } from "../../store/thunks/getBooksInfoData";
 import { Subscription } from "../../components/Subscription/Subscription";
 import { ReturnPrevPage } from "../../components/ReturnPrevPage/ReturnPrevPage";
 import TabSet  from "../../components/BookTabs/BookTabs";
+import { AddFavoriteBook } from "../../components/AddFavoriteBook/AddFavoriteBook";
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
@@ -30,9 +31,7 @@ export const BookInfo = () => {
             <div className="order-info-wrapper">
                 <div className="cover-conteiner">
                     <img src={bookData.image} alt={bookData.title} className="cover-conteiner__book-cover" />
-                    <button className="cover-conteiner__favorites-action">
-                        <img src="/assets/vector/pages/bookinfo/favorites.svg" alt="favorites" className="cover-conteiner__favorites-action__favorites" />
-                    </button>
+                    <AddFavoriteBook bookData={bookData}/>
                 </div>
                 <div className="specification-wrapper">
                     <div className="specification-wrapper__price-conteiner">

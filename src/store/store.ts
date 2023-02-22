@@ -5,12 +5,14 @@ import {FLUSH, PAUSE, PERSIST, REHYDRATE, PURGE, REGISTER} from "redux-persist/e
 import booksSlicer from "./slicers/booksSlicer";
 import userSlicer from "./slicers/userSlicer";
 import BookInfoSlicer from "./slicers/BookInfoSlicer";
+import BookFavoritesSliser from "./slicers/BookFavoritesSliser";
 import persistConfig from "./persist/persistConfig";
 
 const generalReducer = combineReducers({
   booksSlicer,
   userSlicer,
   BookInfoSlicer,
+  BookFavoritesSliser,
 });
 
 const persistedReducer = persistReducer(persistConfig, generalReducer);

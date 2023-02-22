@@ -15,28 +15,27 @@ import { store } from './store/store';
 import { Main } from './Pages/Main/Main';
 import './App.scss';
 
-
 function App() {
-  return (
-    <BrowserRouter>
-      <Provider store={store}>
-        <div className="app-wrapper">
-          <Header></Header>
-          <Routes>
-            <Route path='/' element={<Main/>}></Route>
-            <Route path='/signup' element={<SignUp/>}></Route>
-            <Route path='/signin' element={<SignIn/>}></Route>
-            <Route path='/accaunt' element={<Accaunt/>}></Route>
-            <Route path='/favorites' element={<Favorites/>}></Route>
-            <Route path='/busket' element={<Busket/>}></Route>
-            <Route path='/book-info/:id' element={<BookInfo/>}></Route>
-            <Route path='/*' element={<NotFound/>}></Route>
-          </Routes>
-          <Footer></Footer>
-      </div>
-      </Provider>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <div className="app-wrapper">
+                    <Header></Header>
+                    <Routes>
+                        <Route path='/' element={<Main/>}></Route>
+                        <Route path='/signup' element={<SignUp/>}></Route>
+                        <Route path='/signin' element={<SignIn/>}></Route>
+                        <Route path='/accaunt' element={<Accaunt/>}></Route>
+                        <Route path='/favorites' element={<Favorites/>}></Route>
+                        <Route path='/busket' element={<Busket/>}></Route>
+                        <Route path='/book-info/:id' element={<BookInfo/>}></Route>
+                        <Route path='/*' element={<NotFound/>}></Route>
+                    </Routes>
+                    <Footer></Footer>
+                </div>
+            </Provider>
+        </BrowserRouter>
+    );
 }
 
 export default App;
