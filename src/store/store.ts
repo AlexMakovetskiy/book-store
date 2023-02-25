@@ -6,6 +6,7 @@ import booksSlicer from "./slicers/booksSlicer";
 import userSlicer from "./slicers/userSlicer";
 import BookInfoSlicer from "./slicers/BookInfoSlicer";
 import BookFavoritesSliser from "./slicers/BookFavoritesSliser";
+import searchBooksSlicer from "./slicers/searchBooksSlicer";
 import persistConfig from "./persist/persistConfig";
 
 const generalReducer = combineReducers({
@@ -13,6 +14,7 @@ const generalReducer = combineReducers({
   userSlicer,
   BookInfoSlicer,
   BookFavoritesSliser,
+  searchBooksSlicer,
 });
 
 const persistedReducer = persistReducer(persistConfig, generalReducer);

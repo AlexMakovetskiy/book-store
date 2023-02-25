@@ -10,6 +10,7 @@ import { Busket } from "./Pages/Busket/Busket";
 import { Favorites } from "./Pages/Favorites/Favorites";
 import { NotFound } from "./Pages/NotFound/NotFound";
 import { BookInfo } from "./Pages/BookInfo/BookInfo";
+import { SearchResults } from "./Pages/SearchResults/SearchResults";
 
 import { store } from './store/store';
 import { Main } from './Pages/Main/Main';
@@ -29,6 +30,7 @@ function App() {
                         <Route path='/favorites' element={<Favorites/>}></Route>
                         <Route path='/busket' element={<Busket/>}></Route>
                         <Route path='/book-info/:id' element={<BookInfo/>}></Route>
+                        <Route path='/search-data/:searchLine/:page' element={<SearchResults/>}></Route>
                         <Route path='/*' element={<NotFound/>}></Route>
                     </Routes>
                     <Footer></Footer>

@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import useDispatchTyped from "../../hooks/useDispatchTyped";
 import useSelectorTyped from "../../hooks/useSelectorTyped";
 import { setFavoriteBook } from "../../store/slicers/BookFavoritesSliser";
@@ -10,8 +12,12 @@ import "./AddFavoriteBook.scss";
 export function AddFavoriteBook ({bookData} :IFavoriteBookObject) {
     const dispatch = useDispatchTyped();
     const favoriteBookList = useSelectorTyped((state) => state.BookFavoritesSliser.favoritebooks);
+    const isAuthorized = useSelectorTyped((state) => state.userSlicer.isLogin);
+    const navigator = useNavigate();
     
     const handleClick = () => {
+        if(!isAuthorized)
+            return navigator("/signin");
         dispatch(setFavoriteBook(bookData));
     }
 

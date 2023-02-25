@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import { createSlice, PayloadAction} from "@reduxjs/toolkit";
 import { getBooksData } from '../thunks/getBooksData';
 import { IBook } from "../../interfaces/books";
 
@@ -19,13 +19,13 @@ const booksListSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers(builder){
-    builder.addCase(getBooksData.fulfilled, (state, action: PayloadAction<any>) => {
-        state.loading =false;
+    builder.addCase(getBooksData.fulfilled, (state: IBooksInitialState, action: PayloadAction<any>) => {
+        state.loading = false;
         state.books = action.payload.books ?? [];
     });
 
-    builder.addCase(getBooksData.rejected, (state, action: PayloadAction<any>) => {
-        state.loading =false;
+    builder.addCase(getBooksData.rejected, (state: IBooksInitialState, action: PayloadAction<any>) => {
+        state.loading = false;
         state.error = action.payload.message;
     });
 
@@ -36,5 +36,4 @@ const booksListSlice = createSlice({
 });
 
 export const {} = booksListSlice.actions;
-
 export default booksListSlice.reducer;
