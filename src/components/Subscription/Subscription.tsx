@@ -1,23 +1,35 @@
 import { useState } from "react";
 
+import PopUp from "../PopUp/PopUp";
+
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Subscription.scss';
 
 export function Subscription () {
-    const [state, setState] = useState('');
+    const [email, setEmail] = useState('');
+    const [isOpenPopup, setIsOpenPopup] = useState(false);
+    const [textMessege, settextMessege] = useState('');
+    const [popupLogo, setpopupLogo] = useState('');
 
     const handleChange = (event: { target: { name: string; value: string; }; }) => {
-        setState((prevState) => ( prevState = event.target.value ));
+        setEmail((prevState) => ( prevState = event.target.value ));
     }
 
-    const handleSubmit = (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
-        if(state === undefined) {
-            alert('Insert your email');
-            return ;
-        }
-        alert('Check your email');
+    const openPopup = (title: string, logo: boolean) => {
+        settextMessege((prevTextLine) => prevTextLine = title);
+        setpopupLogo((prevLogo) => logo ? prevLogo = 'success' : prevLogo = 'error');
+        return setIsOpenPopup((prevState) => !prevState);
+    }
+
+    const closePopup = () => {
+        setIsOpenPopup((prevState) => !prevState);
+    }
+
+    const handleSubmit = () => {
+        if(!email)
+            return openPopup("The email address is entered incorrectly", false);
+        return openPopup("Check your email", true);
     }
 
     return (
@@ -30,6 +42,10 @@ export function Subscription () {
                 </div> 
                 <button className="action-conteiner__send-email custom-btn" onClick={handleSubmit}>subscribe</button>
             </div>
+            {
+                isOpenPopup &&
+                <PopUp title = {textMessege} logo = {popupLogo} handleClose = {closePopup}/>
+            }
         </div>
     );
 }

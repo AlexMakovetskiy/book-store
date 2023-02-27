@@ -37,9 +37,10 @@ $custom-grey: #E7E7E7;
         justify-content: space-between;
         align-items: center;
         gap: 8px;
+        color: transparent;
 
         &__link {
             padding: 16px;
-        }        
+        }
     }
 }

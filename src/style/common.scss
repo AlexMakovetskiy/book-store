@@ -17,7 +17,7 @@ body {
     margin: 0 auto;
 }
 
-input, h3, h4, h5, a, .custom-font {
+input, h3, h4, h5, a, .custom-font, p {
     font-family: 'Anek Bangla', Geneva, Verdana, sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -51,4 +51,7 @@ h1, h2, .custom-btn {
     }
 }
 
+.arrow-btn {
+    border: 1px solid transparent;
+}
 

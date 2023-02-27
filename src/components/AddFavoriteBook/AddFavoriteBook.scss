@@ -1,0 +1,27 @@
+.addfavorites-conteiner {
+    padding: 20px;
+    max-width: 48px;
+    max-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .action-deactivated {
+        background: transparent;
+
+        .heart-logo {
+            visibility: visible;
+        }
+    }
+
+    .action-activated {
+        background: url("../../../public/assets/vector/pages/bookinfo/redHeartLogo.svg") no-repeat center center;
+
+        .heart-logo {
+            visibility: hidden;
+        }
+    }
+}
+
+
+

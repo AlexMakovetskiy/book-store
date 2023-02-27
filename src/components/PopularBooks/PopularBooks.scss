@@ -1,0 +1,19 @@
+.popular-books-wrapper {
+    &__title {
+        padding:72px 0 24px;
+        font-size: 4rem;
+        line-height: 6rem;
+    }
+
+    .tools {
+        padding-bottom: 24px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 20px;
+    }
+
+    .books-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+}
