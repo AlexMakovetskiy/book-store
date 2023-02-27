@@ -14,7 +14,7 @@ const BookFavoriteSlice = createSlice({
     name: 'favoritebooks',
     initialState,
     reducers: {
-        setFavoriteBook: (state :IFavoriteBookState, action :PayloadAction<IFavoriteBook>) => {
+        setFavoriteBook: (state: IFavoriteBookState, action: PayloadAction<IFavoriteBook>) => {
             const isFavoriteBook = state.favoritebooks.find((favoritebook) => {
                 return favoritebook.isbn13 === action.payload.isbn13;
             });

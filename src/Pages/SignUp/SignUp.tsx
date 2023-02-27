@@ -1,6 +1,8 @@
 import { useState } from "react";
 import {  Link } from "react-router-dom";
 
+import PopUp from "../../components/PopUp/PopUp";
+
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './SignUp.scss';
@@ -12,16 +14,28 @@ export const SignUp = () => {
         password: 'password',
         confirmPassword: 'confirmPassword'
     });
+    const [isOpenPopup, setIsOpenPopup] = useState(false);
+    const [textMessege, settextMessege] = useState('');
+    const [popupLogo, setpopupLogo] = useState('');
+
+    const openPopup = (title: string, logo: boolean) => {
+        settextMessege((prevTextLine) => prevTextLine = title);
+        setpopupLogo((prevLogo) => logo ? prevLogo = 'success' : prevLogo = 'error');
+        return setIsOpenPopup((prevState) => !prevState);
+    }
+
+    const closePopup = () => {
+        setIsOpenPopup((prevState) => !prevState);
+    }
 
     function handleSubmit (event: { preventDefault: () => void; }) {
         event.preventDefault();
         if (state.password !== state.confirmPassword) {
-            alert('Passwords are not match!');
-            return null;
+            return openPopup("Passwords are not match!", false);
         }
         else {
             const storageUsers = JSON.parse(localStorage.getItem('users') || '[]');
-            alert('User registeted');
+            openPopup('User registeted', true);
             if (storageUsers.length === 0) {
                 let users= [];
                 users.push(state); 
@@ -70,6 +84,10 @@ export const SignUp = () => {
                 </div>
                 <button type='submit' className='authorization-form__action custom-btn'>sign up</button>
             </form>
+            {
+                isOpenPopup &&
+                <PopUp title = {textMessege} logo = {popupLogo} handleClose = {closePopup}/>
+            }
         </main>
     );
 }

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import useSelectorTyped from "../../hooks/useSelectorTyped";
+
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Header.scss';
@@ -8,6 +10,8 @@ import './Header.scss';
 export function Header () {
     const [searchLine, setSearchLine] = useState("");
     const [searchImg, setSearchImg] = useState(false);
+    const busket = useSelectorTyped((state) => state.BookBusketSliser.busketbooks);
+    const favorites = useSelectorTyped((state) => state.BookFavoritesSliser.favoritebooks);
 
     function handleChange (event: { preventDefault: () => void; target: { value: string; }; }) {
         event.preventDefault();
@@ -47,12 +51,26 @@ export function Header () {
             <div className="tools">
                 <Link to='/favorites'>
                     <div className='tools__link favorites'>
-                        <img src="/assets/vector/components/header/Toolbox/favorites.svg" alt="favorites" className="tools__link__logo" />
+                        {
+                            !favorites.length && 
+                            <img src="/assets/vector/components/header/Toolbox/favorites.svg" alt="favorites" className="tools__link__logo" />
+                        }
+                        {
+                            !!favorites.length && 
+                            <img src="/assets/vector/components/header/Toolbox/fullFavoritessLogo.svg" alt="favorites" className="tools__link__logo" />
+                        }
                     </div>
                 </Link>
                 <Link to='/busket'>
                     <div className='tools__link busket'>
-                        <img src="/assets/vector/components/header/Toolbox/busket.svg" alt="busket" className="tools__link__logo" />
+                        {
+                            !busket.length && 
+                            <img src="/assets/vector/components/header/Toolbox/busket.svg" alt="busket" className="tools__link__logo" />
+                        }
+                        {
+                            !!busket.length &&
+                            <img src="/assets/vector/components/header/Toolbox/fullBusketLogo.svg" alt="busket" className="tools__link__logo" />
+                        }
                     </div>
                 </Link>
                 <Link to='/accaunt'>

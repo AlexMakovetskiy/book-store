@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import useDispatchTyped from "../../hooks/useDispatchTyped";
 import { updateUserData } from "../../store/slicers/userSlicer";
+import PopUp from "../../components/PopUp/PopUp";
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
@@ -13,6 +14,9 @@ export const SignIn = () => {
       email: '',
       password: '',
     });
+    const [isOpenPopup, setIsOpenPopup] = useState(false);
+    const [textMessege, settextMessege] = useState('');
+    const [popupLogo, setpopupLogo] = useState('');
 
     const dispatch = useDispatchTyped();
     const navigator = useNavigate();
@@ -24,11 +28,21 @@ export const SignIn = () => {
       }));  
     }
 
+    const openPopup = (title: string, logo: boolean) => {
+      settextMessege((prevTextLine) => prevTextLine = title);
+      setpopupLogo((prevLogo) => logo ? prevLogo = 'success' : prevLogo = 'error');
+      return setIsOpenPopup((prevState) => !prevState);
+    }
+
+    const closePopup = () => {
+        setIsOpenPopup((prevState) => !prevState);
+    }
+
     function handleSubmit (event: { preventDefault: () => void; }) {
       event.preventDefault();
       const storageUsers = JSON.parse(localStorage.getItem('users') || '[]');
       if (storageUsers.length === 0)
-        return alert('This user is not registered');
+        return openPopup('This user is not registered', false);
       for (const storageUser of storageUsers) {
         if(storageUser.email === state.email && storageUser.password === state.password) {
           dispatch(updateUserData({
@@ -37,6 +51,9 @@ export const SignIn = () => {
             isLogin: true
           }));
           navigator('/');
+        }
+        else {
+          openPopup('You entered user data incorrectly', false);
         }
       }
     }
@@ -60,10 +77,14 @@ export const SignIn = () => {
             <div className="authorization-form__check-password-wrapper edittext-conteiner">
               <input type="password" className="authorization-form__check-password-wrapper__textedit" placeholder='Your password' onChange={handleChange} name='password'/>
             </div>
-            <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" className="authorization-form__link">Forgot password?</a>
+            <Link to={'/notfound'} className="authorization-form__link">Forgot password?</Link>
             <button className='authorization-form__action custom-btn' type="submit">sign in</button>
           </form>
         </div>
+        {
+                isOpenPopup &&
+                <PopUp title = {textMessege} logo = {popupLogo} handleClose = {closePopup}/>
+        }
       </main>
     );
 }

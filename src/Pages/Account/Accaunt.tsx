@@ -5,6 +5,7 @@ import { logOut, updateUserData } from "../../store/slicers/userSlicer";
 import useDispatchTyped from "../../hooks/useDispatchTyped";
 import useSelectorTyped from "../../hooks/useSelectorTyped";
 import { ReturnPrevPage } from "../../components/ReturnPrevPage/ReturnPrevPage";
+import PopUp from "../../components/PopUp/PopUp";
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
@@ -17,6 +18,10 @@ export const Accaunt = () => {
         password: '',
         confirmPassword: ''
     });
+    const [isOpenPopup, setIsOpenPopup] = useState(false);
+    const [textMessege, settextMessege] = useState('');
+    const [popupLogo, setpopupLogo] = useState('');
+
     
     const dispatch = useDispatchTyped();
     const navigator = useNavigate();
@@ -38,19 +43,29 @@ export const Accaunt = () => {
     const SignOutUser = () => {
         dispatch((logOut()));
         navigator('/');
-    };        
+    };   
+    
+    const openPopup = (title: string, logo: boolean) => {
+        settextMessege((prevTextLine) => prevTextLine = title);
+        setpopupLogo((prevLogo) => logo ? prevLogo = 'success' : prevLogo = 'error');
+        return setIsOpenPopup((prevState) => !prevState);
+    };
+
+    const closePopup = () => {
+        setIsOpenPopup((prevState) => !prevState);
+    };
 
     const ChangeUserData = () => {
         const storageUsers = JSON.parse(localStorage.getItem('users') || '[]');
         if(userState.userName === '' || userState.email === '') {
-            return alert('Enter a new name and email');
+            return openPopup('Enter a new name and email', false);
         }
         else {
             if(userState.password === '' || userState.confirmPassword === '')
-                return alert('Enter a new name and email');
+                return openPopup('Enter a new passwords', false);
             else {
                 if(userState.password !== userState.confirmPassword)
-                    return alert('Your passwaords are not match!');
+                    return openPopup('Your passwaords are not match!', false);
                 else {
                     dispatch(updateUserData({
                         name: userState.userName,
@@ -66,11 +81,12 @@ export const Accaunt = () => {
                         
                     }
                     localStorage.setItem('users', JSON.stringify(storageUsers));
-                    return alert('Your data was successfully change');
+                    return openPopup('Your data was successfully change', true);
                 }
             }
         }
     }
+
     return (
         <main className="accaunt">
             <ReturnPrevPage/>
@@ -119,7 +135,10 @@ export const Accaunt = () => {
                     <button className="action-tools__cancel-action custom-btn" onClick={SignOutUser}>cancel</button>
                 </div>
             </div>
-        
+            {
+                isOpenPopup &&
+                <PopUp title = {textMessege} logo= {popupLogo} handleClose = {closePopup}/>
+            }
         </main>
     );
 }

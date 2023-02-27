@@ -62,4 +62,18 @@ interface IFavoriteBookObject {
     bookData: IBook
 }
 
-export type {IBook, IBookInfo, IBooksInfoState, IFavoriteBook, IFavoriteBookObject}
+interface IBusketBook {
+    isbn13: string,
+    image: string | undefined,
+    title: string,
+    authors: string,
+    publisher: string,
+    price: number,
+    count: number,
+}
+
+interface IBusketBookObject {
+    bookData: IBook
+}
+
+export type {IBook, IBookInfo, IBooksInfoState, IFavoriteBook, IFavoriteBookObject, IBusketBook, IBusketBookObject}

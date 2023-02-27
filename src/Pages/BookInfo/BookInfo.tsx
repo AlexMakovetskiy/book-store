@@ -1,5 +1,5 @@
-import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 
 import useSelectorTyped from "../../hooks/useSelectorTyped";
 import useDispatchTyped from "../../hooks/useDispatchTyped";
@@ -8,14 +8,15 @@ import { Subscription } from "../../components/Subscription/Subscription";
 import { ReturnPrevPage } from "../../components/ReturnPrevPage/ReturnPrevPage";
 import TabSet  from "../../components/BookTabs/BookTabs";
 import { AddFavoriteBook } from "../../components/AddFavoriteBook/AddFavoriteBook";
+import { AddBusketBook } from "../../components/AddBusketBook/AddBusketBook";
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './BookInfo.scss';
 
 export const BookInfo = () => {
-    const dispatch = useDispatchTyped();
     const params = useParams();
+    const dispatch = useDispatchTyped();
     const bookData = useSelectorTyped((state) => state.BookInfoSlicer.book);
 
     useEffect(() => {
@@ -54,7 +55,7 @@ export const BookInfo = () => {
                         <summary className="details-wrapper__header">More details</summary>
                         <p className="details-wrapper__content">{bookData.subtitle}</p>
                     </details>
-                    <button className="specification-wrapper__busket-action custom-btn">add to card</button>
+                    <AddBusketBook bookData={bookData}/>
                     <Link to={'/notfound'}>
                         <p className="specification-wrapper__preview">Preview book</p>
                     </Link>

@@ -15,7 +15,7 @@ export function AddFavoriteBook ({bookData} :IFavoriteBookObject) {
     const isAuthorized = useSelectorTyped((state) => state.userSlicer.isLogin);
     const navigator = useNavigate();
     
-    const handleClick = () => {
+    const handleFavoriteAction = () => {
         if(!isAuthorized)
             return navigator("/signin");
         dispatch(setFavoriteBook(bookData));
@@ -25,7 +25,7 @@ export function AddFavoriteBook ({bookData} :IFavoriteBookObject) {
 
     return (
         <div className="addfavorites-conteiner">
-            <button className={isFavoriteBook ? "action-activated" : "action-deactivated"} onClick={handleClick}>
+            <button className={isFavoriteBook ? "action-activated" : "action-deactivated"} onClick={handleFavoriteAction}>
                 <img src="/assets/vector/pages/bookInfo/favorites.svg" alt="logo" className="heart-logo"/>
             </button>
         </div>
