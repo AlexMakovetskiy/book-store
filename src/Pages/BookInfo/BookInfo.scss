@@ -82,8 +82,23 @@
                 color: #313037;
                 cursor: pointer;
 
+                &__header {
+                    list-style: none;
+                }
+
+                &__header::after {
+                    content: url(../../../public/assets/vector/pages/bookinfo/details_arrow_down.svg);
+                    margin-left: 8px;
+                }
+
                 &__content {
                     padding-top: 8px;
+                }
+            }
+
+            .details-wrapper[open] {
+                .details-wrapper__header::after {
+                    content: url(../../../public/assets/vector/pages/bookinfo/details_arrow_up.svg);
                 }
             }
 
