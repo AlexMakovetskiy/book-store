@@ -15,6 +15,7 @@ $custom-grey: #E7E7E7;
             &__signup-wrapper {
                 padding: 22px 0;
                 width: 100%;
+                user-select: none;
             }
 
             &__signin-wrapper {
@@ -55,7 +56,8 @@ $custom-grey: #E7E7E7;
                 line-height: 3.2rem;
                 font-weight: 500;
                 text-align: left;
-                color: black;        
+                color: black;
+                user-select: none;
             }
 
             &__action {
