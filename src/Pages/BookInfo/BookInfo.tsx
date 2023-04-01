@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import useSelectorTyped from "../../hooks/useSelectorTyped";
 import useDispatchTyped from "../../hooks/useDispatchTyped";
@@ -9,12 +9,15 @@ import { ReturnPrevPage } from "../../components/ReturnPrevPage/ReturnPrevPage";
 import TabSet  from "../../components/BookTabs/BookTabs";
 import { AddFavoriteBook } from "../../components/AddFavoriteBook/AddFavoriteBook";
 import { AddBusketBook } from "../../components/AddBusketBook/AddBusketBook";
+import { BASE_TWITTER_SEARCH, ENDPOINT_TWITTER_SEARCH, BASE_FACEBOOK_SEARCH } from "../../helpers/pages/bookInfo/bookInfo";
+import PreviewBookCover from "../../components/PreviewBookCover/PreviewBookCover";
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './BookInfo.scss';
 
 export const BookInfo = () => {
+    const [isOpenPreview, setIsOpenPreview] = useState(false);
     const params = useParams();
     const dispatch = useDispatchTyped();
     const bookData = useSelectorTyped((state) => state.BookInfoSlicer.book);
@@ -24,6 +27,20 @@ export const BookInfo = () => {
             getBooksInfoData(params.id ?? '')
         );
     }, [dispatch]);
+
+    const showPreview = () => {
+        return setIsOpenPreview((prevState) => !prevState);
+    }
+
+    function goToTwitter () {
+        const namesBookAuthors = bookData.authors.split(" ");
+        return window.open(BASE_TWITTER_SEARCH + namesBookAuthors[0] + "%20" + namesBookAuthors[1] + ENDPOINT_TWITTER_SEARCH, '_blank');
+    }
+
+    function goToFacebook () {
+        const namesBookAuthors = bookData.authors.split(" ");
+        return window.open(BASE_FACEBOOK_SEARCH + namesBookAuthors[0] + "%20" + namesBookAuthors[1], '_blank');
+    }
 
     return (
         <div className="bookinfo-wrapper">
@@ -56,23 +73,24 @@ export const BookInfo = () => {
                         <p className="details-wrapper__content">{bookData.subtitle}</p>
                     </details>
                     <AddBusketBook bookData={bookData}/>
-                    <Link to={'/notfound'}>
-                        <p className="specification-wrapper__preview">Preview book</p>
-                    </Link>
+                    <button className="specification-wrapper__preview-book-cover" onClick={showPreview}>Preview book</button>
                 </div>
             </div>
             <TabSet {...bookData}/>
-            <div className="bookinfo-wrapper__contacts">
-                <Link to='/notfound'>
-                    <img src="/assets/vector/pages/bookinfo/Contacts/facebookLogo.svg" alt="facebook" className="bookinfo-wrapper__contacts__social-media" />
-                </Link>
-                <Link to='/notfound'>
-                    <img src="/assets/vector/pages/bookinfo/Contacts/twitterLogo.svg" alt="twitter" className="bookinfo-wrapper__contacts__social-media" />
-                </Link>
-                <img src="/assets/vector/pages/bookinfo/Contacts/otherContactImg.svg" alt="other" className="bookinfo-wrapper__contacts__social-media" />
-                
+            <div className="contacts">
+                <button className="facebook-link" onClick={goToFacebook}>
+                    <img src="/assets/vector/pages/bookinfo/Contacts/facebookLogo.svg" alt="facebook" className="contacts__social-media" />
+                </button>
+                <button className="twitter-link" onClick={goToTwitter}>
+                    <img src="/assets/vector/pages/bookinfo/Contacts/twitterLogo.svg" alt="twitter" className="contacts__social-media" />
+                </button>
+                <img src="/assets/vector/pages/bookinfo/Contacts/otherContactImg.svg" alt="other" className="contacts__social-media" />
             </div>
             <Subscription/>
+            {
+                isOpenPreview &&
+                <PreviewBookCover handleClose = {showPreview}/>
+            }
         </div>
     );
 }

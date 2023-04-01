@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import useSelectorTyped from "../../hooks/useSelectorTyped";
 
@@ -12,6 +12,7 @@ export function Header () {
     const [searchImg, setSearchImg] = useState(false);
     const busket = useSelectorTyped((state) => state.BookBusketSliser.busketbooks);
     const favorites = useSelectorTyped((state) => state.BookFavoritesSliser.favoritebooks);
+    const navigator = useNavigate();
 
     function handleChange (event: { preventDefault: () => void; target: { value: string; }; }) {
         event.preventDefault();
@@ -26,6 +27,7 @@ export function Header () {
                 setSearchLine((prevState) => prevState = "");
                 return setSearchImg((prevState) => prevState = false);
             }
+            navigator(`/search-data/${searchLine.trim()}/1`);
             return setSearchImg((prevState) => prevState = true);
         }
     }
@@ -35,18 +37,16 @@ export function Header () {
             <Link to='/'><img src="/assets/vector/components/header/BookstoreLogo.svg" alt="logo" className='header__logo' /></Link>
             <div className="search-field">
                 <input className="search-field__textline" type="text" placeholder="Search" onChange={handleChange} value={searchLine}/> 
-                <Link to={`/search-data/${searchLine}/1`} >
-                    <button className="search-field__action" onClick={handleSearch}>
-                        {
-                            !searchImg &&
-                            <img src="/assets/vector/components/header/search-button/loupe.svg" alt="loupe" className="search-field__action__image" />
-                        }
-                        {
-                            searchImg &&
-                            <img src="/assets/vector/components/header/search-button/cancelSearch.svg" alt="loupe" className="search-field__action__image" />
-                        }
-                    </button>
-                </Link>
+                <button className="search-field__action" onClick={handleSearch}>
+                    {
+                        !searchImg &&
+                        <img src="/assets/vector/components/header/search-button/loupe.svg" alt="loupe" className="search-field__action__image" />
+                    }
+                    {
+                        searchImg &&
+                        <img src="/assets/vector/components/header/search-button/cancelSearch.svg" alt="loupe" className="search-field__action__image" />
+                    }
+                </button>
             </div>
             <div className="tools">
                 <Link to='/favorites'>

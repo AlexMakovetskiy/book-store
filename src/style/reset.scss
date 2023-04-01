@@ -24,10 +24,20 @@
     outline-offset: none;
     background: white;
     border: 1px solid transparent;
+    user-select: none;
   }
   
   input, textarea {
     outline: none;
     border: solid 1px white;
+  }
+
+  img {
+    user-select: none;
+    cursor: pointer;
+  }
+
+  h1, h2 {
+    user-select: none;
   }
   

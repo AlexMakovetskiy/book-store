@@ -43,6 +43,8 @@
             padding-top: 40px;
             min-width: 448px;
             width: 100%;
+            display: flex;
+            flex-direction: column;
 
             &__price-conteiner {
                 display: flex;
@@ -82,8 +84,24 @@
                 color: #313037;
                 cursor: pointer;
 
+                &__header {
+                    user-select: none;
+                    list-style: none;
+                }
+
+                &__header::after {
+                    content: url(../../../public/assets/vector/pages/bookinfo/details_arrow_down.svg);
+                    margin-left: 8px;
+                }
+
                 &__content {
                     padding-top: 8px;
+                }
+            }
+
+            .details-wrapper[open] {
+                .details-wrapper__header::after {
+                    content: url(../../../public/assets/vector/pages/bookinfo/details_arrow_up.svg);
                 }
             }
 
@@ -95,7 +113,8 @@
                 letter-spacing: 0.05em;
             }
 
-            &__preview {
+            &__preview-book-cover {
+                margin: 0 auto; 
                 padding-top: 40px;
                 font-size: 1.6rem;
                 line-height: 2.4rem;
@@ -104,7 +123,7 @@
         }
     }
 
-    &__contacts {
+    .contacts {
         padding:48px 0 72px;
         display: flex;
         gap: 30px;
