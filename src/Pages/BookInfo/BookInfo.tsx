@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import useSelectorTyped from "../../hooks/useSelectorTyped";
 import useDispatchTyped from "../../hooks/useDispatchTyped";
@@ -10,12 +10,14 @@ import TabSet  from "../../components/BookTabs/BookTabs";
 import { AddFavoriteBook } from "../../components/AddFavoriteBook/AddFavoriteBook";
 import { AddBusketBook } from "../../components/AddBusketBook/AddBusketBook";
 import { BASE_TWITTER_SEARCH, ENDPOINT_TWITTER_SEARCH, BASE_FACEBOOK_SEARCH } from "../../helpers/pages/bookInfo/bookInfo";
+import PreviewBookCover from "../../components/PreviewBookCover/PreviewBookCover";
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './BookInfo.scss';
 
 export const BookInfo = () => {
+    const [isOpenPreview, setIsOpenPreview] = useState(false);
     const params = useParams();
     const dispatch = useDispatchTyped();
     const bookData = useSelectorTyped((state) => state.BookInfoSlicer.book);
@@ -25,6 +27,10 @@ export const BookInfo = () => {
             getBooksInfoData(params.id ?? '')
         );
     }, [dispatch]);
+
+    const showPreview = () => {
+        return setIsOpenPreview((prevState) => !prevState);
+    }
 
     function goToTwitter () {
         const namesBookAuthors = bookData.authors.split(" ");
@@ -67,9 +73,7 @@ export const BookInfo = () => {
                         <p className="details-wrapper__content">{bookData.subtitle}</p>
                     </details>
                     <AddBusketBook bookData={bookData}/>
-                    <Link to={'/notfound'}>
-                        <p className="specification-wrapper__preview">Preview book</p>
-                    </Link>
+                    <button className="specification-wrapper__preview-book-cover" onClick={showPreview}>Preview book</button>
                 </div>
             </div>
             <TabSet {...bookData}/>
@@ -83,6 +87,10 @@ export const BookInfo = () => {
                 <img src="/assets/vector/pages/bookinfo/Contacts/otherContactImg.svg" alt="other" className="contacts__social-media" />
             </div>
             <Subscription/>
+            {
+                isOpenPreview &&
+                <PreviewBookCover handleClose = {showPreview}/>
+            }
         </div>
     );
 }
