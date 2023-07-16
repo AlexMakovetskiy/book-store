@@ -1,14 +1,14 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IFavoriteBook } from "../../interfaces/store/reduce/bookSlice";
+import { IFavoriteBook } from '../../interfaces/store/reduce/bookSlice';
 
 interface IFavoriteBookState {
     favoritebooks: IFavoriteBook[]
 }
 
 const initialState :IFavoriteBookState = {
-    favoritebooks: []
-}
+    favoritebooks: [],
+};
 
 const BookFavoriteSlice = createSlice({
     name: 'favoritebooks',
@@ -22,8 +22,8 @@ const BookFavoriteSlice = createSlice({
                 state.favoritebooks = [action.payload, ...state.favoritebooks];
             else    
                 state.favoritebooks = state.favoritebooks.filter((favoritebook) => favoritebook.isbn13 !== isFavoriteBook.isbn13);
-        }
-    }
+        },
+    },
 });
 
 export default BookFavoriteSlice.reducer;

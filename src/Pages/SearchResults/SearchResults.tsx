@@ -21,21 +21,21 @@ export const SearchResults = () => {
         dispatch(getBooksFoundData({
             inputData: params.searchLine,
             pageNumber: params.page,
-        }))
-    }, [params]);
+        }));
+    }, [dispatch, params]);
 
     const countPages = Math.ceil(countFoundBooks / 10);
     return (
-        <div className='search-conteiner'>
+        <div className="search-conteiner">
             <h2 className="search-conteiner__title"> '{params.searchLine}' Search results</h2>
             <p className="search-conteiner__subtitle">Found {countFoundBooks} books</p>
             <div className="found-books">
                 {
                     bookList.map((book) => 
-                    <Book key={book.isbn13} {...book}/>)
+                        <Book key={book.isbn13} {...book}/>)
                 }
             </div>
             <Pagination currPage = {Number(params.page ?? 1)} pageCount={countPages} inputData = {params.searchLine}/>
         </div>
     );
-}
+};

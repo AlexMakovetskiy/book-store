@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useSelectorTyped from '../../hooks/useSelectorTyped';
 import useDispatchTyped from '../../hooks/useDispatchTyped';
 import { setBusketBook, deleteBusketBook } from '../../store/slicers/BookBusketSliser';
-import { IBusketBookObject, IBook } from '../../interfaces/store/reduce/bookSlice';
+import { IBusketBookObject } from '../../interfaces/store/reduce/bookSlice';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
@@ -20,7 +20,7 @@ export function AddBusketBook ({bookData}: IBusketBookObject) {
 
     const handleBusketAction = () => {
         if(!isAuthorized)
-            return navigator("/signin");        
+            return navigator('/signin');        
         if(isBusketBook) 
             return dispatch(deleteBusketBook(bookData.isbn13));
         dispatch(setBusketBook({
@@ -32,11 +32,13 @@ export function AddBusketBook ({bookData}: IBusketBookObject) {
             price: bookData.price,
             count: 1,
         }));
-    }
+    };
 
     return (
         <div className="busket-book-wrap">
-            <button className={isBusketBook ? 'action-activated' : 'action-deactivated'} onClick={handleBusketAction}>{isBusketBook ? activatedTextLine : deactivatedTextLine}</button>
+            <button className={isBusketBook ? 'action-activated' : 'action-deactivated'} onClick={handleBusketAction}>
+                {isBusketBook ? activatedTextLine : deactivatedTextLine}
+            </button>
         </div>
     );
 }

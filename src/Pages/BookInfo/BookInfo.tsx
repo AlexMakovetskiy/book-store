@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-import useSelectorTyped from "../../hooks/useSelectorTyped";
-import useDispatchTyped from "../../hooks/useDispatchTyped";
-import { getBooksInfoData } from "../../store/thunks/getBooksInfoData";
-import { Subscription } from "../../components/Subscription/Subscription";
-import { ReturnPrevPage } from "../../components/ReturnPrevPage/ReturnPrevPage";
-import TabSet  from "../../components/BookTabs/BookTabs";
-import { AddFavoriteBook } from "../../components/AddFavoriteBook/AddFavoriteBook";
-import { AddBusketBook } from "../../components/AddBusketBook/AddBusketBook";
-import { BASE_TWITTER_SEARCH, ENDPOINT_TWITTER_SEARCH, BASE_FACEBOOK_SEARCH } from "../../helpers/pages/bookInfo/bookInfo";
-import PreviewBookCover from "../../components/PreviewBookCover/PreviewBookCover";
+import useSelectorTyped from '../../hooks/useSelectorTyped';
+import useDispatchTyped from '../../hooks/useDispatchTyped';
+import { getBooksInfoData } from '../../store/thunks/getBooksInfoData';
+import { Subscription } from '../../components/Subscription/Subscription';
+import { ReturnPrevPage } from '../../components/ReturnPrevPage/ReturnPrevPage';
+import TabSet  from '../../components/BookTabs/BookTabs';
+import { AddFavoriteBook } from '../../components/AddFavoriteBook/AddFavoriteBook';
+import { AddBusketBook } from '../../components/AddBusketBook/AddBusketBook';
+import { BASE_TWITTER_SEARCH, ENDPOINT_TWITTER_SEARCH, BASE_FACEBOOK_SEARCH } from '../../helpers/pages/bookInfo/bookInfo';
+import PreviewBookCover from '../../components/PreviewBookCover/PreviewBookCover';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
@@ -24,22 +24,22 @@ export const BookInfo = () => {
 
     useEffect(() => {
         dispatch(
-            getBooksInfoData(params.id ?? '')
+            getBooksInfoData(params.id ?? ''),
         );
-    }, [dispatch]);
+    }, [dispatch, params.id]);
 
     const showPreview = () => {
         return setIsOpenPreview((prevState) => !prevState);
-    }
+    };
 
     function goToTwitter () {
-        const namesBookAuthors = bookData.authors.split(" ");
-        return window.open(BASE_TWITTER_SEARCH + namesBookAuthors[0] + "%20" + namesBookAuthors[1] + ENDPOINT_TWITTER_SEARCH, '_blank');
+        const namesBookAuthors = bookData.authors.split(' ');
+        return window.open(BASE_TWITTER_SEARCH + namesBookAuthors[0] + '%20' + namesBookAuthors[1] + ENDPOINT_TWITTER_SEARCH, '_blank');
     }
 
     function goToFacebook () {
-        const namesBookAuthors = bookData.authors.split(" ");
-        return window.open(BASE_FACEBOOK_SEARCH + namesBookAuthors[0] + "%20" + namesBookAuthors[1], '_blank');
+        const namesBookAuthors = bookData.authors.split(' ');
+        return window.open(BASE_FACEBOOK_SEARCH + namesBookAuthors[0] + '%20' + namesBookAuthors[1], '_blank');
     }
 
     return (
@@ -93,4 +93,4 @@ export const BookInfo = () => {
             }
         </div>
     );
-}
+};

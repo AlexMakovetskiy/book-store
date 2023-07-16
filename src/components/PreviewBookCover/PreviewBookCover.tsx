@@ -13,7 +13,7 @@ function PreviewBookCover ({handleClose}: IPreviewProps ) {
 
     return (
         <div className="cover-conteiner" onClick={handleClose}>
-            <img className='simple-div' src={bookData.image} alt="cover" />
+            <img className="simple-div" src={bookData.image} alt="cover" />
         </div>
     );
 }

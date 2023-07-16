@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import useSelectorTyped from '../../hooks/useSelectorTyped';
 import useDispatchTyped from '../../hooks/useDispatchTyped';
 import { getBooksData } from '../../store/thunks/getBooksData';
@@ -14,8 +15,8 @@ export function PopularBooks () {
     const bookList = useSelectorTyped((state) => state.booksSlicer);
 
     useEffect(() => {
-        dispatch(getBooksData())
-    }, []);
+        dispatch(getBooksData());
+    }, [dispatch]);
 
     function handleLeftAction () {
         return setPagination(pagination > 0 ? pagination - 1 : 0);
@@ -40,7 +41,7 @@ export function PopularBooks () {
             <div className="books-wrapper">
                 {
                     bookList.books.slice(pagination, pagination + 3).map((book) => 
-                        <Book key={book.isbn13} {...book}/>
+                        <Book key={book.isbn13} {...book}/>,
                     )
                 }
             </div>

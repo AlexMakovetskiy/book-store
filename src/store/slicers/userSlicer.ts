@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IUser {
     name: string,
@@ -10,7 +10,7 @@ const initialState: IUser = {
     name: '',
     email: '',
     isLogin: false,
-}
+};
 
 const userSlice = createSlice({
     name: 'user',
@@ -19,8 +19,8 @@ const userSlice = createSlice({
         updateUserData: (state: IUser, action: PayloadAction<IUser>) => {
             return {
                 ...state,
-                ...action.payload
-            }
+                ...action.payload,
+            };
         },
         logOut: (state: IUser) => {
             state.name = '';

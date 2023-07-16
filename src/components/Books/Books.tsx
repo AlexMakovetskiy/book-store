@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { Book } from "./Book/Book";
-import LoadingElement from "../LodaingElement/LoadingElement";
-import { getBooksData } from "../../store/thunks/getBooksData";
-import useDispatchTyped from "../../hooks/useDispatchTyped";
-import useSelectorTyped from "../../hooks/useSelectorTyped";
-import { IBook } from "../../interfaces/books";
+import LoadingElement from '../LodaingElement/LoadingElement';
+import { getBooksData } from '../../store/thunks/getBooksData';
+import useDispatchTyped from '../../hooks/useDispatchTyped';
+import useSelectorTyped from '../../hooks/useSelectorTyped';
+import { IBook } from '../../interfaces/books';
+
+import { Book } from './Book/Book';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
@@ -29,19 +30,19 @@ export function Books () {
     }
 
     if (!books.length) {
-        return <div>Results not found</div>
+        return <div>Results not found</div>;
     }
 
     return (
-    <div className='books-wrapper'>
-        <div className='books-wrapper__books'>
-            {
-                books.map((book :IBook) =>
-                    <Book key={book.isbn13} {...book}/>
-                )
-            }
+        <div className="books-wrapper">
+            <div className="books-wrapper__books">
+                {
+                    books.map((book :IBook) =>
+                        <Book key={book.isbn13} {...book}/>,
+                    )
+                }
+            </div>
         </div>
-    </div>
     );
 }
 

@@ -76,4 +76,4 @@ interface IBusketBookObject {
     bookData: IBook
 }
 
-export type {IBook, IBookInfo, IBooksInfoState, IFavoriteBook, IFavoriteBookObject, IBusketBook, IBusketBookObject}
+export type {IBook, IBookInfo, IBooksInfoState, IFavoriteBook, IFavoriteBookObject, IBusketBook, IBusketBookObject};

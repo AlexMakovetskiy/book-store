@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const URL_API_BOOKS = 'https://api.itbook.store/1.0';
 const ENDPOINT_NEW_BOOKS = '/new';
@@ -12,5 +12,5 @@ export const getBooksData = createAsyncThunk(
         } catch (error) {
             return thunkAPI.rejectWithValue(error);
         }
-});
+    });
 

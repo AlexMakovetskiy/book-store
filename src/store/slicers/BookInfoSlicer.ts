@@ -1,10 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IBooksInfoState, IBookInfo } from "../../interfaces/store/reduce/bookSlice";
-import { getBooksInfoData } from "../thunks/getBooksInfoData";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { IBooksInfoState, IBookInfo } from '../../interfaces/store/reduce/bookSlice';
+import { getBooksInfoData } from '../thunks/getBooksInfoData';
 
 const initialState: IBooksInfoState = {
     loading: false,
-    error: "",
+    error: '',
     book: {
         title: '',
         year: '',
@@ -21,28 +22,29 @@ const initialState: IBooksInfoState = {
         rating: '',
         publisher: '',
         language: '',
-    }
-}
+    },
+};
 
 const booksInfoSlice = createSlice({
-    name: "booksDescription",
+    name: 'booksDescription',
     initialState,
     reducers: {},
     extraReducers(builder){
         builder.addCase(getBooksInfoData.pending, (state: IBooksInfoState) => {
-        state.loading = true
-        })
+            state.loading = true;
+        });
         builder.addCase(getBooksInfoData.fulfilled, (state: IBooksInfoState, action: PayloadAction<IBookInfo>) => {
-        state.loading = false
-        state.book = action.payload
-        })
+            state.loading = false;
+            state.book = action.payload;
+        });
 
         builder.addCase(getBooksInfoData.rejected, (state: IBooksInfoState, action: PayloadAction<any>) => {
-        state.loading = false
-        state.error = action.payload
-        })
-    }
+            state.loading = false;
+            state.error = action.payload;
+        });
+    },
 });
 
+// eslint-disable-next-line no-empty-pattern
 export const {} = booksInfoSlice.actions;
 export default booksInfoSlice.reducer;

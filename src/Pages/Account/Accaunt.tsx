@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { logOut, updateUserData } from "../../store/slicers/userSlicer";
-import useDispatchTyped from "../../hooks/useDispatchTyped";
-import useSelectorTyped from "../../hooks/useSelectorTyped";
-import { ReturnPrevPage } from "../../components/ReturnPrevPage/ReturnPrevPage";
-import PopUp from "../../components/PopUp/PopUp";
+import { logOut, updateUserData } from '../../store/slicers/userSlicer';
+import useDispatchTyped from '../../hooks/useDispatchTyped';
+import useSelectorTyped from '../../hooks/useSelectorTyped';
+import { ReturnPrevPage } from '../../components/ReturnPrevPage/ReturnPrevPage';
+import PopUp from '../../components/PopUp/PopUp';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
@@ -16,7 +16,7 @@ export const Accaunt = () => {
         userName: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
     });
     const [isOpenPopup, setIsOpenPopup] = useState(false);
     const [textMessege, settextMessege] = useState('');
@@ -32,13 +32,13 @@ export const Accaunt = () => {
             ...prevState,
             [event.target.name]: event.target.value, 
         }));  
-    }
+    };
 
     useEffect(() => {
         if(!userData.isLogin) {
             navigator('/signin');
         }
-    }, [navigator]);
+    }, [navigator, userData.isLogin]);
 
     const SignOutUser = () => {
         dispatch((logOut()));
@@ -70,7 +70,7 @@ export const Accaunt = () => {
                     dispatch(updateUserData({
                         name: userState.userName,
                         email: userState.email,
-                        isLogin: true
+                        isLogin: true,
                     }));
                     for (const user of storageUsers) {
                         if(user.email === userData.email) {
@@ -85,7 +85,7 @@ export const Accaunt = () => {
                 }
             }
         }
-    }
+    };
 
     return (
         <main className="accaunt">
@@ -97,13 +97,27 @@ export const Accaunt = () => {
                     <div className="accaunt-data-content__name-wrapper">
                         <h3 className="profile-data-content__name-wrapper__title">Name</h3>
                         <div className="accaunt-data-content__name-wrapper__nameedit-wrapper edittext-conteiner">
-                            <input type="text" className="accaunt-data-content__name-wrapper__nameedit-wrapper__textedit" name="userName" placeholder="Name Surname" defaultValue={userData.name} onChange={handleChange}/>
+                            <input 
+                                type="text" 
+                                className="accaunt-data-content__name-wrapper__nameedit-wrapper__textedit" 
+                                name="userName" 
+                                placeholder="Name Surname" 
+                                defaultValue={userData.name} 
+                                onChange={handleChange}
+                            />
                         </div>
                     </div>
                     <div className="accaunt-data-content__email-wrapper">
                         <h3 className="profile-data-content__email-wrapper__title">Email</h3>
                         <div className="accaunt-data-content__name-wrapper__emailedit-wrapper edittext-conteiner">
-                            <input type="email" className="accaunt-data-content__email-wrapper__nameedit-wrapper__textedit" name="email" placeholder="Email" defaultValue={userData.email} onChange={handleChange}/>
+                            <input 
+                                type="email" 
+                                className="accaunt-data-content__email-wrapper__nameedit-wrapper__textedit" 
+                                name="email" 
+                                placeholder="Email" 
+                                defaultValue={userData.email} 
+                                onChange={handleChange}
+                            />
                         </div>
                     </div>
                 </div>
@@ -112,20 +126,32 @@ export const Accaunt = () => {
                     <h3 className="password-data-content__title">Current password</h3>
                     <div className="password-data-content__current-password-block">
                         <div className="accaunt-data-content__password-wrapper__passwordedit-wrapper edittext-conteiner">
-                            <input type="password" className="accaunt-data-content__password-wrapper__passwordedit-wrapper__textedit" value='password' disabled/>
+                            <input type="password" className="accaunt-data-content__password-wrapper__passwordedit-wrapper__textedit" value="password" disabled/>
                         </div>
                     </div>
                     <div className="change-password-conteiner">
                         <div className="change-password-conteiner__new-password-conteiner">
                             <h4 className="change-password-conteiner__new-password-conteiner__title">New password</h4>
                             <div className="change-password-conteiner__new-password-conteiner__new-passwordedit-wrapper edittext-conteiner">
-                                <input type="password" className="change-password-conteiner__new-password-conteiner__new-passwordedit-wrapper__textedit" name="password" placeholder="New password" onChange={handleChange}/>
+                                <input 
+                                    type="password" 
+                                    className="change-password-conteiner__new-password-conteiner__new-passwordedit-wrapper__textedit" 
+                                    name="password" 
+                                    placeholder="New password" 
+                                    onChange={handleChange}
+                                />
                             </div>
                         </div>
                         <div className="change-password-conteiner__confirm-new-password-conteiner">
                             <h4 className="change-password-conteiner__confirm-new-password-conteiner__title">New password</h4>
                             <div className="change-password-conteiner__confirm-new-password-conteiner__confirm-new-passwordedit-wrapper edittext-conteiner">
-                                <input type="password" className="change-password-conteiner__confirm-new-password-conteiner__confirm-new-passwordedit-wrapper__textedit" name="confirmPassword"  placeholder="Confirm new password" onChange={handleChange}/>
+                                <input 
+                                    type="password" 
+                                    className="change-password-conteiner__confirm-new-password-conteiner__confirm-new-passwordedit-wrapper__textedit" 
+                                    name="confirmPassword"  
+                                    placeholder="Confirm new password" 
+                                    onChange={handleChange}
+                                />
                             </div>
                         </div>
                     </div>
@@ -141,4 +167,4 @@ export const Accaunt = () => {
             }
         </main>
     );
-}
+};

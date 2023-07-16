@@ -19,7 +19,7 @@ const getPreviousNextPages = (pageCount: number, currPage: number) => {
     else
         nextPageNumber = currPage;
     return {previousPageNumber, nextPageNumber};
-}
+};
 
 
 function Pagination ({currPage, pageCount, inputData}: IPagination) {
@@ -31,8 +31,12 @@ function Pagination ({currPage, pageCount, inputData}: IPagination) {
     return (
         <div className="pagination-conteiner">
             <Link to={`/search-data/${inputData}/${previousPageNumber}`}>
-                <button className='pagination-conteiner__go-grevious-page '>
-                    <img src="/assets/vector/components/pagination/left-arrow-pagination.svg" alt="parevious page arrow" className="pagination-conteiner__go-grevious-page__arrow" />
+                <button className="pagination-conteiner__go-grevious-page ">
+                    <img 
+                        src="/assets/vector/components/pagination/left-arrow-pagination.svg" 
+                        alt="parevious page arrow" 
+                        className="pagination-conteiner__go-grevious-page__arrow" 
+                    />
                     Prev
                 </button>
             </Link>
@@ -70,7 +74,7 @@ function Pagination ({currPage, pageCount, inputData}: IPagination) {
                 }
             </div>
             <Link to={`/search-data/${inputData}/${nextPageNumber}`}>
-                <button className='pagination-conteiner__go-next-page'>
+                <button className="pagination-conteiner__go-next-page">
                     Next
                     <img src="/assets/vector/components/pagination/right-arrow-pagination.svg" alt="next page arrow" className="pagination-conteiner__go-next-page__arrow" />
                 </button>

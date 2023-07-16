@@ -13,4 +13,4 @@ export const NotFound = () => {
             <button className="notfound-page-conteiner__goback-action custom-btn" onClick={() => navigator(-1)}>return to previous page</button>
         </div>
     );
-}
+};

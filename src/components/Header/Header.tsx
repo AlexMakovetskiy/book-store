@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-import useSelectorTyped from "../../hooks/useSelectorTyped";
+import useSelectorTyped from '../../hooks/useSelectorTyped';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Header.scss';
 
 export function Header () {
-    const [searchLine, setSearchLine] = useState("");
+    const [searchLine, setSearchLine] = useState('');
     const [searchImg, setSearchImg] = useState(false);
     const busket = useSelectorTyped((state) => state.BookBusketSliser.busketbooks);
     const favorites = useSelectorTyped((state) => state.BookFavoritesSliser.favoritebooks);
@@ -24,7 +24,7 @@ export function Header () {
     function handleSearch () {
         if(searchLine.length) {
             if (searchImg) {
-                setSearchLine((prevState) => prevState = "");
+                setSearchLine((prevState) => prevState = '');
                 return setSearchImg((prevState) => prevState = false);
             }
             navigator(`/search-data/${searchLine.trim()}/1`);
@@ -34,7 +34,7 @@ export function Header () {
 
     return (
         <header className="header large-conteiner">
-            <Link to='/'><img src="/assets/vector/components/header/BookstoreLogo.svg" alt="logo" className='header__logo' /></Link>
+            <Link to="/"><img src="/assets/vector/components/header/BookstoreLogo.svg" alt="logo" className="header__logo" /></Link>
             <div className="search-field">
                 <input className="search-field__textline" type="text" placeholder="Search" onChange={handleChange} value={searchLine}/> 
                 <button className="search-field__action" onClick={handleSearch}>
@@ -49,8 +49,8 @@ export function Header () {
                 </button>
             </div>
             <div className="tools">
-                <Link to='/favorites'>
-                    <div className='tools__link favorites'>
+                <Link to="/favorites">
+                    <div className="tools__link favorites">
                         {
                             !favorites.length && 
                             <img src="/assets/vector/components/header/Toolbox/favorites.svg" alt="favorites" className="tools__link__logo" />
@@ -61,8 +61,8 @@ export function Header () {
                         }
                     </div>
                 </Link>
-                <Link to='/busket'>
-                    <div className='tools__link busket'>
+                <Link to="/busket">
+                    <div className="tools__link busket">
                         {
                             !busket.length && 
                             <img src="/assets/vector/components/header/Toolbox/busket.svg" alt="busket" className="tools__link__logo" />
@@ -73,8 +73,8 @@ export function Header () {
                         }
                     </div>
                 </Link>
-                <Link to='/accaunt'>
-                    <div className='tools__link profile'>
+                <Link to="/accaunt">
+                    <div className="tools__link profile">
                         <img src="/assets/vector/components/header/Toolbox/profile.svg" alt="profile" className="tools__link__logo" />
                     </div>
                 </Link>

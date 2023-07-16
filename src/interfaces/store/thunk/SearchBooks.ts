@@ -3,4 +3,4 @@ interface ISearchBooks {
     pageNumber: string | undefined,
 }
 
-export type { ISearchBooks }
+export type { ISearchBooks };

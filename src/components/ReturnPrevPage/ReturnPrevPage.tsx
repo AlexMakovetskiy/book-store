@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';

@@ -1,5 +1,5 @@
-import { Subscription } from "../../components/Subscription/Subscription";
-import { Books } from "../../components/Books/Books";
+import { Subscription } from '../../components/Subscription/Subscription';
+import { Books } from '../../components/Books/Books';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
@@ -14,4 +14,4 @@ export const Main = () => {
             <Subscription/>
         </div>
     );
-}
+};

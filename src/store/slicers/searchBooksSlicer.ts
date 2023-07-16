@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IBook } from "../../interfaces/books";
-import { getBooksFoundData } from "../thunks/getBooksFoundData";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { IBook } from '../../interfaces/books';
+import { getBooksFoundData } from '../thunks/getBooksFoundData';
 
 interface IBooksSearchInitialState {
     books: IBook[],
@@ -14,7 +15,7 @@ const initialState:IBooksSearchInitialState = {
     error: null,
     loading: false,
     total: 0,
-}
+};
 
 const searchBooksSlicer = createSlice({
     name: 'foundbooks',
@@ -35,8 +36,9 @@ const searchBooksSlicer = createSlice({
         builder.addCase(getBooksFoundData.pending, (state: IBooksSearchInitialState) => {
             state.loading = true;
         });
-    }
+    },
 });
 
+// eslint-disable-next-line no-empty-pattern
 export const {} = searchBooksSlicer.actions;
 export default searchBooksSlicer.reducer;

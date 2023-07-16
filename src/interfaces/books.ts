@@ -16,4 +16,4 @@ interface IBook {
     year: string
 }
 
-export type { IBook }
+export type { IBook };
