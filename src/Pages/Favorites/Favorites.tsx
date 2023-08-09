@@ -1,19 +1,20 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import useSelectorTyped from '../../hooks/useSelectorTyped';
-import { ReturnPrevPage } from '../../components/ReturnPrevPage/ReturnPrevPage';
-import { AddFavoriteBook } from '../../components/AddFavoriteBook/AddFavoriteBook';
-import { PopularBooks } from '../../components/PopularBooks/PopularBooks';
+import useAppSelector from '../../hooks/useAppSelector';
+
+import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
+import AddFavoriteBook from '../../components/addFavoriteBook/AddFavoriteBook';
+import PopularBooks from '../../components/popularBooks/PopularBooks';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Favorites.scss';
 
-export const Favorites = () => {
+const Favorites = () => {
     const navigator = useNavigate();
-    const userData = useSelectorTyped((state) => state.userSlicer);
-    const favotiteBooks = useSelectorTyped((state) => state.BookFavoritesSliser.favoritebooks);
+    const userData = useAppSelector((state) => state.UserDataSlice);
+    const favotiteBooks = useAppSelector((state) => state.FavoriteBooksSlice.favoriteBooks);
 
     useEffect(() => {
         if(!userData.isLogin) {
@@ -21,17 +22,17 @@ export const Favorites = () => {
         }
     }, [navigator, userData.isLogin]);
     return (
-        <div className="favorite-books-conteiner">
+        <div className="favorite-books-container">
             <ReturnPrevPage/>
-            <h2 className="favorite-books-conteiner__title">Favorites</h2>
+            <h2 className="favorite-books-container__title">Favorites</h2>
             <div className="books-wrapper">
                 {
-                    favotiteBooks.map((favoriteBook) =>{
+                    favotiteBooks.map((favoriteBook: any) =>{
                         return (
                             <div className="favorite-book-wrapper">
-                                <div className="book-detail-conteiner">
-                                    <div className="book-detail-conteiner__cover-wrapper">
-                                        <img src={favoriteBook.image} alt={favoriteBook.title} className="book-detail-conteiner__cover-wrapper__cover" />
+                                <div className="book-detail-container">
+                                    <div className="book-detail-container__cover-wrapper">
+                                        <img src={favoriteBook.image} alt={favoriteBook.title} className="book-detail-container__cover-wrapper__cover" />
                                     </div>
                                     <div className="book-content">
                                         <h2 className="book-content__title">{favoriteBook.title}</h2>
@@ -60,3 +61,5 @@ export const Favorites = () => {
         </div>
     );
 };
+
+export default Favorites;

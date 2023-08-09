@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
 
-import useSelectorTyped from '../../hooks/useSelectorTyped';
-import useDispatchTyped from '../../hooks/useDispatchTyped';
-import { getBooksData } from '../../store/thunks/getBooksData';
-import { Book } from '../Books/Book/Book';
+import useAppSelector from '../../hooks/useAppSelector';
+import useAppDispatch from '../../hooks/useAppDispatch';
+
+import BookCard from '../bookElements/bookCard/BookCard';
+import getBooksData from '../../services/redux/features/booksData/BooksDataThunk';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './PopularBooks.scss';
 
-export function PopularBooks () {
-    const [pagination, setPagination] = useState(0);
-    const dispatch = useDispatchTyped();
-    const bookList = useSelectorTyped((state) => state.booksSlicer);
+function PopularBooks () {
+    const [pagination, setPagination] = useState<number>(0);
+    const dispatch = useAppDispatch();
+    const bookList = useAppSelector((state) => state.BooksDataSlice.books);
 
     useEffect(() => {
         dispatch(getBooksData());
@@ -40,11 +41,13 @@ export function PopularBooks () {
 
             <div className="books-wrapper">
                 {
-                    bookList.books.slice(pagination, pagination + 3).map((book) => 
-                        <Book key={book.isbn13} {...book}/>,
+                    bookList.slice(pagination, pagination + 3).map((book: any) => 
+                        <BookCard key={book.isbn13} {...book}/>,
                     )
                 }
             </div>
         </div>
     );
 }
+
+export default PopularBooks;

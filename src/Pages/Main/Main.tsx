@@ -1,11 +1,11 @@
-import { Subscription } from '../../components/Subscription/Subscription';
-import { Books } from '../../components/Books/Books';
+import Subscription from '../../components/subscription/Subscription';
+import Books from '../../components/bookElements/bookListContent/BookListContent';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Main.scss';
 
-export const Main = () => {
+const Main = () => {
     return (
         <div className="new-books-wrapper">
             <h2 className="new-books-wrapper__title">New Releases Books</h2>
@@ -15,3 +15,5 @@ export const Main = () => {
         </div>
     );
 };
+
+export default Main;

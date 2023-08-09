@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
-import PopUp from '../PopUp/PopUp';
+import PopUp from '../../ui/popUp/PopUp';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Subscription.scss';
 
-export function Subscription () {
+function Subscription () {
     const [email, setEmail] = useState('');
     const [isOpenPopup, setIsOpenPopup] = useState(false);
     const [textMessege, settextMessege] = useState('');
@@ -36,11 +36,11 @@ export function Subscription () {
         <div className="subscribe-wrapper">
             <h2 className="subscribe-wrapper__title">Subscribe to Newsletter</h2>
             <p className="subscribe-wrapper__subtitle">Be the first to know about new IT books, upcoming releases, exclusive offers and more.</p>
-            <div className="action-conteiner">
-                <div className="action-conteiner__insert-email-conteiner edittext-conteiner">
-                    <input type="email" className="action-conteiner__insert-email-conteiner__textline" placeholder="Your email" onChange={handleChange} name="nameSurname"/>
+            <div className="action-container">
+                <div className="action-container__insert-email-container edittext-container">
+                    <input type="email" className="action-container__insert-email-container__textline" placeholder="Your email" onChange={handleChange} name="nameSurname"/>
                 </div> 
-                <button className="action-conteiner__send-email custom-btn" onClick={handleSubmit}>subscribe</button>
+                <button className="action-container__send-email custom-btn" onClick={handleSubmit}>subscribe</button>
             </div>
             {
                 isOpenPopup &&
@@ -49,3 +49,5 @@ export function Subscription () {
         </div>
     );
 }
+
+export default Subscription;

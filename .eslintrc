@@ -12,10 +12,13 @@
         "max-len": ["error", {"code": 180}],
         "comma-dangle": ["error", "always-multiline"],
         "semi": ["warn", "always"],
+        "no-duplicate-imports": "error",
+        "@typescript-eslint/no-inferrable-types": "off",
         "import/order": ["error", {
             "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
             "newlines-between": "always-and-inside-groups"
         }],
-        "jest/no-conditional-expect": "off"
+        "jest/no-conditional-expect": "off",
+        "@typescript-eslint/no-explicit-any": "warn"
     }
 }

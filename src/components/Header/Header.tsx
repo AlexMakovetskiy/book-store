@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import useSelectorTyped from '../../hooks/useSelectorTyped';
+import useAppSelector from '../../hooks/useAppSelector';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
 import './Header.scss';
 
-export function Header () {
+function Header () {
     const [searchLine, setSearchLine] = useState('');
     const [searchImg, setSearchImg] = useState(false);
-    const busket = useSelectorTyped((state) => state.BookBusketSliser.busketbooks);
-    const favorites = useSelectorTyped((state) => state.BookFavoritesSliser.favoritebooks);
+    const basket = useAppSelector((state) => state.BasketBooksSlice.basketBooks);
+    const favorites = useAppSelector((state) => state.FavoriteBooksSlice.favoriteBooks);
     const navigator = useNavigate();
 
     function handleChange (event: { preventDefault: () => void; target: { value: string; }; }) {
@@ -33,7 +33,7 @@ export function Header () {
     }
 
     return (
-        <header className="header large-conteiner">
+        <header className="header large-container">
             <Link to="/"><img src="/assets/vector/components/header/BookstoreLogo.svg" alt="logo" className="header__logo" /></Link>
             <div className="search-field">
                 <input className="search-field__textline" type="text" placeholder="Search" onChange={handleChange} value={searchLine}/> 
@@ -61,15 +61,15 @@ export function Header () {
                         }
                     </div>
                 </Link>
-                <Link to="/busket">
-                    <div className="tools__link busket">
+                <Link to="/basket">
+                    <div className="tools__link basket">
                         {
-                            !busket.length && 
-                            <img src="/assets/vector/components/header/Toolbox/busket.svg" alt="busket" className="tools__link__logo" />
+                            !basket.length && 
+                            <img src="/assets/vector/components/header/Toolbox/basket.svg" alt="basket" className="tools__link__logo" />
                         }
                         {
-                            !!busket.length &&
-                            <img src="/assets/vector/components/header/Toolbox/fullBusketLogo.svg" alt="busket" className="tools__link__logo" />
+                            !!basket.length &&
+                            <img src="/assets/vector/components/header/Toolbox/fullBasketLogo.svg" alt="basket" className="tools__link__logo" />
                         }
                     </div>
                 </Link>
@@ -82,3 +82,5 @@ export function Header () {
         </header>
     );
 }
+
+export default Header;

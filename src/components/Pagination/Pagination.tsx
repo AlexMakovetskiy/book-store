@@ -29,18 +29,18 @@ function Pagination ({currPage, pageCount, inputData}: IPagination) {
         return <></>;
 
     return (
-        <div className="pagination-conteiner">
+        <div className="pagination-container">
             <Link to={`/search-data/${inputData}/${previousPageNumber}`}>
-                <button className="pagination-conteiner__go-grevious-page ">
+                <button className="pagination-container__go-grevious-page ">
                     <img 
                         src="/assets/vector/components/pagination/left-arrow-pagination.svg" 
                         alt="parevious page arrow" 
-                        className="pagination-conteiner__go-grevious-page__arrow" 
+                        className="pagination-container__go-grevious-page__arrow" 
                     />
                     Prev
                 </button>
             </Link>
-            <div className="row-pages-conteiner">
+            <div className="row-pages-container">
                 {   
                     currPage > 1 && pageCount > 4 && 
                     <>
@@ -74,9 +74,9 @@ function Pagination ({currPage, pageCount, inputData}: IPagination) {
                 }
             </div>
             <Link to={`/search-data/${inputData}/${nextPageNumber}`}>
-                <button className="pagination-conteiner__go-next-page">
+                <button className="pagination-container__go-next-page">
                     Next
-                    <img src="/assets/vector/components/pagination/right-arrow-pagination.svg" alt="next page arrow" className="pagination-conteiner__go-next-page__arrow" />
+                    <img src="/assets/vector/components/pagination/right-arrow-pagination.svg" alt="next page arrow" className="pagination-container__go-next-page__arrow" />
                 </button>
             </Link>
 
