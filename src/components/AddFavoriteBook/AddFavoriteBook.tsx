@@ -1,33 +1,36 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-import useDispatchTyped from "../../hooks/useDispatchTyped";
-import useSelectorTyped from "../../hooks/useSelectorTyped";
-import { setFavoriteBook } from "../../store/slicers/BookFavoritesSliser";
-import { IFavoriteBookObject } from "../../interfaces/store/reduce/bookSlice";
+import useAppDispatch from '../../hooks/useAppDispatch';
+import useAppSelector from '../../hooks/useAppSelector';
 
-import "../../style/reset.scss";
-import "../../style/common.scss";
-import "./AddFavoriteBook.scss";
+import { IFavoriteBookObject } from '../../interfaces/store/reduce/bookSlice';
+import { setFavoriteBook } from '../../services/redux/features/favoriteBooks/FavoriteBooksSlice';
 
-export function AddFavoriteBook ({bookData} :IFavoriteBookObject) {
-    const dispatch = useDispatchTyped();
-    const favoriteBookList = useSelectorTyped((state) => state.BookFavoritesSliser.favoritebooks);
-    const isAuthorized = useSelectorTyped((state) => state.userSlicer.isLogin);
+import '../../style/reset.scss';
+import '../../style/common.scss';
+import './AddFavoriteBook.scss';
+
+function AddFavoriteBook ({bookData} :IFavoriteBookObject) {
+    const dispatch = useAppDispatch();
+    const favoriteBookList = useAppSelector((state) => state.FavoriteBooksSlice.favoriteBooks);
+    const isAuthorized = useAppSelector((state) => state.UserDataSlice.isLogin);
     const navigator = useNavigate();
     
     const handleFavoriteAction = () => {
         if(!isAuthorized)
-            return navigator("/signin");
+            return navigator('/signin');
         dispatch(setFavoriteBook(bookData));
-    }
+    };
 
     const isFavoriteBook = favoriteBookList.find((favoriteBook) => favoriteBook.isbn13 === bookData.isbn13);
 
     return (
-        <div className="addfavorites-conteiner">
-            <button className={isFavoriteBook ? "action-activated" : "action-deactivated"} onClick={handleFavoriteAction}>
+        <div className="addfavorites-container">
+            <button className={isFavoriteBook ? 'action-activated' : 'action-deactivated'} onClick={handleFavoriteAction}>
                 <img src="/assets/vector/pages/bookInfo/favorites.svg" alt="logo" className="heart-logo"/>
             </button>
         </div>
     );
 }
+
+export default AddFavoriteBook;

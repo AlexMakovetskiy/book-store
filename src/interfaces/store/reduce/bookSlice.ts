@@ -34,11 +34,7 @@ interface IBookInfo {
     language: string,
 }
 
-interface IBooksInfoState {
-    book: IBook,
-    error: string,
-    loading: boolean,
-}
+
 
 interface IFavoriteBook {
     authors: string,
@@ -62,7 +58,7 @@ interface IFavoriteBookObject {
     bookData: IBook
 }
 
-interface IBusketBook {
+interface IBasketBook {
     isbn13: string,
     image: string | undefined,
     title: string,
@@ -72,8 +68,8 @@ interface IBusketBook {
     count: number,
 }
 
-interface IBusketBookObject {
+interface IBasketBookObject {
     bookData: IBook
 }
 
-export type {IBook, IBookInfo, IBooksInfoState, IFavoriteBook, IFavoriteBookObject, IBusketBook, IBusketBookObject}
+export type {IBook, IBookInfo, IFavoriteBook, IFavoriteBookObject, IBasketBook, IBasketBookObject};

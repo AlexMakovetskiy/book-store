@@ -45,8 +45,8 @@
             padding-bottom: 120px;
 
             &__title,
-            .change-password-conteiner__new-password-conteiner__title,
-            .change-password-conteiner__confirm-new-password-conteiner__title
+            .change-password-container__new-password-container__title,
+            .change-password-container__confirm-new-password-container__title
             {
                 padding-bottom: 4px;
                 font-size: 1.6rem;
@@ -59,14 +59,14 @@
                 width: 49%;
             }
 
-            .change-password-conteiner {
+            .change-password-container {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 gap: 32px;
 
-                &__new-password-conteiner,
-                &__confirm-new-password-conteiner {
+                &__new-password-container,
+                &__confirm-new-password-container {
                     width: 100%;
                 }
             }

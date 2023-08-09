@@ -1,4 +1,4 @@
-import useSelectorTyped from '../../hooks/useSelectorTyped';
+import useAppSelector from '../../hooks/useAppSelector';
 
 import '../../style/reset.scss';
 import '../../style/common.scss';
@@ -9,11 +9,11 @@ interface IPreviewProps {
 }
 
 function PreviewBookCover ({handleClose}: IPreviewProps ) {
-    const bookData = useSelectorTyped((state) => state.BookInfoSlicer.book);
+    const bookData = useAppSelector((state) => state.BookInfoSlice.book);
 
     return (
-        <div className="cover-conteiner" onClick={handleClose}>
-            <img className='simple-div' src={bookData.image} alt="cover" />
+        <div className="cover-container" onClick={handleClose}>
+            <img className="simple-div" src={bookData.image} alt="cover" />
         </div>
     );
 }
