@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
-import BookCard from '../bookElements/bookCard1/BookCard';
+import BookCard from '../bookElements/bookCard/BookCard';
 import getBooksData from '../../services/redux/features/booksData/BooksDataThunk';
 
 import './PopularBooks.scss';

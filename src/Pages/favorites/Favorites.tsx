@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import useAppSelector from '../../hooks/useAppSelector';
 
 import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
-import AddFavoriteBook from '../../components/AddFavoriteBook1/AddFavoriteBook';
+import AddFavoriteBook from '../../components/addFavoriteBook/AddFavoriteBook';
 import PopularBooks from '../../components/popularBooks1/PopularBooks';
 
 import './Favorites.scss';

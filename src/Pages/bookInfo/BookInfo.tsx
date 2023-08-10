@@ -5,13 +5,13 @@ import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
 import getBookInfo from '../../services/redux/features/bookInfo/BookInfoThunk';
-import Subscription from '../../components/subscription1/Subscription';
+import Subscription from '../../components/subscription/Subscription';
 import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
-import TabSet  from '../../components/bookElements/bookTabs1/BookTabs';
-import AddFavoriteBook from '../../components/AddFavoriteBook1/AddFavoriteBook';
+import TabSet  from '../../components/bookElements/bookTabs/BookTabs';
+import AddFavoriteBook from '../../components/addFavoriteBook/AddFavoriteBook';
 import AddBasketBook from '../../components/addBasketBook/AddBasketBook';
 import { BASE_TWITTER_SEARCH, ENDPOINT_TWITTER_SEARCH, BASE_FACEBOOK_SEARCH } from '../../utils/bookInfo';
-import PreviewBookCover from '../../components/previewBookCover1/PreviewBookCover';
+import PreviewBookCover from '../../components/previewBookCover/PreviewBookCover';
 
 import './BookInfo.scss';
 

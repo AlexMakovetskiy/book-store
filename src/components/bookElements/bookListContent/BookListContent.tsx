@@ -4,10 +4,10 @@ import useAppDispatch from '../../../hooks/useAppDispatch';
 import useAppSelector from '../../../hooks/useAppSelector';
 
 import { IBook } from '../../../interfaces/books';
-import LoadingElement from '../../loadingElement1/LoadingElement';
+import LoadingElement from '../../loadingElement/LoadingElement';
 import getBooksData from '../../../services/redux/features/booksData/BooksDataThunk';
 
-import BookCard from '../bookCard1/BookCard';
+import BookCard from '../bookCard/BookCard';
 
 import './BookListContent.scss';
 

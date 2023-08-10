@@ -1,5 +1,5 @@
-import Subscription from '../../components/subscription1/Subscription';
-import Books from '../../components/bookElements/bookListContent1/BookListContent';
+import Subscription from '../../components/subscription/Subscription';
+import Books from '../../components/bookElements/bookListContent/BookListContent';
 
 import './Main.scss';
 

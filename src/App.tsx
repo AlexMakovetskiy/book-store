@@ -1,16 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
 
-import Header from './components/header1/Header';
-import Footer from './components/footer1/Footer';
-import Main from './Pages/main1/Main';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
+import Main from './Pages/main/Main';
 import SignIn from './Pages/authPages/signIn1/SignIn';
 import SignUp from './Pages/authPages/signUp1/SignUp';
-import Accaunt from './Pages/account1/Accaunt';
+import Accaunt from './Pages/account/Accaunt';
 import Basket from './Pages/basket/Basket';
-import Favorites from './Pages/favorites1/Favorites';
+import Favorites from './Pages/favorites/Favorites';
 import NotFound from './Pages/notFound1/NotFound';
-import BookInfo from './Pages/bookInfo1/BookInfo';
-import SearchResults from './Pages/searchResults1/SearchResults';
+import BookInfo from './Pages/bookInfo/BookInfo';
+import SearchResults from './Pages/searchResults/SearchResults';
 import { Path } from './services/router/Routes';
 
 import './index.scss';

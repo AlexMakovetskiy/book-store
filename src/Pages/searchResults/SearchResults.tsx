@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
-import Book from '../../components/bookElements/bookCard1/BookCard';
+import Book from '../../components/bookElements/bookCard/BookCard';
 import Pagination from '../../components/pagination1/Pagination';
 import getSearchBooks from '../../services/redux/features/searchBooks/SearchBooksThunk';
 
