@@ -5,7 +5,7 @@ import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
 import Book from '../../components/bookElements/bookCard/BookCard';
-import Pagination from '../../components/pagination1/Pagination';
+import Pagination from '../../components/pagination/Pagination';
 import getSearchBooks from '../../services/redux/features/searchBooks/SearchBooksThunk';
 
 import './SearchResults.scss';
@@ -23,7 +23,7 @@ const SearchResults = () => {
         }));
     }, [dispatch, params]);
 
-    const countPages = Math.ceil(countFoundBooks / 10);
+    const countpages1 = Math.ceil(countFoundBooks / 10);
     return (
         <div className="search-container">
             <h2 className="search-container__title"> '{params.searchLine}' Search results</h2>
@@ -34,7 +34,7 @@ const SearchResults = () => {
                         <Book key={book.isbn13} {...book}/>)
                 }
             </div>
-            <Pagination currPage = {Number(params.page ?? 1)} pageCount={countPages} inputData = {params.searchLine}/>
+            <Pagination currPage = {Number(params.page ?? 1)} pageCount={countpages1} inputData = {params.searchLine}/>
         </div>
     );
 };

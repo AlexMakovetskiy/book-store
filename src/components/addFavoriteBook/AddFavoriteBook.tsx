@@ -25,7 +25,7 @@ function AddFavoriteBook ({bookData} :IFavoriteBookObject) {
     return (
         <div className="addfavorites-container">
             <button className={isFavoriteBook ? 'action-activated' : 'action-deactivated'} onClick={handleFavoriteAction}>
-                <img src="/assets/vector/pages/bookInfo/favorites.svg" alt="logo" className="heart-logo"/>
+                <img src="/assets/vector/pages1/bookInfo/favorites.svg" alt="logo" className="heart-logo"/>
             </button>
         </div>
     );

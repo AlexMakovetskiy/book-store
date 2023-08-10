@@ -4,7 +4,7 @@ function ReturnPrevPage () {
     const navigator = useNavigate();
     return (
         <button className="arrow-btn" onClick={() => navigator(-1)}>
-            <img src="/assets/vector/pages/profile/Icon-Arrow.svg" alt="arrow" className="arrow-btn__arrow" />
+            <img src="/assets/vector/pages1/profile/Icon-Arrow.svg" alt="arrow" className="arrow-btn__arrow" />
         </button>
     );
 }

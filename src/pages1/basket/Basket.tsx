@@ -44,11 +44,11 @@ const Basket = () => {
                                 <p className="book-info-container__subtitle">by {basketBook.authors}, {basketBook.publisher}</p>
                                 <div className="set-price-container">
                                     <button className="set-price-container__decrease-price" onClick={() => dispatch(deceaseBasketSum(basketBook.isbn13))}>
-                                        <img src="/assets/vector/pages/basket/minus-logo.svg" alt="decrease price" className="set-price-container__decrease-price__logo"/>
+                                        <img src="/assets/vector/pages1/basket/minus-logo.svg" alt="decrease price" className="set-price-container__decrease-price__logo"/>
                                     </button> 
                                     <span className="set-price-container__title custom-font">{basketBook.count}</span>
                                     <button className="set-price-container__encrease-price" onClick={() => dispatch(increaseBasketSum(basketBook.isbn13))}>
-                                        <img src="/assets/vector/pages/basket/plus-logo.svg" alt="encrease price" className="set-price-container__encrease-price__logo"/>
+                                        <img src="/assets/vector/pages1/basket/plus-logo.svg" alt="encrease price" className="set-price-container__encrease-price__logo"/>
                                     </button>
                                 </div>
                             </div>

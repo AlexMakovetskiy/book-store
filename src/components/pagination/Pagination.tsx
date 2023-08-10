@@ -8,7 +8,7 @@ interface IPagination {
     inputData?: string | undefined,
 }
 
-const getPreviousNextPages = (pageCount: number, currPage: number) => {
+const getPreviousNextpages1 = (pageCount: number, currPage: number) => {
     let previousPageNumber = 1, nextPageNumber = 0;
     if(currPage > 1)
         previousPageNumber = currPage - 1;
@@ -21,7 +21,7 @@ const getPreviousNextPages = (pageCount: number, currPage: number) => {
 
 
 function Pagination ({currPage, pageCount, inputData}: IPagination) {
-    const {previousPageNumber, nextPageNumber} = getPreviousNextPages(pageCount, currPage);
+    const {previousPageNumber, nextPageNumber} = getPreviousNextpages1(pageCount, currPage);
 
     if(pageCount === 1)
         return <></>;
@@ -38,7 +38,7 @@ function Pagination ({currPage, pageCount, inputData}: IPagination) {
                     Prev
                 </button>
             </Link>
-            <div className="row-pages-container">
+            <div className="row-pages1-container">
                 {   
                     currPage > 1 && pageCount > 4 && 
                     <>
