@@ -10,7 +10,7 @@ interface IBook {
     isbn10: string
     isbn13: string
     language: string
-    pages1: string
+    pages: string
     price: number
     publisher: string
     rating: string

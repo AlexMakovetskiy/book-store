@@ -17,7 +17,7 @@ const bookInfoInitialState: IBookInfoState = {
         authors: '',
         isbn10: '',
         isbn13: '',
-        pages1: '',
+        pages: '',
         url: '',
         price: 0,
         image: '',

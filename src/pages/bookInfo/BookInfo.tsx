@@ -54,7 +54,7 @@ const BookInfo = () => {
                     <div className="specification-wrapper__price-container">
                         <h2 className="specification-wrapper__price-container__priceline">{bookData.price}</h2>
                         <div className="specification-wrapper__price-container__rating">
-                            <img src="/assets/vector/pages1/bookinfo/rating.svg" alt="rating" className="specification-wrapper__price-container__rating__stars" />
+                            <img src="/assets/vector/pages/bookinfo/rating.svg" alt="rating" className="specification-wrapper__price-container__rating__stars" />
                         </div>
                     </div>
                     <div className="detail-info-container">
@@ -78,12 +78,12 @@ const BookInfo = () => {
             <TabSet {...bookData}/>
             <div className="contacts">
                 <button className="facebook-link" onClick={goToFacebook}>
-                    <img src="/assets/vector/pages1/bookinfo/Contacts/facebookLogo.svg" alt="facebook" className="contacts__social-media" />
+                    <img src="/assets/vector/pages/bookinfo/Contacts/facebookLogo.svg" alt="facebook" className="contacts__social-media" />
                 </button>
                 <button className="twitter-link" onClick={goToTwitter}>
-                    <img src="/assets/vector/pages1/bookinfo/Contacts/twitterLogo.svg" alt="twitter" className="contacts__social-media" />
+                    <img src="/assets/vector/pages/bookinfo/Contacts/twitterLogo.svg" alt="twitter" className="contacts__social-media" />
                 </button>
-                <img src="/assets/vector/pages1/bookinfo/Contacts/otherContactImg.svg" alt="other" className="contacts__social-media" />
+                <img src="/assets/vector/pages/bookinfo/Contacts/otherContactImg.svg" alt="other" className="contacts__social-media" />
             </div>
             <Subscription/>
             {

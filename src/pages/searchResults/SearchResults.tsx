@@ -23,7 +23,7 @@ const SearchResults = () => {
         }));
     }, [dispatch, params]);
 
-    const countpages1 = Math.ceil(countFoundBooks / 10);
+    const countpages = Math.ceil(countFoundBooks / 10);
     return (
         <div className="search-container">
             <h2 className="search-container__title"> '{params.searchLine}' Search results</h2>
@@ -34,7 +34,7 @@ const SearchResults = () => {
                         <Book key={book.isbn13} {...book}/>)
                 }
             </div>
-            <Pagination currPage = {Number(params.page ?? 1)} pageCount={countpages1} inputData = {params.searchLine}/>
+            <Pagination currPage = {Number(params.page ?? 1)} pageCount={countpages} inputData = {params.searchLine}/>
         </div>
     );
 };

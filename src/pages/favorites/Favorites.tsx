@@ -37,7 +37,7 @@ const Favorites = () => {
                                         <p className="book-content__subtitle">by {favoriteBook.authors}, {favoriteBook.publisher}</p>
                                         <div className="price-content">
                                             <h2 className="price-content__title">{favoriteBook.price}</h2>
-                                            <img src="/assets/vector/pages1/bookinfo/rating.svg" alt="rating" className="price-content__rating" />
+                                            <img src="/assets/vector/pages/bookinfo/rating.svg" alt="rating" className="price-content__rating" />
                                         </div>
                                     </div>
                                     <AddFavoriteBook bookData={favoriteBook}/>
