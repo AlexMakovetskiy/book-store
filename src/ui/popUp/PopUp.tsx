@@ -1,5 +1,3 @@
-import '../../style/reset.scss';
-import '../../style/common.scss';
 import './PopUp.scss';
 
 interface IPopupProps {

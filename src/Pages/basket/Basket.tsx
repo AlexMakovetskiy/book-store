@@ -7,8 +7,6 @@ import useAppDispatch from '../../hooks/useAppDispatch';
 import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
 import { increaseBasketSum, deceaseBasketSum, deleteBasketBook } from '../../services/redux/features/basketBooks/BasketBooksSlice';
 
-import '../../style/reset.scss';
-import '../../style/common.scss';
 import './Basket.scss';
 
 const Basket = () => {

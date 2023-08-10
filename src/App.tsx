@@ -1,18 +1,19 @@
 import { Route, Routes } from 'react-router-dom';
 
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
-import Main from './pages/main/Main';
-import SignIn from './pages/authPages/signIn/SignIn';
-import SignUp from './pages/authPages/signUp/SignUp';
-import Accaunt from './pages/account/Accaunt';
-import Basket from './pages/basket/Basket';
-import Favorites from './pages/favorites/Favorites';
-import NotFound from './pages/notFound/NotFound';
-import BookInfo from './pages/bookInfo/BookInfo';
-import SearchResults from './pages/searchResults/SearchResults';
+import Header from './components/header1/Header';
+import Footer from './components/footer1/Footer';
+import Main from './Pages/main1/Main';
+import SignIn from './Pages/authPages/signIn1/SignIn';
+import SignUp from './Pages/authPages/signUp1/SignUp';
+import Accaunt from './Pages/account1/Accaunt';
+import Basket from './Pages/basket/Basket';
+import Favorites from './Pages/favorites1/Favorites';
+import NotFound from './Pages/notFound1/NotFound';
+import BookInfo from './Pages/bookInfo1/BookInfo';
+import SearchResults from './Pages/searchResults1/SearchResults';
 import { Path } from './services/router/Routes';
 
+import './index.scss';
 import './App.scss';
 
 function App() {

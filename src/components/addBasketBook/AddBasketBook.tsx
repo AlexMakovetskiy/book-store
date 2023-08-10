@@ -6,8 +6,6 @@ import useAppSelector from '../../hooks/useAppSelector';
 import { setBasketBook, deleteBasketBook } from '../../services/redux/features/basketBooks/BasketBooksSlice';
 import { IBasketBookObject } from '../../interfaces/store/reduce/bookSlice';
 
-import '../../style/reset.scss';
-import '../../style/common.scss';
 import './AddBasketBook.scss';
 
 function AddBasketBook ({bookData}: IBasketBookObject) {
