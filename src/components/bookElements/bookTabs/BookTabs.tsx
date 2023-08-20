@@ -1,7 +1,5 @@
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 
-import '../../../style/reset.scss';
-import '../../../style/common.scss';
 import './BookTabs.scss';
 
 const TabSet = ({...tabinfo}) => {

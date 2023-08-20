@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 
-import '../../../style/reset.scss';
-import '../../../style/common.scss';
 import './BookCard.scss';
 
 interface IBook {

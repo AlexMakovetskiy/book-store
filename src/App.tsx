@@ -13,6 +13,7 @@ import BookInfo from './pages/bookInfo/BookInfo';
 import SearchResults from './pages/searchResults/SearchResults';
 import { Path } from './services/router/Routes';
 
+import './index.scss';
 import './App.scss';
 
 function App() {

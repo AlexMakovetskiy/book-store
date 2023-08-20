@@ -9,8 +9,6 @@ import getBooksData from '../../../services/redux/features/booksData/BooksDataTh
 
 import BookCard from '../bookCard/BookCard';
 
-import '../../../style/reset.scss';
-import '../../../style/common.scss';
 import './BookListContent.scss';
 
 function BookListContent () {

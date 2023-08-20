@@ -1,0 +1,33 @@
+.auth-input-wrap {
+    padding: 5px;
+}
+.auth-input-container {
+    background: var(--color-background-pure-white);
+    border: 1px solid var(--color-border-pastel-placebo);
+    padding: 12px 20px;
+    font-size: 1.6rem;
+    line-height: 3.2rem;
+
+    &__input-element {
+        width: 100%;
+    }
+}
+
+.error {
+    border: 1px solid var(--color-border-contexual-red);
+}
+
+.error-text-line {
+    padding-top: 8px;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--color-border-contexual-red);
+}
+
+.error-text-line__hidden {
+    padding-top: 8px;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: transparent;
+    user-select: none;
+}

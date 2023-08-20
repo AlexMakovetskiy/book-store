@@ -1,0 +1,101 @@
+.accaunt {
+    margin: 72px 0;
+
+    &__arrow-btn {
+        border: none;
+        margin-bottom: 34px;
+    }
+
+    &__title {
+        padding: 36px 0 48px;
+        font-size: 5.6rem;
+        line-height: 6.4rem;
+    }
+
+    .accaunt-data {
+        &__title {
+            padding-bottom: 16px;
+            text-transform: uppercase;
+            font-size: 2.4rem;
+            line-height: 3.2rem;
+            letter-spacing: 0.08rem;
+        }
+
+        .accaunt-data-content {
+            padding-bottom: 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 32px;
+            
+            &__name-wrapper,
+            &__email-wrapper {
+                width: 100%;
+            }
+
+            .profile-data-content__name-wrapper__title,
+            .profile-data-content__email-wrapper__title {
+                font-size: 1.6rem;
+                line-height: 3.2rem;
+                font-weight: 700;
+            }
+        }
+
+        .password-data-content {
+            padding-bottom: 120px;
+
+            &__title,
+            .change-password-container__new-password-container__title,
+            .change-password-container__confirm-new-password-container__title
+            {
+                padding-bottom: 4px;
+                font-size: 1.6rem;
+                line-height: 3.2rem;
+                font-weight: 700;
+                letter-spacing: 0.05rem;
+            }
+
+            &__current-password-block {
+                width: 49%;
+            }
+
+            .change-password-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 32px;
+
+                &__new-password-container,
+                &__confirm-new-password-container {
+                    width: 100%;
+                }
+            }
+        }
+
+        .action-tools {
+            display: flex;
+            justify-content: flex-end;
+            gap: 32px;
+
+            &__save-action,
+            &__cancel-action {
+                padding: 18px 0 14px;
+                max-width: 256px;
+                font-size: 2.4rem;
+                line-height: 2.4rem;
+
+            }
+
+            &__save-action {
+                border: none;
+                color: var(--color-text-pure-white);
+            }
+
+            &__cancel-action {
+                color: var(--color-text-system-primary);
+                background: transparent;
+                border: 1px solid var(--color-border-pastel-placebo);
+            }
+        }
+    }
+}

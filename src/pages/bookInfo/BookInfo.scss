@@ -1,0 +1,139 @@
+.bookinfo-wrapper {
+    padding: 72px 0;
+
+    &__title {
+        max-width: 1044px;
+        padding: 32px 0 48px;
+        font-size: 5.6rem;
+        line-height: 6.4rem;
+    }
+
+    .order-info-wrapper {
+        margin-inline: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 128px;
+
+        .cover-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 544px;
+            width: 100%;
+            max-height: 472px;
+            height: 100%;
+            background: var(--color-background-orange);
+
+            .addfavorites-container {
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 16px;
+                border: none;
+                background: var(--color-background-system-primary);
+            }
+
+            &__book-cover {
+                position: relative;
+            }
+        }
+
+        .specification-wrapper {
+            padding-top: 40px;
+            min-width: 448px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            &__price-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                &__priceline {
+                    font-size: 4rem;
+                    line-height: 6rem;
+                }
+            }
+
+            .detail-info-container {
+                padding: 24px 0 16px;
+                display: flex;
+                flex-direction: column;
+
+                & div {
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                &__feature-name {
+                    font-size: 1.6rem;
+                    line-height: 3.2rem;
+                    color: var(--color-text-secondary);
+                }
+
+                &__feature-name-info {
+                    text-align: right;
+                    font-size: 1.6rem;
+                    line-height: 3.2rem;
+                    color: var(--color-text-system-primary);
+                }
+
+                &__feature-name-info.authors-info {
+                    max-width: 270px;
+                }
+            }
+
+            .details-wrapper {
+                padding-bottom: 60px;
+                font-size: 1.6rem;
+                line-height: 2.4rem;
+                color: var(--color-text-system-primary);
+                cursor: pointer;
+
+                &__header {
+                    user-select: none;
+                    list-style: none;
+                }
+
+                &__header::after {
+                    content: var(--image-background-details-arrow-down);
+                    margin-left: 8px;
+                }
+
+                &__content {
+                    padding-top: 8px;
+                }
+            }
+
+            .details-wrapper[open] {
+                .details-wrapper__header::after {
+                    content: var(--image-background-details-arrow-up);
+                }
+            }
+
+            &__basket-action {
+                margin-bottom: 54px;
+                padding: 16px 0;
+                font-size: 2.4rem;
+                line-height: 2.4rem;
+                letter-spacing: 0.05em;
+            }
+
+            &__preview-book-cover {
+                margin-inline: auto; 
+                padding-top: 40px;
+                font-size: 1.6rem;
+                line-height: 2.4rem;
+                text-align: center;
+            }
+        }
+    }
+
+    .contacts {
+        padding:48px 0 72px;
+        display: flex;
+        gap: 30px;
+    }
+}

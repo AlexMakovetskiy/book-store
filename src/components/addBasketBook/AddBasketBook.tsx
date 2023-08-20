@@ -6,8 +6,6 @@ import useAppSelector from '../../hooks/useAppSelector';
 import { setBasketBook, deleteBasketBook } from '../../services/redux/features/basketBooks/BasketBooksSlice';
 import { IBasketBookObject } from '../../interfaces/store/reduce/bookSlice';
 
-import '../../style/reset.scss';
-import '../../style/common.scss';
 import './AddBasketBook.scss';
 
 function AddBasketBook ({bookData}: IBasketBookObject) {
@@ -15,6 +13,7 @@ function AddBasketBook ({bookData}: IBasketBookObject) {
     const dispatch = useAppDispatch();
     const isAuthorized = useAppSelector((state) => state.UserDataSlice.isLogin);
     const basketbooks = useAppSelector((state) => state.BasketBooksSlice.basketBooks);
+
     const isBasketBook = basketbooks.find((book) => book.isbn13 === bookData.isbn13);
     const deactivatedTextLine = 'add to cart';
     const activatedTextLine = 'delete from cart';

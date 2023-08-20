@@ -1,0 +1,44 @@
+.header {
+    padding: 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border-pastel-placebo);
+
+    .search-field {
+        border: 1px solid var(--color-border-pastel-placebo);
+        max-width: 542px;
+        min-height: 56px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+
+        &__textline {
+            width: 80%;
+            margin-left: 10px;
+            font-size: 16px;
+            line-height: 32px;
+        }
+
+        &__action {
+            max-width: 20px;
+            max-height: 20px;
+            border: none;
+        }
+    }
+
+    .tools {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        color: transparent;
+
+        &__link {
+            padding: 16px;
+        }
+    }
+}

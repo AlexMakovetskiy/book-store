@@ -1,0 +1,76 @@
+.favorite-books-container {
+    margin: 50px 0;
+
+    &__title {
+        padding-top: 38px;
+        font-size: 5.6rem;
+        line-height: 6.4rem;
+    }
+
+    .books-wrapper {
+        .favorite-book-wrapper {
+            .book-detail-container {
+                margin: 50px 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 32px;
+
+                &__cover-wrapper {
+                    max-height: 192px;
+                    max-width: 256px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    background: var(--color-background-purple);
+
+                    &__cover {
+                        max-width: 170px;
+                        max-height: 192;
+                    }
+                }
+
+                .book-content {
+                    width: 100%;
+
+                    &__title {
+                        padding-bottom: 8px;
+                        font-size: 2.4rem;
+                        line-height: 3.2rem;
+                    }
+
+                    &__subtitle {
+                        padding-bottom: 24px;
+                        font-size: 1.6rem;
+                        line-height: 2.4rem;
+                        color: var(--color-text-secondary);
+                    }
+
+                    .price-content {
+                        display: flex;
+                        gap: 186px;
+
+                        &__title {
+                            font-size: 2.4rem;
+                            line-height: 3.2rem;
+                        }
+                    }   
+                }
+            }
+
+            &__line {
+                border: 1px solid var(--color-border-pastel-placebo);
+            }
+        }
+    }
+}
+
+.empty-favorites-wrapper {
+    margin: 50px 0;
+
+    &__title {
+        text-align: center;
+        font-size: 4.6rem;
+        line-height: 4.4rem;
+    }
+}

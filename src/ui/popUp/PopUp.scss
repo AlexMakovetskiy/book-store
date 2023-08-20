@@ -1,6 +1,6 @@
 .popup-box-container {
     position: fixed;
-    background: #00000050;
+    background: var(--color-background-blur);
     width: 100%;
     height: 100vh;
     top: 0;
@@ -9,7 +9,7 @@
     .popup-window-wrapper {
         position: relative;
         top: 20%;
-        margin: 0 auto;
+        margin-inline: auto;
         padding: 16px 0 20px;
         max-width: 40%;
         display: flex;
@@ -17,7 +17,7 @@
         justify-content: center;
         text-align: center;
         align-items: center;
-        background: white;
+        background: var(--color-background-pure-white);
     
         &__logo {
             padding: 10px 30px;
