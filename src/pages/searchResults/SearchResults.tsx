@@ -17,13 +17,16 @@ const SearchResults = () => {
     const countFoundBooks = useAppSelector((state) => state.SearchBooksSlice.total);
 
     useEffect(() => {
+        window.scrollTo({ top: 0 });
         dispatch(getSearchBooks({
             inputData: params.searchLine,
             pageNumber: params.page,
         }));
     }, [dispatch, params]);
 
-    const countpages = Math.ceil(countFoundBooks / 10);
+    const elementOnPageCountLimit: number = 10;
+    const countpages = Math.ceil(countFoundBooks / elementOnPageCountLimit);
+
     return (
         <div className="search-container">
             <h2 className="search-container__title"> '{params.searchLine}' Search results</h2>

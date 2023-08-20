@@ -2,7 +2,7 @@
     margin-inline: auto;
     padding: 56px 64px;
     width: 100%;
-    background: #F4EEFD;
+    background: var(--color-background-purple);
 
     &__title {
         font-size: 4rem;
@@ -13,7 +13,7 @@
         padding-bottom: 32px;
         font-size: 1.8rem;
         line-height: 2.8rem;
-        color: #A8A8A8;
+        color: var(--color-text-secondary);
     }
 
     .action-container {

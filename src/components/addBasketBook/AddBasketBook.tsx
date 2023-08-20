@@ -13,6 +13,7 @@ function AddBasketBook ({bookData}: IBasketBookObject) {
     const dispatch = useAppDispatch();
     const isAuthorized = useAppSelector((state) => state.UserDataSlice.isLogin);
     const basketbooks = useAppSelector((state) => state.BasketBooksSlice.basketBooks);
+
     const isBasketBook = basketbooks.find((book) => book.isbn13 === bookData.isbn13);
     const deactivatedTextLine = 'add to cart';
     const activatedTextLine = 'delete from cart';

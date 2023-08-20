@@ -17,12 +17,14 @@ function PopularBooks () {
         dispatch(getBooksData());
     }, [dispatch]);
 
+    const elementOnPageCountLimit: number = 10;
+
     function handleLeftAction () {
         return setPagination(pagination > 0 ? pagination - 1 : 0);
     }
     
     function handleRightAction () {
-        return setPagination(pagination < 10 ? pagination + 1 : 10);
+        return setPagination(pagination < elementOnPageCountLimit ? pagination + 1 : elementOnPageCountLimit);
     }
 
     return (

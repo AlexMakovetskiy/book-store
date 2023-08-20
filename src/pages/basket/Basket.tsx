@@ -16,6 +16,7 @@ const Basket = () => {
     const basketBooks = useAppSelector((state) => state.BasketBooksSlice.basketBooks);
 
     useEffect(() => {
+        window.scrollTo({ top: 0 });
         if(!userData.isLogin) {
             navigator('/signin');
         }
@@ -28,40 +29,41 @@ const Basket = () => {
     const vat = calculatedBookPrice * 0.14;
     const resultBookPrice = vat + calculatedBookPrice;
 
+    const getBasketBookList = () => {
+        return basketBooks.map((basketBook: any, index) => 
+            <div className="basket-book-wrap" key={index}>
+                <div className="basket-book-wrap__cover-wrapper">
+                    <img src={basketBook.image} alt={basketBook.title} className="basket-book-wrap__cover-wrapper__cover"/>
+                </div>
+                <div className="book-info-container">
+                    <h2 className="book-info-container__title">{basketBook.title}</h2>
+                    <p className="book-info-container__subtitle">by {basketBook.authors}, {basketBook.publisher}</p>
+                    <div className="set-price-container">
+                        <button className="set-price-container__decrease-price" onClick={() => dispatch(deceaseBasketSum(basketBook.isbn13))}>
+                            <img src="/assets/vector/pages/basket/minus-logo.svg" alt="decrease price" className="set-price-container__decrease-price__logo"/>
+                        </button> 
+                        <span className="set-price-container__title custom-font">{basketBook.count}</span>
+                        <button className="set-price-container__encrease-price" onClick={() => dispatch(increaseBasketSum(basketBook.isbn13))}>
+                            <img src="/assets/vector/pages/basket/plus-logo.svg" alt="encrease price" className="set-price-container__encrease-price__logo"/>
+                        </button>
+                    </div>
+                </div>
+                <div className="basket-book-wrap__total-price-wrap">
+                    <h2 className="basket-book-wrap__total-price-wrap__title">{basketBook.price}</h2>
+                </div>
+                <button className="basket-book-wrap__remove-book" onClick={() => dispatch(deleteBasketBook(basketBook.isbn13))}>
+                    <img src="/assets/vector/components/header/search-button/cancelSearch.svg" alt="delete book" className="basket-book-wrap__remove-book__logo"></img>
+                </button>
+            </div>,
+        );
+    };
+    
+
     return (
         <div className="basket-wrapper">
             <ReturnPrevPage/>
             <h2 className="basket-wrapper__title">your cart</h2>
-            <div className="basket-wrapper__books-container">
-                {
-                    basketBooks.map((basketBook: any) => 
-                        <div className="basket-book-wrap">
-                            <div className="basket-book-wrap__cover-wrapper">
-                                <img src={basketBook.image} alt={basketBook.title} className="basket-book-wrap__cover-wrapper__cover"/>
-                            </div>
-                            <div className="book-info-container">
-                                <h2 className="book-info-container__title">{basketBook.title}</h2>
-                                <p className="book-info-container__subtitle">by {basketBook.authors}, {basketBook.publisher}</p>
-                                <div className="set-price-container">
-                                    <button className="set-price-container__decrease-price" onClick={() => dispatch(deceaseBasketSum(basketBook.isbn13))}>
-                                        <img src="/assets/vector/pages/basket/minus-logo.svg" alt="decrease price" className="set-price-container__decrease-price__logo"/>
-                                    </button> 
-                                    <span className="set-price-container__title custom-font">{basketBook.count}</span>
-                                    <button className="set-price-container__encrease-price" onClick={() => dispatch(increaseBasketSum(basketBook.isbn13))}>
-                                        <img src="/assets/vector/pages/basket/plus-logo.svg" alt="encrease price" className="set-price-container__encrease-price__logo"/>
-                                    </button>
-                                </div>
-                            </div>
-                            <div className="basket-book-wrap__total-price-wrap">
-                                <h2 className="basket-book-wrap__total-price-wrap__title">{basketBook.price}</h2>
-                            </div>
-                            <button className="basket-book-wrap__remove-book" onClick={() => dispatch(deleteBasketBook(basketBook.isbn13))}>
-                                <img src="/assets/vector/components/header/search-button/cancelSearch.svg" alt="delete book" className="basket-book-wrap__remove-book__logo"></img>
-                            </button>
-                        </div>,
-                    )
-                }
-            </div>
+            <div className="basket-wrapper__books-container">{getBasketBookList()}</div>
             {
                 !basketBooks.length &&
                 <div className="empty-basket-wrapper">
@@ -89,7 +91,6 @@ const Basket = () => {
                     </div>
                     : <></>
             }
-
         </div>
     );
 };

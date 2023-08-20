@@ -1,14 +1,12 @@
-$custom-grey: #E7E7E7;
-
 .header {
     padding: 24px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid $custom-grey;
+    border-bottom: 1px solid var(--color-border-pastel-placebo);
 
     .search-field {
-        border: 1px solid $custom-grey;
+        border: 1px solid var(--color-border-pastel-placebo);
         max-width: 542px;
         min-height: 56px;
         width: 100%;

@@ -22,7 +22,7 @@ button {
     cursor: pointer;
     outline: none;
     outline-offset: none;
-    background: white;
+    background: var(--color-background-pure-white);
     border: 1px solid transparent;
     user-select: none;
 }

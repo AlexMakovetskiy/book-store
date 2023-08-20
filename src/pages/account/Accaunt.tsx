@@ -6,7 +6,9 @@ import useAppSelector from '../../hooks/useAppSelector';
 
 import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
 import PopUp from '../../ui/popUp/PopUp';
+import AuthInput from '../../ui/authInput/AuthInput';
 import { logOut, updateUserData } from '../../services/redux/features/userData/UserDataSlice';
+import { passwordRegexp, emailRegexp } from '../../utils/RegExpFields';
 
 import './Accaunt.scss';
 
@@ -17,16 +19,48 @@ const Accaunt = () => {
         password: '',
         confirmPassword: '',
     });
+    const [userStateError, setUserStateError] = useState({
+        userName: false,
+        email: false,
+        password: false,
+        confirmPassword: false,
+    });
     const [isOpenPopup, setIsOpenPopup] = useState(false);
     const [textMessege, setTextMessege] = useState('');
     const [popupLogo, setPopupLogo] = useState('');
 
-    
     const dispatch = useAppDispatch();
     const navigator = useNavigate();
     const userData = useAppSelector((state) => state.UserDataSlice);
 
     const handleChange = (event: { target: { name: string; value: string; }; }) => {
+        if (event.target.name === 'userName') {
+            if(!event.target.value) {
+                setUserStateError((prevState) => ({
+                    ...prevState,
+                    [event.target.name]: true,
+                }));
+            }
+            else {
+                setUserStateError((prevState) => ({
+                    ...prevState,
+                    [event.target.name]: false,
+                }));
+            }
+        }
+        if (event.target.name === 'email') {
+            setUserStateError((prevState) => ({
+                ...prevState,
+                [event.target.name]: !emailRegexp.test(event.target.value),
+            }));
+        }
+        if (event.target.name === 'password' || event.target.name === 'confirmPassword') {
+            setUserStateError((prevState) => ({
+                ...prevState,
+                [event.target.name]: !passwordRegexp.test(event.target.value),
+            }));
+        }
+
         setUserState((prevState) => ({
             ...prevState,
             [event.target.name]: event.target.value, 
@@ -95,29 +129,23 @@ const Accaunt = () => {
                 <div className="accaunt-data-content">
                     <div className="accaunt-data-content__name-wrapper">
                         <h3 className="profile-data-content__name-wrapper__title">Name</h3>
-                        <div className="accaunt-data-content__name-wrapper__nameedit-wrapper edittext-container">
-                            <input 
-                                type="text" 
-                                className="accaunt-data-content__name-wrapper__nameedit-wrapper__textedit" 
-                                name="userName" 
-                                placeholder="Name Surname" 
-                                defaultValue={userData.name} 
-                                onChange={handleChange}
-                            />
-                        </div>
+                        <AuthInput
+                            type="text"
+                            placeholder="Name Surname"
+                            name="userName"
+                            onChange={handleChange}
+                            error={userStateError.userName ? 'This field is required' : ''}
+                        />
                     </div>
                     <div className="accaunt-data-content__email-wrapper">
                         <h3 className="profile-data-content__email-wrapper__title">Email</h3>
-                        <div className="accaunt-data-content__name-wrapper__emailedit-wrapper edittext-container">
-                            <input 
-                                type="email" 
-                                className="accaunt-data-content__email-wrapper__nameedit-wrapper__textedit" 
-                                name="email" 
-                                placeholder="Email" 
-                                defaultValue={userData.email} 
-                                onChange={handleChange}
-                            />
-                        </div>
+                        <AuthInput
+                            type="email"
+                            placeholder="Email"
+                            name="email"
+                            onChange={handleChange}
+                            error={userStateError.email ? 'Error email data' : ''}
+                        />
                     </div>
                 </div>
                 <h2 className="accaunt-data__title">password</h2>
@@ -131,27 +159,23 @@ const Accaunt = () => {
                     <div className="change-password-container">
                         <div className="change-password-container__new-password-container">
                             <h4 className="change-password-container__new-password-container__title">New password</h4>
-                            <div className="change-password-container__new-password-container__new-passwordedit-wrapper edittext-container">
-                                <input 
-                                    type="password" 
-                                    className="change-password-container__new-password-container__new-passwordedit-wrapper__textedit" 
-                                    name="password" 
-                                    placeholder="New password" 
-                                    onChange={handleChange}
-                                />
-                            </div>
+                            <AuthInput
+                                type="password"
+                                placeholder="New password"
+                                name="password"
+                                onChange={handleChange}
+                                error={userStateError.password ? 'Error password data' : ''}
+                            />
                         </div>
                         <div className="change-password-container__confirm-new-password-container">
                             <h4 className="change-password-container__confirm-new-password-container__title">New password</h4>
-                            <div className="change-password-container__confirm-new-password-container__confirm-new-passwordedit-wrapper edittext-container">
-                                <input 
-                                    type="password" 
-                                    className="change-password-container__confirm-new-password-container__confirm-new-passwordedit-wrapper__textedit" 
-                                    name="confirmPassword"  
-                                    placeholder="Confirm new password" 
-                                    onChange={handleChange}
-                                />
-                            </div>
+                            <AuthInput
+                                type="password"
+                                placeholder="Confirm new password"
+                                name="confirmPassword"
+                                onChange={handleChange}
+                                error={userStateError.confirmPassword ? 'Error confirming password data' : ''}
+                            />
                         </div>
                     </div>
                 </div>

@@ -22,6 +22,7 @@ const BookInfo = () => {
     const bookData = useAppSelector((state) => state.BookInfoSlice.book);
 
     useEffect(() => {
+        window.scrollTo({ top: 0 });
         dispatch(
             getBookInfo(params.id ?? ''),
         );
@@ -58,14 +59,22 @@ const BookInfo = () => {
                         </div>
                     </div>
                     <div className="detail-info-container">
-                        <p className="detail-info-container__feature-name authors">Authors</p>
-                        <p className="detail-info-container__feature-name-info authors-info">{bookData.authors}</p>
-                        <p className="detail-info-container__feature-name publisher">Publisher</p>
-                        <p className="detail-info-container__feature-name-info publisher-info">{bookData.publisher}</p>
-                        <p className="detail-info-container__feature-name language">Language</p>
-                        <p className="detail-info-container__feature-name-info language-info">{bookData.language}</p>
-                        <p className="detail-info-container__feature-name format">Format</p>
-                        <p className="detail-info-container__feature-name-info format-info">Paper book / ebook(PDF)</p>
+                        <div>
+                            <p className="detail-info-container__feature-name authors">Authors</p>
+                            <p className="detail-info-container__feature-name-info authors-info">{bookData.authors}</p>
+                        </div>
+                        <div>
+                            <p className="detail-info-container__feature-name publisher">Publisher</p>
+                            <p className="detail-info-container__feature-name-info publisher-info">{bookData.publisher}</p>
+                        </div>
+                        <div>
+                            <p className="detail-info-container__feature-name language">Language</p>
+                            <p className="detail-info-container__feature-name-info language-info">{bookData.language}</p>
+                        </div>
+                        <div>
+                            <p className="detail-info-container__feature-name format">Format</p>
+                            <p className="detail-info-container__feature-name-info format-info">Paper book / ebook(PDF)</p>
+                        </div>
                     </div>
                     <details className="details-wrapper" >
                         <summary className="details-wrapper__header">More details</summary>

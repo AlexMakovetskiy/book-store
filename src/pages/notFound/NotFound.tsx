@@ -1,9 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 
 import './NotFound.scss';
+import { useEffect } from 'react';
 
 const NotFound = () => {
     const navigator = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo({ top: 0 });
+    }, []);
+
     return (
         <div className="notfound-page-container">
             <h1 className="notfound-page-container__title">Error 404</h1>

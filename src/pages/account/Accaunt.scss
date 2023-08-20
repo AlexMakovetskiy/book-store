@@ -88,13 +88,13 @@
 
             &__save-action {
                 border: none;
-                color: white;
+                color: var(--color-text-pure-white);
             }
 
             &__cancel-action {
-                color: #313037;
+                color: var(--color-text-system-primary);
                 background: transparent;
-                border: 1px solid #E7E7E7;
+                border: 1px solid var(--color-border-pastel-placebo);
             }
         }
     }

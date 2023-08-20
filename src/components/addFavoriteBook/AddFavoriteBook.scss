@@ -14,8 +14,16 @@
         }
     }
 
+    .action-deactivated:hover {
+        background: var(--image-background-red-border-heart) no-repeat center center;
+
+        .heart-logo {
+            visibility: hidden;
+        }
+    }
+
     .action-activated {
-        background: url("../../../public/assets/vector/pages/bookinfo/redHeartLogo.svg") no-repeat center center;
+        background: var(--image-background-filled-heart) no-repeat center center;
 
         .heart-logo {
             visibility: hidden;

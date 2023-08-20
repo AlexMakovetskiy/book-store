@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import {  Link } from 'react-router-dom';
 
+import AuthInput from '../../../ui/authInput/AuthInput';
 import PopUp from '../../../ui/popUp/PopUp';
+import { emailRegexp, passwordRegexp } from '../../../utils/RegExpFields';
 
 import './SignUp.scss';
 
@@ -11,6 +13,12 @@ const SignUp = () => {
         email: 'example@gmail.com',
         password: 'password',
         confirmPassword: 'confirmPassword',
+    });
+    const [stateError, setStateError] = useState({
+        nameSurname: false,
+        email: false,
+        password: false,
+        confirmPassword: false,
     });
     const [isOpenPopup, setIsOpenPopup] = useState(false);
     const [textMessege, settextMessege] = useState('');
@@ -47,6 +55,33 @@ const SignUp = () => {
     }
     
     const handleChange = (event: { target: { name: string; value: string; }; }) => {
+        if (event.target.name === 'nameSurname') {
+            if(!event.target.value) {
+                setStateError((prevState) => ({
+                    ...prevState,
+                    [event.target.name]: true,
+                }));
+            }
+            else {
+                setStateError((prevState) => ({
+                    ...prevState,
+                    [event.target.name]: false,
+                }));
+            }
+        }
+        if (event.target.name === 'email') {
+            setStateError((prevState) => ({
+                ...prevState,
+                [event.target.name]: !emailRegexp.test(event.target.value),
+            }));
+        }
+        if (event.target.name === 'password' || event.target.name === 'confirmPassword') {
+            setStateError((prevState) => ({
+                ...prevState,
+                [event.target.name]: !passwordRegexp.test(event.target.value),
+            }));
+        }
+        
         setState((prevState) => ({
             ...prevState,
             [event.target.name]: event.target.value, 
@@ -65,27 +100,37 @@ const SignUp = () => {
             </div>
             <form action="/" className="authorization-form" onSubmit={handleSubmit}>
                 <h3 className="authorization-form__title name">Name</h3>
-                <div className="authorization-form__name-edit-container edittext-container">
-                    <input type="text" className="authorization-form__name-edit-container__textline" placeholder="Your name" onChange={handleChange} name="nameSurname"/>
-                </div> 
+                <AuthInput
+                    type="text"
+                    placeholder="Your name"
+                    name="nameSurname"
+                    onChange={handleChange}
+                    error={stateError.nameSurname ? 'This field is required' : ''}
+                /> 
                 <h3 className="authorization-form__title email">Email</h3>
-                <div className="authorization-form__email-edit-container edittext-container">
-                    <input type="email" className="authorization-form__email-edit-container__textline" placeholder="Your email" onChange={handleChange} name="email"/>
-                </div>
+                <AuthInput
+                    type="email"
+                    placeholder="Your email"
+                    name="email"
+                    onChange={handleChange}
+                    error={stateError.email ? 'Error email data' : ''}
+                />
                 <h3 className="authorization-form__title password">Password</h3>
-                <div className="authorization-form__password-edit-container edittext-container">
-                    <input type="password" className="authorization-form__password-edit-container__textline" placeholder="Your password" onChange={handleChange} name="password"/>
-                </div>
+                <AuthInput
+                    type="password"
+                    placeholder="Your password"
+                    name="password"
+                    onChange={handleChange}
+                    error={stateError.password ? 'Error password data' : ''}
+                />
                 <h3 className="authorization-form__title confirming-password">Confirm password</h3>
-                <div className="authorization-form__confirming-password-edit-container edittext-container">
-                    <input 
-                        type="password" 
-                        className="authorization-form__confirming-password-edit-container__textline" 
-                        placeholder="Your password" 
-                        onChange={handleChange} 
-                        name="confirmPassword"
-                    />
-                </div>
+                <AuthInput
+                    type="password"
+                    placeholder="Repeat our password"
+                    name="confirmPassword"
+                    onChange={handleChange}
+                    error={stateError.confirmPassword ? 'Error confirming password data' : ''}
+                />
                 <button type="submit" className="authorization-form__action custom-btn">sign up</button>
             </form>
             {

@@ -4,7 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 
 import PopUp from '../../../ui/popUp/PopUp';
+import AuthInput from '../../../ui/authInput/AuthInput';
 import { updateUserData } from '../../../services/redux/features/userData/UserDataSlice';
+import { passwordRegexp, emailRegexp } from '../../../utils/RegExpFields';
 
 import './SignIn.scss';
 
@@ -13,6 +15,10 @@ const SignIn = () => {
         email: '',
         password: '',
     });
+    const [stateError, setStateError] = useState({
+        email: false,
+        password: false,
+    });
     const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);
     const [textMessege, settextMessege] = useState<string>('');
     const [popupLogo, setpopupLogo] = useState<string>('');
@@ -20,6 +26,18 @@ const SignIn = () => {
     const navigator = useNavigate();
 
     const handleChange = (event: { target: { name: string; value: string; }; }) => {
+        if (event.target.name === 'email') {
+            setStateError((prevState) => ({
+                ...prevState,
+                [event.target.name]: !emailRegexp.test(event.target.value),
+            }));
+        }
+        if (event.target.name === 'password') {
+            setStateError((prevState) => ({
+                ...prevState,
+                [event.target.name]: !passwordRegexp.test(event.target.value),
+            }));
+        }
         setState((prevState) => ({
             ...prevState,
             [event.target.name]: event.target.value, 
@@ -68,19 +86,21 @@ const SignIn = () => {
                 </div>
                 <form action="./" className="authorization-form" onSubmit={handleSubmit}>
                     <h3 className="authorization-form__title email">Email</h3>
-                    <div className="authorization-form__check-email-wrapper edittext-container">
-                        <input type="text" className="authorization-form__check-email-wrapper__textedit" placeholder="Your email" onChange={handleChange} name="email"/>
-                    </div>
+                    <AuthInput
+                        type="email"
+                        placeholder="Your email"
+                        name="email"
+                        onChange={handleChange}
+                        error={stateError.email ? 'Error email data' : ''}
+                    />
                     <h3 className="authorization-form__title password">Password</h3>
-                    <div className="authorization-form__check-password-wrapper edittext-container">
-                        <input 
-                            type="password" 
-                            className="authorization-form__check-password-wrapper__textedit" 
-                            placeholder="Your password" 
-                            onChange={handleChange} 
-                            name="password"
-                        />
-                    </div>
+                    <AuthInput
+                        type="password"
+                        placeholder="Your password"
+                        name="password"
+                        onChange={handleChange}
+                        error={stateError.password ? 'Error password data' : ''}
+                    />
                     <Link to={'/notfound'} className="authorization-form__link">Forgot password?</Link>
                     <button className="authorization-form__action custom-btn" type="submit">sign in</button>
                 </form>

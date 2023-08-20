@@ -10,8 +10,13 @@
         letter-spacing: 0.05em;
         text-align: center;
         text-transform: uppercase;
-        color: white;
-        background: #313037;
+        color: var(--color-text-pure-white);
+        background: var(--color-background-system-primary);
+        transition: .5s ease;
+    }
+
+    .action-deactivated:hover {
+        background: var(--color-background-system-primary-hover);
     }
 
     .action-activated {
@@ -25,9 +30,9 @@
         letter-spacing: 0.05em;
         text-align: center;
         text-transform: uppercase;
-        color: #313037;
-        background: white;
-        border: 2px solid #313037;
+        color: var(--color-text-system-primary);
+        background: var(--color-background-pure-white);
+        border: 2px solid var(--color-border-system-primary);
         border-radius: 5px;
     }
 }

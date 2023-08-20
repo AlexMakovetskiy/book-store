@@ -1,8 +1,6 @@
-$custom-grey: #E7E7E7;
-
 .signin-form-wrapper {
     .signin-form {
-        border: 1px solid $custom-grey;
+        border: 1px solid var(--color-border-pastel-placebo);
         margin: 196px 0 204px;
 
         .top-panel {
@@ -19,7 +17,7 @@ $custom-grey: #E7E7E7;
             }
 
             &__signin-wrapper {
-                border-bottom: 2px solid #313037;
+                border-bottom: 2px solid var(--color-border-system-primary);
             }
 
             &__signin-wrapper__title,
@@ -33,7 +31,7 @@ $custom-grey: #E7E7E7;
             }
 
             &__signup-wrapper__title {
-                color: #a8a8a8;
+                color: var(--color-text-secondary);
             }
         }
 
@@ -47,7 +45,11 @@ $custom-grey: #E7E7E7;
                 font-weight: 700;
                 font-size: 1.6rem;
                 line-height: 3.2rem;
-                color: #313037;
+                color: var(--color-text-system-primary);
+            }
+
+            & div + h3 {
+                padding-top: 16px;
             }
 
             &__link {
@@ -56,7 +58,7 @@ $custom-grey: #E7E7E7;
                 line-height: 3.2rem;
                 font-weight: 500;
                 text-align: left;
-                color: black;
+                color: var(--color-text-pure-black);
                 user-select: none;
             }
 
