@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {  Link } from 'react-router-dom';
 
+import { IPopUpState } from '../../../interfaces/PopUp';
 import AuthInput from '../../../ui/authInput/AuthInput';
 import PopUp from '../../../ui/popUp/PopUp';
 import { emailRegexp, passwordRegexp } from '../../../utils/RegExpFields';
@@ -20,18 +21,26 @@ const SignUp = () => {
         password: false,
         confirmPassword: false,
     });
-    const [isOpenPopup, setIsOpenPopup] = useState(false);
-    const [textMessege, settextMessege] = useState('');
-    const [popupLogo, setpopupLogo] = useState('');
+    const [popUpState, setPopupState] = useState<IPopUpState>({
+        isOpenPopup: false,
+        textMessege: '',
+        popupLogo: false,
+    });
 
     const openPopup = (title: string, logo: boolean) => {
-        settextMessege((prevTextLine) => prevTextLine = title);
-        setpopupLogo((prevLogo) => logo ? prevLogo = 'success' : prevLogo = 'error');
-        return setIsOpenPopup((prevState) => !prevState);
+        setPopupState((prevState) => ({
+            ...prevState,
+            textMessege: title,
+            popupLogo: !!logo,
+            isOpenPopup: !prevState.isOpenPopup,
+        }));
     };
 
     const closePopup = () => {
-        setIsOpenPopup((prevState) => !prevState);
+        setPopupState((prevState) => ({
+            ...prevState,
+            isOpenPopup: !prevState.isOpenPopup,
+        }));
     };
 
     function handleSubmit (event: { preventDefault: () => void; }) {
@@ -134,8 +143,8 @@ const SignUp = () => {
                 <button type="submit" className="authorization-form__action custom-btn">sign up</button>
             </form>
             {
-                isOpenPopup &&
-                <PopUp title = {textMessege} logo = {popupLogo} handleClose = {closePopup}/>
+                popUpState.isOpenPopup &&
+                <PopUp title = {popUpState.textMessege} logo = {popUpState.popupLogo} handleClose = {closePopup}/>
             }
         </main>
     );

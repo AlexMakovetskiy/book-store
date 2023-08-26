@@ -32,3 +32,7 @@ export interface IUserDataState {
     email: string,
     isLogin: boolean
 }
+
+export interface IOpenningPopupState {
+    isOpenPopup: boolean,
+}

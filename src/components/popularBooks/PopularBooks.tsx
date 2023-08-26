@@ -5,13 +5,14 @@ import useAppDispatch from '../../hooks/useAppDispatch';
 
 import BookCard from '../bookElements/bookCard/BookCard';
 import getBooksData from '../../services/redux/features/booksData/BooksDataThunk';
+import booksDataSelector from '../../services/redux/features/booksData/BooksDataSelector';
 
 import './PopularBooks.scss';
 
 function PopularBooks () {
     const [pagination, setPagination] = useState<number>(0);
     const dispatch = useAppDispatch();
-    const bookList = useAppSelector((state) => state.BooksDataSlice.books);
+    const bookList = useAppSelector(booksDataSelector).books;
 
     useEffect(() => {
         dispatch(getBooksData());

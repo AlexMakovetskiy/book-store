@@ -6,18 +6,21 @@ import useAppSelector from '../../hooks/useAppSelector';
 import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
 import AddFavoriteBook from '../../components/addFavoriteBook/AddFavoriteBook';
 import PopularBooks from '../../components/popularBooks/PopularBooks';
+import favoriteBooksSelector from '../../services/redux/features/favoriteBooks/FavoriteBooksSelector';
+import userDataSelector from '../../services/redux/features/userData/UserDataSelector';
+import { Path } from '../../services/router/RouteLines';
 
 import './Favorites.scss';
 
 const Favorites = () => {
     const navigator = useNavigate();
-    const userData = useAppSelector((state) => state.UserDataSlice);
-    const favotiteBooks = useAppSelector((state) => state.FavoriteBooksSlice.favoriteBooks);
+    const userData = useAppSelector(userDataSelector);
+    const favotiteBooks = useAppSelector(favoriteBooksSelector);
 
     useEffect(() => {
         window.scrollTo({ top: 0 });
         if(!userData.isLogin) {
-            navigator('/signin');
+            navigator(Path.Signin);
         }
     }, [navigator, userData.isLogin]);
 

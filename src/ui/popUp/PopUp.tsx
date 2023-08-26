@@ -2,7 +2,7 @@ import './PopUp.scss';
 
 interface IPopupProps {
     title: string,
-    logo: string,
+    logo: boolean,
     handleClose: () => void
 }
 
@@ -14,7 +14,7 @@ function PopUp ({title, logo, handleClose}: IPopupProps) {
         <div className="popup-box-container">
             <div className="popup-window-wrapper">
                 <img 
-                    src={logo === 'success' ? successLogoLocation : errorLogoLocation} 
+                    src={logo ? successLogoLocation : errorLogoLocation} 
                     alt="logo" 
                     className="popup-window-wrapper__logo" 
                 />

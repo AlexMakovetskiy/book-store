@@ -1,27 +1,36 @@
 import { useState } from 'react';
 
+import { IPopUpState } from '../../interfaces/PopUp';
 import PopUp from '../../ui/popUp/PopUp';
 
 import './Subscription.scss';
 
 function Subscription () {
     const [email, setEmail] = useState('');
-    const [isOpenPopup, setIsOpenPopup] = useState(false);
-    const [textMessege, settextMessege] = useState('');
-    const [popupLogo, setpopupLogo] = useState('');
+    const [popUpState, setPopupState] = useState<IPopUpState>({
+        isOpenPopup: false,
+        textMessege: '',
+        popupLogo: false,
+    });
 
     const handleChange = (event: { target: { name: string; value: string; }; }) => {
         setEmail((prevState) => ( prevState = event.target.value ));
     };
 
     const openPopup = (title: string, logo: boolean) => {
-        settextMessege((prevTextLine) => prevTextLine = title);
-        setpopupLogo((prevLogo) => logo ? prevLogo = 'success' : prevLogo = 'error');
-        return setIsOpenPopup((prevState) => !prevState);
+        setPopupState((prevState) => ({
+            ...prevState,
+            textMessege: title,
+            popupLogo: !!logo,
+            isOpenPopup: !prevState.isOpenPopup,
+        }));
     };
 
     const closePopup = () => {
-        setIsOpenPopup((prevState) => !prevState);
+        setPopupState((prevState) => ({
+            ...prevState,
+            isOpenPopup: !prevState.isOpenPopup,
+        }));
     };
 
     const handleSubmit = () => {
@@ -41,8 +50,8 @@ function Subscription () {
                 <button className="action-container__send-email custom-btn" onClick={handleSubmit}>subscribe</button>
             </div>
             {
-                isOpenPopup &&
-                <PopUp title = {textMessege} logo = {popupLogo} handleClose = {closePopup}/>
+                popUpState.isOpenPopup &&
+                <PopUp title = {popUpState.textMessege} logo = {popUpState.popupLogo} handleClose = {closePopup}/>
             }
         </div>
     );

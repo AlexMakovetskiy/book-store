@@ -1,5 +1,7 @@
 import useAppSelector from '../../hooks/useAppSelector';
 
+import bookInfoSelector from '../../services/redux/features/bookInfo/BookInfoSelector';
+
 import './PreviewBookCover.scss';
 
 interface IPreviewProps {
@@ -7,7 +9,7 @@ interface IPreviewProps {
 }
 
 function PreviewBookCover ({handleClose}: IPreviewProps ) {
-    const bookData = useAppSelector((state) => state.BookInfoSlice.book);
+    const bookData = useAppSelector(bookInfoSelector).book;
 
     return (
         <div className="cover-container" onClick={handleClose}>
