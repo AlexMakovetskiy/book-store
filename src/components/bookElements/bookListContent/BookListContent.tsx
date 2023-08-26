@@ -6,6 +6,7 @@ import useAppSelector from '../../../hooks/useAppSelector';
 import { IBook } from '../../../interfaces/books';
 import LoadingElement from '../../loadingElement/LoadingElement';
 import getBooksData from '../../../services/redux/features/booksData/BooksDataThunk';
+import booksDataSelector from '../../../services/redux/features/booksData/BooksDataSelector';
 
 import BookCard from '../bookCard/BookCard';
 
@@ -13,8 +14,8 @@ import './BookListContent.scss';
 
 function BookListContent () {
     const dispatch = useAppDispatch();
-    const books = useAppSelector((state) => state.BooksDataSlice.books);
-    const loading = useAppSelector((state) => state.BooksDataSlice.loading);
+    const books = useAppSelector(booksDataSelector).books;
+    const loading = useAppSelector(booksDataSelector).loading;
 
     useEffect(() => {
         dispatch(getBooksData());

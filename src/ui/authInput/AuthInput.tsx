@@ -12,6 +12,7 @@ interface IAuthInputProps {
 
 function AuthInput({type, placeholder, name, onChange, error}: IAuthInputProps) {
     let errorLine: string = '';
+    
     if(!error) {
         errorLine = 'error';
     }

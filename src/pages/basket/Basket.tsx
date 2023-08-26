@@ -6,19 +6,22 @@ import useAppDispatch from '../../hooks/useAppDispatch';
 
 import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
 import { increaseBasketSum, deceaseBasketSum, deleteBasketBook } from '../../services/redux/features/basketBooks/BasketBooksSlice';
+import userDataSelector from '../../services/redux/features/userData/UserDataSelector';
+import basketBooksSelector from '../../services/redux/features/basketBooks/BasketBooksSelector';
+import { Path } from '../../services/router/RouteLines';
 
 import './Basket.scss';
 
 const Basket = () => {
     const navigator = useNavigate();
     const dispatch = useAppDispatch();
-    const userData = useAppSelector((state) => state.UserDataSlice);
-    const basketBooks = useAppSelector((state) => state.BasketBooksSlice.basketBooks);
+    const userData = useAppSelector(userDataSelector);
+    const basketBooks = useAppSelector(basketBooksSelector);
 
     useEffect(() => {
         window.scrollTo({ top: 0 });
         if(!userData.isLogin) {
-            navigator('/signin');
+            navigator(Path.Signin);
         }
     }, [navigator, userData.isLogin]);
 

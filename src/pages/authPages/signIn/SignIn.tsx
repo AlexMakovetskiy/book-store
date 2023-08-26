@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import useAppDispatch from '../../../hooks/useAppDispatch';
 
+import { IPopUpState } from '../../../interfaces/PopUp';
 import PopUp from '../../../ui/popUp/PopUp';
 import AuthInput from '../../../ui/authInput/AuthInput';
 import { updateUserData } from '../../../services/redux/features/userData/UserDataSlice';
 import { passwordRegexp, emailRegexp } from '../../../utils/RegExpFields';
+import { Path } from '../../../services/router/RouteLines';
 
 import './SignIn.scss';
 
@@ -19,9 +21,11 @@ const SignIn = () => {
         email: false,
         password: false,
     });
-    const [isOpenPopup, setIsOpenPopup] = useState<boolean>(false);
-    const [textMessege, settextMessege] = useState<string>('');
-    const [popupLogo, setpopupLogo] = useState<string>('');
+    const [popUpState, setPopupState] = useState<IPopUpState>({
+        isOpenPopup: false,
+        textMessege: '',
+        popupLogo: false,
+    });
     const dispatch = useAppDispatch();
     const navigator = useNavigate();
 
@@ -45,13 +49,19 @@ const SignIn = () => {
     };
 
     const openPopup = (title: string, logo: boolean) => {
-        settextMessege((prevTextLine) => prevTextLine = title);
-        setpopupLogo((prevLogo) => logo ? prevLogo = 'success' : prevLogo = 'error');
-        return setIsOpenPopup((prevState) => !prevState);
+        setPopupState((prevState) => ({
+            ...prevState,
+            textMessege: title,
+            popupLogo: !!logo,
+            isOpenPopup: !prevState.isOpenPopup,
+        }));
     };
 
     const closePopup = () => {
-        setIsOpenPopup((prevState) => !prevState);
+        setPopupState((prevState) => ({
+            ...prevState,
+            isOpenPopup: !prevState.isOpenPopup,
+        }));
     };
 
     function handleSubmit (event: { preventDefault: () => void; }) {
@@ -66,7 +76,7 @@ const SignIn = () => {
                     email: storageUser.email,
                     isLogin: true,
                 }));
-                navigator('/');
+                navigator(Path.Main);
             }
             else {
                 openPopup('You entered user data incorrectly', false);
@@ -106,8 +116,8 @@ const SignIn = () => {
                 </form>
             </div>
             {
-                isOpenPopup &&
-                <PopUp title = {textMessege} logo = {popupLogo} handleClose = {closePopup}/>
+                popUpState.isOpenPopup &&
+                <PopUp title = {popUpState.textMessege} logo = {popUpState.popupLogo} handleClose = {closePopup}/>
             }
         </main>
     );

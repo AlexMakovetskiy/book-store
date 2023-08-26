@@ -4,11 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
 
+import { IPopUpState } from '../../interfaces/PopUp';
 import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
 import PopUp from '../../ui/popUp/PopUp';
 import AuthInput from '../../ui/authInput/AuthInput';
 import { logOut, updateUserData } from '../../services/redux/features/userData/UserDataSlice';
+import userDataSelector from '../../services/redux/features/userData/UserDataSelector';
 import { passwordRegexp, emailRegexp } from '../../utils/RegExpFields';
+import { Path } from '../../services/router/RouteLines';
 
 import './Accaunt.scss';
 
@@ -25,13 +28,15 @@ const Accaunt = () => {
         password: false,
         confirmPassword: false,
     });
-    const [isOpenPopup, setIsOpenPopup] = useState(false);
-    const [textMessege, setTextMessege] = useState('');
-    const [popupLogo, setPopupLogo] = useState('');
+    const [popUpState, setPopupState] = useState<IPopUpState>({
+        isOpenPopup: false,
+        textMessege: '',
+        popupLogo: false,
+    });
 
     const dispatch = useAppDispatch();
     const navigator = useNavigate();
-    const userData = useAppSelector((state) => state.UserDataSlice);
+    const userData = useAppSelector(userDataSelector);
 
     const handleChange = (event: { target: { name: string; value: string; }; }) => {
         if (event.target.name === 'userName') {
@@ -69,23 +74,30 @@ const Accaunt = () => {
 
     useEffect(() => {
         if(!userData.isLogin) {
-            navigator('/signin');
+            navigator(Path.Signin);
         }
     }, [navigator, userData.isLogin]);
 
     const SignOutUser = () => {
         dispatch((logOut()));
-        navigator('/');
+        navigator(Path.Main);
     };   
     
+
     const openPopup = (title: string, logo: boolean) => {
-        setTextMessege((prevTextLine) => prevTextLine = title);
-        setPopupLogo((prevLogo) => logo ? prevLogo = 'success' : prevLogo = 'error');
-        return setIsOpenPopup((prevState) => !prevState);
+        setPopupState((prevState) => ({
+            ...prevState,
+            textMessege: title,
+            popupLogo: !!logo,
+            isOpenPopup: !prevState.isOpenPopup,
+        }));
     };
 
     const closePopup = () => {
-        setIsOpenPopup((prevState) => !prevState);
+        setPopupState((prevState) => ({
+            ...prevState,
+            isOpenPopup: !prevState.isOpenPopup,
+        }));
     };
 
     const ChangeUserData = () => {
@@ -185,8 +197,8 @@ const Accaunt = () => {
                 </div>
             </div>
             {
-                isOpenPopup &&
-                <PopUp title = {textMessege} logo= {popupLogo} handleClose = {closePopup}/>
+                popUpState.isOpenPopup &&
+                <PopUp title = {popUpState.textMessege} logo = {popUpState.popupLogo} handleClose = {closePopup}/>
             }
         </main>
     );

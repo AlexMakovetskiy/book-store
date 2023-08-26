@@ -3,30 +3,50 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import useAppSelector from '../../hooks/useAppSelector';
 
+import basketBooksSelector from '../../services/redux/features/basketBooks/BasketBooksSelector';
+import favoriteBooksSelector from '../../services/redux/features/favoriteBooks/FavoriteBooksSelector';
+
 import './Header.scss';
 
+interface ISearchState {
+    searchLine: string,
+    searchImg: boolean,
+}
+
 function Header () {
-    const [searchLine, setSearchLine] = useState('');
-    const [searchImg, setSearchImg] = useState(false);
-    const basket = useAppSelector((state) => state.BasketBooksSlice.basketBooks);
-    const favorites = useAppSelector((state) => state.FavoriteBooksSlice.favoriteBooks);
+    const [searchState, setSearchState] = useState<ISearchState>({
+        searchLine: '',
+        searchImg: false,
+    });
+    const basket = useAppSelector(basketBooksSelector);
+    const favorites = useAppSelector(favoriteBooksSelector);
     const navigator = useNavigate();
 
     function handleChange (event: { preventDefault: () => void; target: { value: string; }; }) {
         event.preventDefault();
-        if(event.target.value === '')
-            setSearchImg((prevState) => prevState = false);
-        return setSearchLine((prevState) => prevState = event.target.value);
+        if(event.target.value === '') {
+            setSearchState((prevState) => ({
+                ...prevState,
+                searchImg: false,
+                searchLine: event.target.value,
+            }));
+        }   
     }
 
     function handleSearch () {
-        if(searchLine.length) {
-            if (searchImg) {
-                setSearchLine((prevState) => prevState = '');
-                return setSearchImg((prevState) => prevState = false);
+        if(searchState.searchLine.length) {
+            if(searchState.searchImg) {
+                return setSearchState((prevState) => ({
+                    ...prevState,
+                    searchImg: false,
+                    searchLine: '',
+                }));
             }
-            navigator(`/search-data/${searchLine.trim()}/1`);
-            return setSearchImg((prevState) => prevState = true);
+            navigator(`/search-data/${searchState.searchLine.trim()}/1`);
+            return setSearchState((prevState) => ({
+                ...prevState,
+                searchImg: true,
+            }));
         }
     }
 
@@ -34,14 +54,14 @@ function Header () {
         <header className="header large-container">
             <Link to="/"><img src="/assets/vector/components/header/BookstoreLogo.svg" alt="logo" className="header__logo" /></Link>
             <div className="search-field">
-                <input className="search-field__textline" type="text" placeholder="Search" onChange={handleChange} value={searchLine}/> 
+                <input className="search-field__textline" type="text" placeholder="Search" onChange={handleChange} value={searchState.searchLine}/> 
                 <button className="search-field__action" onClick={handleSearch}>
                     {
-                        !searchImg &&
+                        !searchState.searchImg &&
                         <img src="/assets/vector/components/header/search-button/loupe.svg" alt="loupe" className="search-field__action__image" />
                     }
                     {
-                        searchImg &&
+                        searchState.searchImg &&
                         <img src="/assets/vector/components/header/search-button/cancelSearch.svg" alt="loupe" className="search-field__action__image" />
                     }
                 </button>

@@ -3,24 +3,30 @@ import { useNavigate } from 'react-router-dom';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
 
-import { setBasketBook, deleteBasketBook } from '../../services/redux/features/basketBooks/BasketBooksSlice';
 import { IBasketBookObject } from '../../interfaces/store/reduce/bookSlice';
+import { setBasketBook, deleteBasketBook } from '../../services/redux/features/basketBooks/BasketBooksSlice';
+import userDataSelector from '../../services/redux/features/userData/UserDataSelector';
+import basketBooksSelector from '../../services/redux/features/basketBooks/BasketBooksSelector';
+import { Path } from '../../services/router/RouteLines';
 
 import './AddBasketBook.scss';
 
 function AddBasketBook ({bookData}: IBasketBookObject) {
     const navigator = useNavigate();
     const dispatch = useAppDispatch();
-    const isAuthorized = useAppSelector((state) => state.UserDataSlice.isLogin);
-    const basketbooks = useAppSelector((state) => state.BasketBooksSlice.basketBooks);
+    const isAuthorized = useAppSelector(userDataSelector).isLogin;
+    const basketbooks = useAppSelector(basketBooksSelector);
 
     const isBasketBook = basketbooks.find((book) => book.isbn13 === bookData.isbn13);
-    const deactivatedTextLine = 'add to cart';
-    const activatedTextLine = 'delete from cart';
+
+    enum ButtonContent {
+        deactivatedTextLine = 'add to cart',
+        activatedTextLine = 'delete from cart',
+    };
 
     const handleBasketAction = () => {
         if(!isAuthorized)
-            return navigator('/signin');        
+            return navigator(Path.Signin);        
         if(isBasketBook) 
             return dispatch(deleteBasketBook(bookData.isbn13));
         dispatch(setBasketBook({
@@ -37,7 +43,7 @@ function AddBasketBook ({bookData}: IBasketBookObject) {
     return (
         <div className="basket-book-wrap">
             <button className={isBasketBook ? 'action-activated' : 'action-deactivated'} onClick={handleBasketAction}>
-                {isBasketBook ? activatedTextLine : deactivatedTextLine}
+                {isBasketBook ? ButtonContent.activatedTextLine : ButtonContent.deactivatedTextLine}
             </button>
         </div>
     );

@@ -4,12 +4,13 @@ import { useParams } from 'react-router-dom';
 import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
-import getBookInfo from '../../services/redux/features/bookInfo/BookInfoThunk';
 import Subscription from '../../components/subscription/Subscription';
 import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
 import TabSet  from '../../components/bookElements/bookTabs/BookTabs';
 import AddFavoriteBook from '../../components/addFavoriteBook/AddFavoriteBook';
 import AddBasketBook from '../../components/addBasketBook/AddBasketBook';
+import bookInfoSelector from '../../services/redux/features/bookInfo/BookInfoSelector';
+import getBookInfo from '../../services/redux/features/bookInfo/BookInfoThunk';
 import { BASE_TWITTER_SEARCH, ENDPOINT_TWITTER_SEARCH, BASE_FACEBOOK_SEARCH } from '../../utils/bookInfo';
 import PreviewBookCover from '../../components/previewBookCover/PreviewBookCover';
 
@@ -19,7 +20,7 @@ const BookInfo = () => {
     const [isOpenPreview, setIsOpenPreview] = useState(false);
     const params = useParams();
     const dispatch = useAppDispatch();
-    const bookData = useAppSelector((state) => state.BookInfoSlice.book);
+    const bookData = useAppSelector(bookInfoSelector).book;
 
     useEffect(() => {
         window.scrollTo({ top: 0 });

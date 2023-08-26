@@ -5,18 +5,21 @@ import useAppSelector from '../../hooks/useAppSelector';
 
 import { IFavoriteBookObject } from '../../interfaces/store/reduce/bookSlice';
 import { setFavoriteBook } from '../../services/redux/features/favoriteBooks/FavoriteBooksSlice';
+import favoriteBooksSelector from '../../services/redux/features/favoriteBooks/FavoriteBooksSelector';
+import userDataSelector from '../../services/redux/features/userData/UserDataSelector';
+import { Path } from '../../services/router/RouteLines';
 
 import './AddFavoriteBook.scss';
 
 function AddFavoriteBook ({bookData} :IFavoriteBookObject) {
-    const dispatch = useAppDispatch();
-    const favoriteBookList = useAppSelector((state) => state.FavoriteBooksSlice.favoriteBooks);
-    const isAuthorized = useAppSelector((state) => state.UserDataSlice.isLogin);
     const navigator = useNavigate();
+    const dispatch = useAppDispatch();
+    const isAuthorized = useAppSelector(userDataSelector).isLogin;
+    const favoriteBookList = useAppSelector(favoriteBooksSelector);
     
     const handleFavoriteAction = () => {
         if(!isAuthorized)
-            return navigator('/signin');
+            return navigator(Path.Signin);
         dispatch(setFavoriteBook(bookData));
     };
 

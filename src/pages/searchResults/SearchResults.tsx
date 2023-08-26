@@ -9,12 +9,13 @@ import Pagination from '../../components/pagination/Pagination';
 import getSearchBooks from '../../services/redux/features/searchBooks/SearchBooksThunk';
 
 import './SearchResults.scss';
+import searchBooksSelector from '../../services/redux/features/searchBooks/SearchBooksSelector';
 
 const SearchResults = () => {
     const params = useParams();
     const dispatch = useAppDispatch();
-    const bookList = useAppSelector((state) => state.SearchBooksSlice.books);
-    const countFoundBooks = useAppSelector((state) => state.SearchBooksSlice.total);
+    const bookList = useAppSelector(searchBooksSelector).books;
+    const countFoundBooks = useAppSelector(searchBooksSelector).total;
 
     useEffect(() => {
         window.scrollTo({ top: 0 });
@@ -25,7 +26,7 @@ const SearchResults = () => {
     }, [dispatch, params]);
 
     const elementOnPageCountLimit: number = 10;
-    const countpages = Math.ceil(countFoundBooks / elementOnPageCountLimit);
+    const countpages: number = Math.ceil(countFoundBooks / elementOnPageCountLimit);
 
     return (
         <div className="search-container">
