@@ -1,0 +1,35 @@
+.addfavorites-container {
+    padding: 20px;
+    max-width: 48px;
+    max-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .action-deactivated {
+        background: transparent;
+
+        .heart-logo {
+            visibility: visible;
+        }
+    }
+
+    .action-deactivated:hover {
+        background: var(--image-background-red-border-heart) no-repeat center center;
+
+        .heart-logo {
+            visibility: hidden;
+        }
+    }
+
+    .action-activated {
+        background: var(--image-background-filled-heart) no-repeat center center;
+
+        .heart-logo {
+            visibility: hidden;
+        }
+    }
+}
+
+
+

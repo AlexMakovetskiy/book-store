@@ -1,0 +1,38 @@
+.basket-book-wrap {
+    .action-deactivated {
+        width: 100%;
+        padding: 16px 0;
+        max-width: 448px;
+        font-family: 'Bebas Neue', Tahoma, sans-serif;
+        font-weight: 700;
+        font-size: 2.4rem;
+        line-height: 2.4rem;
+        letter-spacing: 0.05em;
+        text-align: center;
+        text-transform: uppercase;
+        color: var(--color-text-pure-white);
+        background: var(--color-background-system-primary);
+        transition: .5s ease;
+    }
+
+    .action-deactivated:hover {
+        background: var(--color-background-system-primary-hover);
+    }
+
+    .action-activated {
+        width: 100%;
+        padding: 16px 0;
+        max-width: 448px;
+        font-family: 'Bebas Neue', Tahoma, sans-serif;
+        font-weight: 700;
+        font-size: 2.4rem;
+        line-height: 2.4rem;
+        letter-spacing: 0.05em;
+        text-align: center;
+        text-transform: uppercase;
+        color: var(--color-text-system-primary);
+        background: var(--color-background-pure-white);
+        border: 2px solid var(--color-border-system-primary);
+        border-radius: 5px;
+    }
+}

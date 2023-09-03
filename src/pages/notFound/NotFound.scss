@@ -1,0 +1,23 @@
+.notfound-page-container {
+    padding: 50px 0 40%;
+    text-align: center;
+
+    &__title {
+        padding-bottom: 20px;
+        font-size: 5.6rem;
+        line-height: 6.4rem;
+    }
+
+    &__subtitle {
+        padding-bottom: 25px;
+        font-size: 2.6rem;
+        line-height: 2.4rem;
+    }
+
+    &__goback-action {
+        padding: 16px 40px;
+        max-width: max-content;
+        font-size: 2.6rem;
+        line-height: 2.4rem;
+    }
+}

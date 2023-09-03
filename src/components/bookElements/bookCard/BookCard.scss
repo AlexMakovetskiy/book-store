@@ -1,0 +1,44 @@
+.book-container {
+    max-width: 352px;
+    display: flex;
+    flex-direction: column;
+
+    .cover-wrapper {
+        background: var(--color-background-calcareous-sinter);
+        max-height: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &__book-cover {
+            max-height: 264px;
+            max-width: 226px;
+            left: 63px;
+            top: 1px;
+            border-radius: 0px;
+        }
+    }
+
+    .description-container {
+        &__title{
+            padding: 20px 8px;
+            font-size: 2.4rem;
+            line-height: 3.2rem;
+        }
+
+        &__subtitle {
+            padding-bottom: 40px;
+            font-size: 1.6rem;
+            line-height: 2.4rem;
+            color: var(--color-text-secondary);
+        }
+
+        &__price {
+            font-family: 'Bebas Neue';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 2.4rem;
+            line-height: 3.2rem;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+.cover-container {
+    position: fixed;
+    backdrop-filter: blur(2px);
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+
+    .simple-div {
+        position: relative;
+        transform: scale(1.5);
+    }
+}
+
