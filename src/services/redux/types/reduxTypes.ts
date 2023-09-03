@@ -1,4 +1,6 @@
-import { IBasketBook, IBook, IFavoriteBook } from '../../../interfaces/store/reduce/bookSlice';
+import { IBasketBook } from '../../../types/components/AddBusketBook';
+import { IFavoriteBook } from '../../../types/components/AddFavoritebook';
+import { IBook } from '../../../types/components/BookCard';
 
 export interface IBasketBookState {
     basketBooks: IBasketBook[]
@@ -35,4 +37,9 @@ export interface IUserDataState {
 
 export interface IOpenningPopupState {
     isOpenPopup: boolean,
+}
+
+export interface ISearchBooks {
+    inputData: string | undefined,
+    pageNumber: string | undefined,
 }

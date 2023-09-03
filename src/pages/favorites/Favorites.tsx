@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import useAppSelector from '../../hooks/useAppSelector';
 
+import { IFavoriteBook } from '../../types/components/AddFavoritebook';
 import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
 import AddFavoriteBook from '../../components/addFavoriteBook/AddFavoriteBook';
 import PopularBooks from '../../components/popularBooks/PopularBooks';
@@ -15,7 +16,7 @@ import './Favorites.scss';
 const Favorites = () => {
     const navigator = useNavigate();
     const userData = useAppSelector(userDataSelector);
-    const favotiteBooks = useAppSelector(favoriteBooksSelector);
+    const favotiteBooks: IFavoriteBook[] = useAppSelector(favoriteBooksSelector);
 
     useEffect(() => {
         window.scrollTo({ top: 0 });
@@ -25,7 +26,7 @@ const Favorites = () => {
     }, [navigator, userData.isLogin]);
 
     const getFavotiteBookList = () => {
-        return favotiteBooks.map((favoriteBook: any, index) =>{
+        return favotiteBooks.map((favoriteBook: IFavoriteBook, index) =>{
             return (
                 <div className="favorite-book-wrapper" key={index}>
                     <div className="book-detail-container">
@@ -57,9 +58,9 @@ const Favorites = () => {
                 { getFavotiteBookList() }
                 {
                     !favotiteBooks.length &&
-                <div className="empty-favorites-wrapper">
-                    <h2 className="empty-favorites-wrapper__title">There are no books in favorites!</h2>
-                </div>
+                    <div className="empty-favorites-wrapper">
+                        <h2 className="empty-favorites-wrapper__title">There are no books in favorites!</h2>
+                    </div>
                 }
             </div>
             <PopularBooks/>

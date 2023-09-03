@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
 
-import { IFavoriteBookObject } from '../../interfaces/store/reduce/bookSlice';
+import { IFavoriteBookObject } from '../../types/components/AddFavoritebook';
 import { setFavoriteBook } from '../../services/redux/features/favoriteBooks/FavoriteBooksSlice';
 import favoriteBooksSelector from '../../services/redux/features/favoriteBooks/FavoriteBooksSelector';
 import userDataSelector from '../../services/redux/features/userData/UserDataSelector';
@@ -11,10 +11,10 @@ import { Path } from '../../services/router/RouteLines';
 
 import './AddFavoriteBook.scss';
 
-function AddFavoriteBook ({bookData} :IFavoriteBookObject) {
+function AddFavoriteBook ({bookData}: IFavoriteBookObject) {
     const navigator = useNavigate();
     const dispatch = useAppDispatch();
-    const isAuthorized = useAppSelector(userDataSelector).isLogin;
+    const isAuthorized: boolean = useAppSelector(userDataSelector).isLogin;
     const favoriteBookList = useAppSelector(favoriteBooksSelector);
     
     const handleFavoriteAction = () => {

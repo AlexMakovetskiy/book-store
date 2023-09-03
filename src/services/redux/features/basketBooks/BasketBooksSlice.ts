@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IBasketBook } from '../../../../interfaces/store/reduce/bookSlice';
 import { IBasketBookState } from '../../types/reduxTypes';
+import { IBasketBook } from '../../../../types/components/AddBusketBook';
 
 const initialState: IBasketBookState = {
     basketBooks: [],

@@ -1,17 +1,13 @@
-import { useState } from 'react';
+import { BaseSyntheticEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import useAppSelector from '../../hooks/useAppSelector';
 
+import { ISearchState } from '../../types/components/Header';
 import basketBooksSelector from '../../services/redux/features/basketBooks/BasketBooksSelector';
 import favoriteBooksSelector from '../../services/redux/features/favoriteBooks/FavoriteBooksSelector';
 
 import './Header.scss';
-
-interface ISearchState {
-    searchLine: string,
-    searchImg: boolean,
-}
 
 function Header () {
     const [searchState, setSearchState] = useState<ISearchState>({
@@ -22,7 +18,7 @@ function Header () {
     const favorites = useAppSelector(favoriteBooksSelector);
     const navigator = useNavigate();
 
-    function handleChange (event: { preventDefault: () => void; target: { value: string; }; }) {
+    function handleChange (event: BaseSyntheticEvent) {
         event.preventDefault();
         if(event.target.value === '') {
             setSearchState((prevState) => ({

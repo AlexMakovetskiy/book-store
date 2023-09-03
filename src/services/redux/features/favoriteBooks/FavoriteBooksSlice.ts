@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IFavoriteBook } from '../../../../interfaces/store/reduce/bookSlice';
+import { IFavoriteBook } from '../../../../types/components/AddFavoritebook';
 import { IFavoriteBooksState } from '../../types/reduxTypes';
 
 const favoriteBooksInitialState :IFavoriteBooksState = {

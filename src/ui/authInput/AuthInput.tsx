@@ -1,16 +1,8 @@
-import { HTMLInputTypeAttribute } from 'react';
+import { IAuthInput } from '../../types/common/UiLitProps';
 
 import './AuthInput.scss';
 
-interface IAuthInputProps {
-    type: HTMLInputTypeAttribute, 
-    placeholder: string, 
-    name: string, 
-    onChange: any,
-    error?: string
-}
-
-function AuthInput({type, placeholder, name, onChange, error}: IAuthInputProps) {
+function AuthInput({type, placeholder, name, onChange, error}: IAuthInput) {
     let errorLine: string = '';
     
     if(!error) {

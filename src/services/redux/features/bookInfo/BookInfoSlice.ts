@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IBookInfo } from '../../../../interfaces/store/reduce/bookSlice';
+import { IBookInfo } from '../../../../types/pages/BookInfo';
 import { IBookInfoState } from '../../types/reduxTypes';
 
 import  getBooksInfoData  from './BookInfoThunk';
@@ -40,9 +40,9 @@ const bookInfoSlice = createSlice({
             state.book = action.payload;
         });
 
-        builder.addCase(getBooksInfoData.rejected, (state: IBookInfoState, action: PayloadAction<any>) => {
+        builder.addCase(getBooksInfoData.rejected, (state: IBookInfoState, action: PayloadAction<string | unknown>) => {
             state.loading = false;
-            state.error = action.payload;
+            state.error = action.payload as string;
         });
     },
 });

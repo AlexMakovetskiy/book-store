@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
+import { IBasketBook } from '../../types/components/AddBusketBook';
 import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
 import { increaseBasketSum, deceaseBasketSum, deleteBasketBook } from '../../services/redux/features/basketBooks/BasketBooksSlice';
 import userDataSelector from '../../services/redux/features/userData/UserDataSelector';
@@ -16,7 +17,7 @@ const Basket = () => {
     const navigator = useNavigate();
     const dispatch = useAppDispatch();
     const userData = useAppSelector(userDataSelector);
-    const basketBooks = useAppSelector(basketBooksSelector);
+    const basketBooks: IBasketBook[] = useAppSelector(basketBooksSelector);
 
     useEffect(() => {
         window.scrollTo({ top: 0 });
@@ -26,14 +27,14 @@ const Basket = () => {
     }, [navigator, userData.isLogin]);
 
     const calculatedBookPrice = basketBooks.reduce(
-        (acc: number, curr: { count: number; price: any; }) => acc + (curr.count * Number(String(curr.price).replace('$', ''))), 0,
+        (acc: number, curr: { count: number; price: number | string; }) => acc + (curr.count * Number(String(curr.price).replace('$', ''))), 0,
     );
 
-    const vat = calculatedBookPrice * 0.14;
-    const resultBookPrice = vat + calculatedBookPrice;
+    const vat: number = calculatedBookPrice * 0.14;
+    const resultBookPrice: number = vat + calculatedBookPrice;
 
     const getBasketBookList = () => {
-        return basketBooks.map((basketBook: any, index) => 
+        return basketBooks.map((basketBook: IBasketBook, index) => 
             <div className="basket-book-wrap" key={index}>
                 <div className="basket-book-wrap__cover-wrapper">
                     <img src={basketBook.image} alt={basketBook.title} className="basket-book-wrap__cover-wrapper__cover"/>

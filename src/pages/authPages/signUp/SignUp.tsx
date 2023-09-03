@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { BaseSyntheticEvent, useState } from 'react';
 import {  Link } from 'react-router-dom';
 
-import { IPopUpState } from '../../../interfaces/PopUp';
+import { IPopUpState } from '../../../types/common/UiLitProps';
+import { ISignUpState, ISignUpErrorState } from '../../../types/pages/SignUp';
 import AuthInput from '../../../ui/authInput/AuthInput';
 import PopUp from '../../../ui/popUp/PopUp';
 import { emailRegexp, passwordRegexp } from '../../../utils/RegExpFields';
@@ -9,13 +10,13 @@ import { emailRegexp, passwordRegexp } from '../../../utils/RegExpFields';
 import './SignUp.scss';
 
 const SignUp = () => {
-    const [state, setState] = useState({
-        nameSurname: 'Name Surname',
-        email: 'example@gmail.com',
-        password: 'password',
-        confirmPassword: 'confirmPassword',
+    const [state, setState] = useState<ISignUpState>({
+        nameSurname: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
     });
-    const [stateError, setStateError] = useState({
+    const [stateError, setStateError] = useState<ISignUpErrorState>({
         nameSurname: false,
         email: false,
         password: false,
@@ -26,6 +27,13 @@ const SignUp = () => {
         textMessege: '',
         popupLogo: false,
     });
+
+    enum SignUpFields {
+        name = 'nameSurname',
+        email = 'email',
+        password = 'password',
+        confirmPassword = 'confirmPassword',
+    }
 
     const openPopup = (title: string, logo: boolean) => {
         setPopupState((prevState) => ({
@@ -43,7 +51,7 @@ const SignUp = () => {
         }));
     };
 
-    function handleSubmit (event: { preventDefault: () => void; }) {
+    function handleSubmit (event: BaseSyntheticEvent) {
         event.preventDefault();
         if (state.password !== state.confirmPassword) {
             return openPopup('Passwords are not match!', false);
@@ -63,8 +71,8 @@ const SignUp = () => {
         }
     }
     
-    const handleChange = (event: { target: { name: string; value: string; }; }) => {
-        if (event.target.name === 'nameSurname') {
+    const handleChange = (event: BaseSyntheticEvent) => {
+        if (event.target.name === SignUpFields.name) {
             if(!event.target.value) {
                 setStateError((prevState) => ({
                     ...prevState,
@@ -78,13 +86,13 @@ const SignUp = () => {
                 }));
             }
         }
-        if (event.target.name === 'email') {
+        if (event.target.name === SignUpFields.email) {
             setStateError((prevState) => ({
                 ...prevState,
                 [event.target.name]: !emailRegexp.test(event.target.value),
             }));
         }
-        if (event.target.name === 'password' || event.target.name === 'confirmPassword') {
+        if (event.target.name === SignUpFields.password || event.target.name === SignUpFields.confirmPassword) {
             setStateError((prevState) => ({
                 ...prevState,
                 [event.target.name]: !passwordRegexp.test(event.target.value),

@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { BaseSyntheticEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
 
-import { IPopUpState } from '../../interfaces/PopUp';
+import { IPopUpState } from '../../types/common/UiLitProps';
+import { IUserAccauntErrorState, IUserAccauntState } from '../../types/pages/Accaunt';
 import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
 import PopUp from '../../ui/popUp/PopUp';
 import AuthInput from '../../ui/authInput/AuthInput';
@@ -16,13 +17,13 @@ import { Path } from '../../services/router/RouteLines';
 import './Accaunt.scss';
 
 const Accaunt = () => {
-    const [userState, setUserState] = useState({
+    const [userState, setUserState] = useState<IUserAccauntState>({
         userName: '',
         email: '',
         password: '',
         confirmPassword: '',
     });
-    const [userStateError, setUserStateError] = useState({
+    const [userStateError, setUserStateError] = useState<IUserAccauntErrorState>({
         userName: false,
         email: false,
         password: false,
@@ -34,12 +35,19 @@ const Accaunt = () => {
         popupLogo: false,
     });
 
+    enum UserDataFields {
+        name = 'userName',
+        email = 'email',
+        password = 'password',
+        confirmPassword = 'confirmPassword',
+    }
+
     const dispatch = useAppDispatch();
     const navigator = useNavigate();
     const userData = useAppSelector(userDataSelector);
 
-    const handleChange = (event: { target: { name: string; value: string; }; }) => {
-        if (event.target.name === 'userName') {
+    const handleChange = (event: BaseSyntheticEvent) => {
+        if (event.target.name === UserDataFields.name) {
             if(!event.target.value) {
                 setUserStateError((prevState) => ({
                     ...prevState,
@@ -53,13 +61,13 @@ const Accaunt = () => {
                 }));
             }
         }
-        if (event.target.name === 'email') {
+        if (event.target.name === UserDataFields.email) {
             setUserStateError((prevState) => ({
                 ...prevState,
                 [event.target.name]: !emailRegexp.test(event.target.value),
             }));
         }
-        if (event.target.name === 'password' || event.target.name === 'confirmPassword') {
+        if (event.target.name === UserDataFields.password || event.target.name === UserDataFields.confirmPassword) {
             setUserStateError((prevState) => ({
                 ...prevState,
                 [event.target.name]: !passwordRegexp.test(event.target.value),
@@ -78,9 +86,9 @@ const Accaunt = () => {
         }
     }, [navigator, userData.isLogin]);
 
-    const SignOutUser = () => {
-        dispatch((logOut()));
-        navigator(Path.Main);
+    const SignOutUser = async () => {
+        await dispatch((logOut()));
+        return navigator(Path.Main);
     };   
     
 

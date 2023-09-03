@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
+import { IBook } from '../../types/components/BookCard';
 import Subscription from '../../components/subscription/Subscription';
 import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
 import TabSet  from '../../components/bookElements/bookTabs/BookTabs';
@@ -17,10 +18,10 @@ import PreviewBookCover from '../../components/previewBookCover/PreviewBookCover
 import './BookInfo.scss';
 
 const BookInfo = () => {
-    const [isOpenPreview, setIsOpenPreview] = useState(false);
+    const [isOpenPreview, setIsOpenPreview] = useState<boolean>(false);
     const params = useParams();
     const dispatch = useAppDispatch();
-    const bookData = useAppSelector(bookInfoSelector).book;
+    const bookData: IBook = useAppSelector(bookInfoSelector).book;
 
     useEffect(() => {
         window.scrollTo({ top: 0 });
@@ -34,12 +35,12 @@ const BookInfo = () => {
     };
 
     function goToTwitter () {
-        const namesBookAuthors = bookData.authors.split(' ');
+        const namesBookAuthors: string[] = bookData.authors.split(' ');
         return window.open(BASE_TWITTER_SEARCH + namesBookAuthors[0] + '%20' + namesBookAuthors[1] + ENDPOINT_TWITTER_SEARCH, '_blank');
     }
 
     function goToFacebook () {
-        const namesBookAuthors = bookData.authors.split(' ');
+        const namesBookAuthors: string[]= bookData.authors.split(' ');
         return window.open(BASE_FACEBOOK_SEARCH + namesBookAuthors[0] + '%20' + namesBookAuthors[1], '_blank');
     }
 
