@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import { IBooksDataInitialState } from '../../types/reduxTypes';
 
 import  getBooksData  from './BooksDataThunk';
 
-const booksDataInitialState :IBooksDataInitialState = {
+const booksDataInitialState: IBooksDataInitialState = {
     books: [],
     error: null,
     loading: false,

@@ -1,14 +1,9 @@
 import { Link } from 'react-router-dom';
 
+import { IPagination } from '../../types/common/ComponentProps';
 import { getPreviousNextpages } from '../../utils/Pagination';
 
 import './Pagination.scss';
-
-interface IPagination {
-    currPage: number,
-    pageCount: number,
-    inputData?: string | undefined,
-}
 
 function Pagination ({currPage, pageCount, inputData}: IPagination) {
     const {previousPageNumber, nextPageNumber} = getPreviousNextpages(pageCount, currPage);

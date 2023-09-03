@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { BaseSyntheticEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import useAppDispatch from '../../../hooks/useAppDispatch';
 
-import { IPopUpState } from '../../../interfaces/PopUp';
+import { IPopUpState } from '../../../types/common/UiLitProps';
+import { ISignInErrorState, ISignInState } from '../../../types/pages/SignIn';
 import PopUp from '../../../ui/popUp/PopUp';
 import AuthInput from '../../../ui/authInput/AuthInput';
 import { updateUserData } from '../../../services/redux/features/userData/UserDataSlice';
@@ -13,11 +14,11 @@ import { Path } from '../../../services/router/RouteLines';
 import './SignIn.scss';
 
 const SignIn = () => {
-    const [state, setState] = useState({
+    const [state, setState] = useState<ISignInState>({
         email: '',
         password: '',
     });
-    const [stateError, setStateError] = useState({
+    const [stateError, setStateError] = useState<ISignInErrorState>({
         email: false,
         password: false,
     });
@@ -29,14 +30,19 @@ const SignIn = () => {
     const dispatch = useAppDispatch();
     const navigator = useNavigate();
 
-    const handleChange = (event: { target: { name: string; value: string; }; }) => {
-        if (event.target.name === 'email') {
+    enum SignInDataFields {
+        email = 'email',
+        password = 'password',
+    }
+
+    const handleChange = (event: BaseSyntheticEvent) => {
+        if (event.target.name === SignInDataFields.email) {
             setStateError((prevState) => ({
                 ...prevState,
                 [event.target.name]: !emailRegexp.test(event.target.value),
             }));
         }
-        if (event.target.name === 'password') {
+        if (event.target.name === SignInDataFields.password) {
             setStateError((prevState) => ({
                 ...prevState,
                 [event.target.name]: !passwordRegexp.test(event.target.value),
@@ -64,7 +70,7 @@ const SignIn = () => {
         }));
     };
 
-    function handleSubmit (event: { preventDefault: () => void; }) {
+    function handleSubmit (event: BaseSyntheticEvent) {
         event.preventDefault();
         const storageUsers = JSON.parse(localStorage.getItem('users') || '[]');
         if (storageUsers.length === 0)

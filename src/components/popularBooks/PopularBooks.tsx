@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
+import { IBook } from '../../types/components/BookCard';
 import BookCard from '../bookElements/bookCard/BookCard';
 import getBooksData from '../../services/redux/features/booksData/BooksDataThunk';
 import booksDataSelector from '../../services/redux/features/booksData/BooksDataSelector';
@@ -12,7 +13,7 @@ import './PopularBooks.scss';
 function PopularBooks () {
     const [pagination, setPagination] = useState<number>(0);
     const dispatch = useAppDispatch();
-    const bookList = useAppSelector(booksDataSelector).books;
+    const bookList: IBook[] = useAppSelector(booksDataSelector).books;
 
     useEffect(() => {
         dispatch(getBooksData());
@@ -42,7 +43,7 @@ function PopularBooks () {
 
             <div className="books-wrapper">
                 {
-                    bookList.slice(pagination, pagination + 3).map((book: any) => 
+                    bookList.slice(pagination, pagination + 3).map((book: IBook) => 
                         <BookCard key={book.isbn13} {...book}/>,
                     )
                 }

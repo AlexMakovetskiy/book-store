@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import useAppSelector from '../../../hooks/useAppSelector';
 
-import { IBook } from '../../../interfaces/books';
+import { IBook } from '../../../types/components/BookCard';
 import LoadingElement from '../../loadingElement/LoadingElement';
 import getBooksData from '../../../services/redux/features/booksData/BooksDataThunk';
 import booksDataSelector from '../../../services/redux/features/booksData/BooksDataSelector';

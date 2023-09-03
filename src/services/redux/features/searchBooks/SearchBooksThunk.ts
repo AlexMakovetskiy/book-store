@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ISearchBooks } from '../../../../interfaces/store/thunk/SearchBooks';
+import { ISearchBooks } from '../../types/reduxTypes';
 import { ENDPOINT_SEARCH_BOOKS, URL_API_BOOKS } from '../../../api/apiConstants';
 
 const getSearchBooks = createAsyncThunk(

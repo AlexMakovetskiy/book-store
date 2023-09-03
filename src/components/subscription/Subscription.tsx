@@ -1,19 +1,19 @@
-import { useState } from 'react';
+import { BaseSyntheticEvent, useState } from 'react';
 
-import { IPopUpState } from '../../interfaces/PopUp';
+import { IPopUpState } from '../../types/common/UiLitProps';
 import PopUp from '../../ui/popUp/PopUp';
 
 import './Subscription.scss';
 
 function Subscription () {
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState<string>('');
     const [popUpState, setPopupState] = useState<IPopUpState>({
         isOpenPopup: false,
         textMessege: '',
         popupLogo: false,
     });
 
-    const handleChange = (event: { target: { name: string; value: string; }; }) => {
+    const handleChange = (event: BaseSyntheticEvent) => {
         setEmail((prevState) => ( prevState = event.target.value ));
     };
 

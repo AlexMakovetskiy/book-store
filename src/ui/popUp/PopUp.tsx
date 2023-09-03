@@ -1,12 +1,8 @@
+import { IPopup } from '../../types/common/UiLitProps';
+
 import './PopUp.scss';
 
-interface IPopupProps {
-    title: string,
-    logo: boolean,
-    handleClose: () => void
-}
-
-function PopUp ({title, logo, handleClose}: IPopupProps) {
+function PopUp ({title, logo, handleClose}: IPopup) {
     const successLogoLocation = '/assets/vector/components/popup/success.svg';
     const errorLogoLocation = '/assets/vector/components/popup/error.svg';
 

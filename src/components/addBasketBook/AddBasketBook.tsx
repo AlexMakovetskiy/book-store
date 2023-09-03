@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
 
-import { IBasketBookObject } from '../../interfaces/store/reduce/bookSlice';
+import { IBasketBook, IBasketBookObject } from '../../types/components/AddBusketBook';
 import { setBasketBook, deleteBasketBook } from '../../services/redux/features/basketBooks/BasketBooksSlice';
 import userDataSelector from '../../services/redux/features/userData/UserDataSelector';
 import basketBooksSelector from '../../services/redux/features/basketBooks/BasketBooksSelector';
@@ -14,7 +14,7 @@ import './AddBasketBook.scss';
 function AddBasketBook ({bookData}: IBasketBookObject) {
     const navigator = useNavigate();
     const dispatch = useAppDispatch();
-    const isAuthorized = useAppSelector(userDataSelector).isLogin;
+    const isAuthorized: boolean = useAppSelector(userDataSelector).isLogin;
     const basketbooks = useAppSelector(basketBooksSelector);
 
     const isBasketBook = basketbooks.find((book) => book.isbn13 === bookData.isbn13);
@@ -29,7 +29,7 @@ function AddBasketBook ({bookData}: IBasketBookObject) {
             return navigator(Path.Signin);        
         if(isBasketBook) 
             return dispatch(deleteBasketBook(bookData.isbn13));
-        dispatch(setBasketBook({
+        const basketBook: IBasketBook = {
             isbn13: bookData.isbn13,
             image: bookData.image,
             title: bookData.title,
@@ -37,7 +37,8 @@ function AddBasketBook ({bookData}: IBasketBookObject) {
             publisher:  bookData.publisher,
             price: bookData.price,
             count: 1,
-        }));
+        };
+        return dispatch(setBasketBook(basketBook));
     };
 
     return (

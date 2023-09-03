@@ -14,6 +14,6 @@ interface IBook {
     title: string
     url: string
     year: string
-}
+};
 
 export type { IBook };

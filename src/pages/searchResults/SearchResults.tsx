@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import useAppSelector from '../../hooks/useAppSelector';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
+import { IBook } from '../../types/components/BookCard';
 import Book from '../../components/bookElements/bookCard/BookCard';
 import Pagination from '../../components/pagination/Pagination';
 import getSearchBooks from '../../services/redux/features/searchBooks/SearchBooksThunk';
@@ -14,8 +15,8 @@ import searchBooksSelector from '../../services/redux/features/searchBooks/Searc
 const SearchResults = () => {
     const params = useParams();
     const dispatch = useAppDispatch();
-    const bookList = useAppSelector(searchBooksSelector).books;
-    const countFoundBooks = useAppSelector(searchBooksSelector).total;
+    const bookList: IBook[] = useAppSelector(searchBooksSelector).books;
+    const countFoundBooks: number = useAppSelector(searchBooksSelector).total;
 
     useEffect(() => {
         window.scrollTo({ top: 0 });
@@ -34,7 +35,7 @@ const SearchResults = () => {
             <p className="search-container__subtitle">Found {countFoundBooks} books</p>
             <div className="found-books">
                 {
-                    bookList.map((book: any) => 
+                    bookList.map((book: IBook) => 
                         <Book key={book.isbn13} {...book}/>)
                 }
             </div>
