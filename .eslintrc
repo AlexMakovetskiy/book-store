@@ -14,6 +14,27 @@
         "semi": ["warn", "always"],
         "no-duplicate-imports": "error",
         "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/ban-types": [
+			"error",
+			{
+				"types": {
+					"FC":
+					"Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
+					"React.FC":
+					"Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
+					"React.FunctionComponent":
+					"Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
+					"React.FunctionalComponent":
+					"Preact specific, useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177"
+				}
+			}
+		],
+        "no-magic-numbers": ["warn", {
+			"ignore": [1, 0, -1, 2], 
+			"ignoreArrayIndexes": true,
+			"ignoreDefaultValues": true
+			}
+		],
         "import/order": ["error", {
             "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
             "newlines-between": "always-and-inside-groups"

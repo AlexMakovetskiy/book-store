@@ -30,7 +30,8 @@ const Basket = () => {
         (acc: number, curr: { count: number; price: number | string; }) => acc + (curr.count * Number(String(curr.price).replace('$', ''))), 0,
     );
 
-    const vat: number = calculatedBookPrice * 0.14;
+    const vatPart: number = 0.14;
+    const vat: number = calculatedBookPrice * vatPart;
     const resultBookPrice: number = vat + calculatedBookPrice;
 
     const getBasketBookList = () => {

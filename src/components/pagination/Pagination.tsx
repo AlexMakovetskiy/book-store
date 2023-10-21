@@ -8,6 +8,8 @@ import './Pagination.scss';
 function Pagination ({currPage, pageCount, inputData}: IPagination) {
     const {previousPageNumber, nextPageNumber} = getPreviousNextpages(pageCount, currPage);
 
+    const firstElementHiddenPosition: number = 4;
+
     if(pageCount === 1)
         return <></>;
 
@@ -25,7 +27,7 @@ function Pagination ({currPage, pageCount, inputData}: IPagination) {
             </Link>
             <div className="row-pages-container">
                 {   
-                    currPage > 1 && pageCount > 4 && 
+                    currPage > 1 && pageCount > firstElementHiddenPosition && 
                     <>
                         <Link to={`/search-data/${inputData}/1`} >1</Link>
                         <div>...</div>

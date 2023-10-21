@@ -20,6 +20,7 @@ function PopularBooks () {
     }, [dispatch]);
 
     const elementOnPageCountLimit: number = 10;
+    const sliderBooksNumber: number = 3;
 
     function handleLeftAction () {
         return setPagination(pagination > 0 ? pagination - 1 : 0);
@@ -43,7 +44,7 @@ function PopularBooks () {
 
             <div className="books-wrapper">
                 {
-                    bookList.slice(pagination, pagination + 3).map((book: IBook) => 
+                    bookList.slice(pagination, pagination + sliderBooksNumber).map((book: IBook) => 
                         <BookCard key={book.isbn13} {...book}/>,
                     )
                 }
