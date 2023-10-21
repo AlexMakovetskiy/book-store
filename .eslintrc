@@ -40,6 +40,6 @@
             "newlines-between": "always-and-inside-groups"
         }],
         "jest/no-conditional-expect": "off",
-        "@typescript-eslint/no-explicit-any": "warn"
+        "@typescript-eslint/no-explicit-any": "warn" 
     }
 }
