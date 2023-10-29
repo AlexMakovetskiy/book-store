@@ -8,7 +8,7 @@ import { ISignInErrorState, ISignInState } from '../../../types/pages/SignIn';
 import PopUp from '../../../ui/popUp/PopUp';
 import AuthInput from '../../../ui/authInput/AuthInput';
 import { updateUserData } from '../../../services/redux/features/userData/UserDataSlice';
-import { passwordRegexp, emailRegexp } from '../../../utils/RegExpFields';
+import { passwordRegexp, emailRegexp } from '../../../helpers/RegExpFields';
 import { Path } from '../../../services/router/RouteLines';
 
 import './SignIn.scss';

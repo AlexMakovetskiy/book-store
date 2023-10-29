@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { ENDPOINT_NEW_BOOKS, URL_API_BOOKS } from '../../../api/apiConstants';
+import { NEW_BOOKS_ENDPOINT, BOOKS_API_URL } from '../../../api/booksApi/apiConstants';
 
 const getBooksData = createAsyncThunk(
     'books', 
     async (params, thunkAPI) => {
         try {
-            const response = await fetch(`${URL_API_BOOKS}${ENDPOINT_NEW_BOOKS}?${params}`);
+            const response = await fetch(`${BOOKS_API_URL}${NEW_BOOKS_ENDPOINT}?${params}`);
             return await response.json();
         } catch (error) {
             return thunkAPI.rejectWithValue(error);

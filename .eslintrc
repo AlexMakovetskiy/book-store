@@ -8,6 +8,7 @@
         "quotes": ["warn", "single"],
         "jsx-quotes": ["warn", "prefer-double"],
         "prefer-const": "error",
+        "react-hooks/rules-of-hooks": "error",
         "indent": ["warn", 4],
         "max-len": ["error", {"code": 180}],
         "comma-dangle": ["error", "always-multiline"],

@@ -11,7 +11,7 @@ import PopUp from '../../ui/popUp/PopUp';
 import AuthInput from '../../ui/authInput/AuthInput';
 import { logOut, updateUserData } from '../../services/redux/features/userData/UserDataSlice';
 import userDataSelector from '../../services/redux/features/userData/UserDataSelector';
-import { passwordRegexp, emailRegexp } from '../../utils/RegExpFields';
+import { passwordRegexp, emailRegexp } from '../../helpers/RegExpFields';
 import { Path } from '../../services/router/RouteLines';
 
 import './Accaunt.scss';
