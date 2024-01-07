@@ -6,12 +6,15 @@ import useAppSelector from '../../hooks/useAppSelector';
 
 import { IPopUpState } from '../../types/common/UiLitProps';
 import { IUserAccauntErrorState, IUserAccauntState } from '../../types/pages/Accaunt';
+import { UpdatedDataType } from '../../types/api/ApiTypes';
 import ReturnPrevPage from '../../ui/returnPrevPage/ReturnPrevPage';
 import PopUp from '../../ui/popUp/PopUp';
 import AuthInput from '../../ui/authInput/AuthInput';
-import { logOut, updateUserData } from '../../services/redux/features/userData/UserDataSlice';
+import { logOut } from '../../services/redux/features/userData/UserDataSlice';
 import userDataSelector from '../../services/redux/features/userData/UserDataSelector';
-import { passwordRegexp, emailRegexp } from '../../utils/RegExpFields';
+import { logoutUser } from '../../services/api/bookstoreBackend/logoutUser';
+import { updateUserData } from '../../services/api/bookstoreBackend/updateUserData';
+import { passwordRegexp, emailRegexp } from '../../helpers/RegExpFields';
 import { Path } from '../../services/router/RouteLines';
 
 import './Accaunt.scss';
@@ -81,13 +84,15 @@ const Accaunt = () => {
     };
 
     useEffect(() => {
-        if(!userData.isLogin) {
+        if(!userData.email) {
             navigator(Path.Signin);
         }
-    }, [navigator, userData.isLogin]);
+    }, [navigator, userData.email]);
 
     const SignOutUser = async () => {
-        await dispatch((logOut()));
+        await logoutUser(userData.token);
+        await dispatch(logOut());
+
         return navigator(Path.Main);
     };   
     
@@ -108,36 +113,28 @@ const Accaunt = () => {
         }));
     };
 
-    const ChangeUserData = () => {
-        const storageUsers = JSON.parse(localStorage.getItem('users') || '[]');
-        if(userState.userName === '' || userState.email === '') {
-            return openPopup('Enter a new name and email', false);
+    const ChangeUserData = async () => {
+        if(!userState.email && !userState.userName && !userState.password) {
+            return null;
         }
-        else {
-            if(userState.password === '' || userState.confirmPassword === '')
-                return openPopup('Enter a new passwords', false);
-            else {
-                if(userState.password !== userState.confirmPassword)
-                    return openPopup('Your passwaords are not match!', false);
-                else {
-                    dispatch(updateUserData({
-                        name: userState.userName,
-                        email: userState.email,
-                        isLogin: true,
-                    }));
-                    for (const user of storageUsers) {
-                        if(user.email === userData.email) {
-                            user.nameSurname = userState.userName;
-                            user.email = userState.email;
-                            user.password = userState.password;
-                        }
-                        
-                    }
-                    localStorage.setItem('users', JSON.stringify(storageUsers));
-                    return openPopup('Your data was successfully change', true);
-                }
-            }
-        }
+
+        if((!userState.password && userState.confirmPassword) || ( userState.password && !userState.confirmPassword))
+            return openPopup('Enter a new passwords', false);
+
+        if(userState.password !== userState.confirmPassword)
+            return openPopup('Entered passwords are not match!', false);
+
+        const passwordEnterStatus = userState.password && userState.confirmPassword;
+
+        const updatedUserData: UpdatedDataType = {
+            email: userState.email ?? userData.email,
+            userEmail: userData.email,
+            name: userState.userName ?? userData.name,
+            password: !passwordEnterStatus ? 'password' : userState.password,
+        };
+
+        await updateUserData(updatedUserData, userData.token);
+        return openPopup('Your data was successfully change', true);
     };
 
     return (
@@ -151,7 +148,7 @@ const Accaunt = () => {
                         <h3 className="profile-data-content__name-wrapper__title">Name</h3>
                         <AuthInput
                             type="text"
-                            placeholder="Name Surname"
+                            placeholder="Enter new Name Surname"
                             name="userName"
                             onChange={handleChange}
                             error={userStateError.userName ? 'This field is required' : ''}
@@ -161,7 +158,7 @@ const Accaunt = () => {
                         <h3 className="profile-data-content__email-wrapper__title">Email</h3>
                         <AuthInput
                             type="email"
-                            placeholder="Email"
+                            placeholder="Enter new Email"
                             name="email"
                             onChange={handleChange}
                             error={userStateError.email ? 'Error email data' : ''}
@@ -181,7 +178,7 @@ const Accaunt = () => {
                             <h4 className="change-password-container__new-password-container__title">New password</h4>
                             <AuthInput
                                 type="password"
-                                placeholder="New password"
+                                placeholder="Enter new password"
                                 name="password"
                                 onChange={handleChange}
                                 error={userStateError.password ? 'Error password data' : ''}

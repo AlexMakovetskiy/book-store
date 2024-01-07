@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ISearchBooks } from '../../types/reduxTypes';
-import { ENDPOINT_SEARCH_BOOKS, URL_API_BOOKS } from '../../../api/apiConstants';
+import { SEARCH_BOOKS_ENDPOINT, BOOKS_API_URL } from '../../../api/booksApi/apiConstants';
 
 const getSearchBooks = createAsyncThunk(
     'foundBooks',
     async ({inputData, pageNumber}: ISearchBooks, thunkAPI) => {
         try {
-            const response = await fetch(`${URL_API_BOOKS}${ENDPOINT_SEARCH_BOOKS}/${inputData}/${pageNumber}`);
+            const response = await fetch(`${BOOKS_API_URL}${SEARCH_BOOKS_ENDPOINT}/${inputData}/${pageNumber}`);
             return await response.json();
         }
         catch (error) {

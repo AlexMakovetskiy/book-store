@@ -3,9 +3,11 @@ import {  Link } from 'react-router-dom';
 
 import { IPopUpState } from '../../../types/common/UiLitProps';
 import { ISignUpState, ISignUpErrorState } from '../../../types/pages/SignUp';
+import { ISignupUserData } from '../../../types/api/ApiTypes';
 import AuthInput from '../../../ui/authInput/AuthInput';
 import PopUp from '../../../ui/popUp/PopUp';
-import { emailRegexp, passwordRegexp } from '../../../utils/RegExpFields';
+import { signupUser } from '../../../services/api/bookstoreBackend/signupUser';
+import { emailRegexp, passwordRegexp } from '../../../helpers/RegExpFields';
 
 import './SignUp.scss';
 
@@ -53,22 +55,20 @@ const SignUp = () => {
 
     function handleSubmit (event: BaseSyntheticEvent) {
         event.preventDefault();
-        if (state.password !== state.confirmPassword) {
+        if (state.password !== state.confirmPassword) 
             return openPopup('Passwords are not match!', false);
-        }
-        else {
-            const storageUsers = JSON.parse(localStorage.getItem('users') || '[]');
-            openPopup('User registeted', true);
-            if (storageUsers.length === 0) {
-                const users= [];
-                users.push(state); 
-                return localStorage.setItem('users', JSON.stringify(users));
-            }
-            else {
-                storageUsers.push(state);
-                return localStorage.setItem('users', JSON.stringify(storageUsers));
-            }
-        }
+        const signupData: ISignupUserData = {
+            name: state.nameSurname,
+            email: state.email,
+            password: state.password,
+        };
+        signupUser(signupData)
+            .then(() => {
+                openPopup('User registeted', true);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
     
     const handleChange = (event: BaseSyntheticEvent) => {

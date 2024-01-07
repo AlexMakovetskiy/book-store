@@ -1,6 +1,7 @@
 import { BaseSyntheticEvent, useState } from 'react';
 
 import { IPopUpState } from '../../types/common/UiLitProps';
+import { subscribeToNewsletter } from '../../services/api/bookstoreBackend/subscribeToNewsletter';
 import PopUp from '../../ui/popUp/PopUp';
 
 import './Subscription.scss';
@@ -33,9 +34,10 @@ function Subscription () {
         }));
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if(!email)
             return openPopup('The email address is entered incorrectly', false);
+        await subscribeToNewsletter({ email: email });
         return openPopup('Check your email', true);
     };
 

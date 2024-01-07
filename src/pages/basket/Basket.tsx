@@ -21,10 +21,10 @@ const Basket = () => {
 
     useEffect(() => {
         window.scrollTo({ top: 0 });
-        if(!userData.isLogin) {
+        if(!userData.email) {
             navigator(Path.Signin);
         }
-    }, [navigator, userData.isLogin]);
+    }, [navigator, userData.email]);
 
     const calculatedBookPrice = basketBooks.reduce(
         (acc: number, curr: { count: number; price: number | string; }) => acc + (curr.count * Number(String(curr.price).replace('$', ''))), 0,

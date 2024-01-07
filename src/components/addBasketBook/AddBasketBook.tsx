@@ -14,7 +14,7 @@ import './AddBasketBook.scss';
 function AddBasketBook ({bookData}: IBasketBookObject) {
     const navigator = useNavigate();
     const dispatch = useAppDispatch();
-    const isAuthorized: boolean = useAppSelector(userDataSelector).isLogin;
+    const isAuthorized = useAppSelector(userDataSelector).email;
     const basketbooks = useAppSelector(basketBooksSelector);
 
     const isBasketBook = basketbooks.find((book) => book.isbn13 === bookData.isbn13);

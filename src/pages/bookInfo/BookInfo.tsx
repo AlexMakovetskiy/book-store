@@ -12,7 +12,7 @@ import AddFavoriteBook from '../../components/addFavoriteBook/AddFavoriteBook';
 import AddBasketBook from '../../components/addBasketBook/AddBasketBook';
 import bookInfoSelector from '../../services/redux/features/bookInfo/BookInfoSelector';
 import getBookInfo from '../../services/redux/features/bookInfo/BookInfoThunk';
-import { BASE_TWITTER_SEARCH, ENDPOINT_TWITTER_SEARCH, BASE_FACEBOOK_SEARCH } from '../../utils/bookInfo';
+import { BASE_TWITTER_SEARCH, ENDPOINT_TWITTER_SEARCH, BASE_FACEBOOK_SEARCH } from '../../helpers/bookInfo';
 import PreviewBookCover from '../../components/previewBookCover/PreviewBookCover';
 
 import './BookInfo.scss';
