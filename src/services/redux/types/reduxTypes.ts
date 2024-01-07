@@ -32,7 +32,8 @@ export interface ISearchBooksState {
 export interface IUserDataState {
     name: string,
     email: string,
-    isLogin: boolean
+    token: string,
+    error: string | null | unknown,
 }
 
 export interface IOpenningPopupState {

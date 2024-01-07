@@ -4,11 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 
 import { IPopUpState } from '../../../types/common/UiLitProps';
+import { IAuthorizationData, ILoginData } from '../../../types/api/ApiTypes';
 import { ISignInErrorState, ISignInState } from '../../../types/pages/SignIn';
 import PopUp from '../../../ui/popUp/PopUp';
 import AuthInput from '../../../ui/authInput/AuthInput';
-import { updateUserData } from '../../../services/redux/features/userData/UserDataSlice';
+import { loginUser } from '../../../services/api/bookstoreBackend/loginUser';
+import getUserData from '../../../services/redux/features/userData/UserDataThunk';
 import { passwordRegexp, emailRegexp } from '../../../helpers/RegExpFields';
+import { setUserToken } from '../../../services/redux/features/userData/UserDataSlice';
 import { Path } from '../../../services/router/RouteLines';
 
 import './SignIn.scss';
@@ -70,25 +73,27 @@ const SignIn = () => {
         }));
     };
 
-    function handleSubmit (event: BaseSyntheticEvent) {
+    async function handleSubmit (event: BaseSyntheticEvent) {
         event.preventDefault();
-        const storageUsers = JSON.parse(localStorage.getItem('users') || '[]');
-        if (storageUsers.length === 0)
-            return openPopup('This user is not registered', false);
-        for (const storageUser of storageUsers) {
-            if(storageUser.email === state.email && storageUser.password === state.password) {
-                dispatch(updateUserData({
-                    name: storageUser.nameSurname,
-                    email: storageUser.email,
-                    isLogin: true,
-                }));
-                navigator(Path.Main);
-            }
-            else {
-                openPopup('You entered user data incorrectly', false);
-            }
+        const loginData: ILoginData = {
+            email: state.email,
+            password: state.password,
+        };
+        try {
+            await loginUser(loginData)
+                .then(async (response: Response) => {
+                    if(response.ok) {
+                        const authorizationData: IAuthorizationData = await response.json();
+                        dispatch(setUserToken(authorizationData.message));
+                        dispatch(getUserData(authorizationData.message));
+                        return navigator(Path.Main);
+                    }
+                });
+        } catch (error) {
+            openPopup('Entered data is incorrect!', false);
         }
     }
+    
     return (
         <main className="signin-form-wrapper small-container">
             <div className="signin-form">

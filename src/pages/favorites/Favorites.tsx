@@ -20,10 +20,10 @@ const Favorites = () => {
 
     useEffect(() => {
         window.scrollTo({ top: 0 });
-        if(!userData.isLogin) {
+        if(!userData.email) {
             navigator(Path.Signin);
         }
-    }, [navigator, userData.isLogin]);
+    }, [navigator, userData.email]);
 
     const getFavotiteBookList = () => {
         return favotiteBooks.map((favoriteBook: IFavoriteBook, index) =>{

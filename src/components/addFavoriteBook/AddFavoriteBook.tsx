@@ -14,7 +14,7 @@ import './AddFavoriteBook.scss';
 function AddFavoriteBook ({bookData}: IFavoriteBookObject) {
     const navigator = useNavigate();
     const dispatch = useAppDispatch();
-    const isAuthorized: boolean = useAppSelector(userDataSelector).isLogin;
+    const isAuthorized = useAppSelector(userDataSelector).email;
     const favoriteBookList = useAppSelector(favoriteBooksSelector);
     
     const handleFavoriteAction = () => {
