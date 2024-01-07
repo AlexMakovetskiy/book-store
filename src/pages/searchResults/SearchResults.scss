@@ -15,8 +15,7 @@
     .found-books {
         margin-bottom: 74px;
         display: grid;
+        grid-gap: 50px 32px;
         grid-template-columns: repeat(3, 1fr);
-        grid-column-gap: 32px;
-        grid-row-gap: 50px;
     }
 }

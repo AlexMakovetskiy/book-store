@@ -3,21 +3,10 @@
     padding-top: 48px;
     display: flex;
     justify-content: space-between;
+    border-top: 1px solid var(--color-border-pastel-placebo);
     font-size: 1.6rem;
     line-height: 2.4rem;
-    border-top: 1px solid var(--color-border-pastel-placebo);
     color: var(--color-text-secondary);
-
-    &__go-grevious-page,
-    &__go-next-page {
-        display: flex;
-        color: var(--color-text-system-primary);
-    }
-
-    &__go-grevious-page:hover,
-    &__go-next-page:hover {
-        color: var(--color-text-system-primary-hover);
-    }
 
     &__go-grevious-page__arrow {
         padding-right: 10px;
@@ -40,19 +29,30 @@
     .row-pages-container {
         display: flex;
         justify-content: space-between;
-        gap: 32px;
         color: var(--color-text-secondary);
+        gap: 32px;
 
-        & a {
+        a {
             color: var(--color-text-secondary);
         }
 
-        & a:hover {
+        a:hover {
             color: var(--color-text-system-primary);
         }
 
         .current-page-text {
             color: var(--color-text-system-primary);
         }
+    }
+
+    &__go-grevious-page,
+    &__go-next-page {
+        display: flex;
+        color: var(--color-text-system-primary);
+    }
+
+    &__go-grevious-page:hover,
+    &__go-next-page:hover {
+        color: var(--color-text-system-primary-hover);
     }
 }

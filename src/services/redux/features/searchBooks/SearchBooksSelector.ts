@@ -1,7 +1,7 @@
-import { RootState } from '../..';
+import { RootState } from "../..";
 
 const searchBooksSelector = (state: RootState) => {
-    return state.SearchBooksSlice;
+	return state.SearchBooksSlice;
 };
 
 export default searchBooksSelector;

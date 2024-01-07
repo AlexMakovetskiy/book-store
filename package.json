@@ -29,7 +29,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.jsx,.tsx .",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc",
+    "styler": "stylelint \"**/*.scss\" \"**/*.module.scss\" --fix"
   },
   "browserslist": {
     "production": [
@@ -46,6 +48,19 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "eslint": "^8.45.0",
-    "sass": "^1.63.6"
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-sonarjs": "^0.23.0",
+    "prettier": "^3.1.1",
+    "sass": "^1.63.6",
+    "stylelint": "^16.1.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-scss": "^6.0.0"
   }
 }

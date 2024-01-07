@@ -1,7 +1,7 @@
-import { RootState } from '../..';
+import { RootState } from "../..";
 
 const favoriteBooksSelector = (state: RootState) => {
-    return state.FavoriteBooksSlice.favoriteBooks;
+	return state.FavoriteBooksSlice.favoriteBooks;
 };
 
 export default favoriteBooksSelector;

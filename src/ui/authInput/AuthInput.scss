@@ -1,12 +1,13 @@
 .auth-input-wrap {
     padding: 5px;
 }
+
 .auth-input-container {
-    background: var(--color-background-pure-white);
-    border: 1px solid var(--color-border-pastel-placebo);
     padding: 12px 20px;
+    border: 1px solid var(--color-border-pastel-placebo);
     font-size: 1.6rem;
     line-height: 3.2rem;
+    background: var(--color-background-pure-white);
 
     &__input-element {
         width: 100%;
@@ -19,15 +20,15 @@
 
 .error-text-line {
     padding-top: 8px;
-    font-size: 1.6rem;
     font-weight: 400;
+    font-size: 1.6rem;
     color: var(--color-border-contexual-red);
 }
 
 .error-text-line__hidden {
     padding-top: 8px;
-    font-size: 1.6rem;
     font-weight: 400;
+    font-size: 1.6rem;
     color: transparent;
     user-select: none;
 }

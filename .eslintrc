@@ -1,25 +1,61 @@
 {
     "extends": [
         "react-app",
-        "react-app/jest"
+        "react-app/jest",
+        "plugin:react/recommended",
+        "plugin:sonarjs/recommended",
+        "prettier"
     ],
+    "env": {
+		"browser": true,
+		"es2021": true,
+		"jest": true
+	},
+    "plugins": ["react", "react-hooks", "import", "prettier", "sonarjs"],
     "rules": {
         "no-console": "off",
         "quotes": ["warn", "single"],
-        "jsx-quotes": ["warn", "prefer-double"],
         "prefer-const": "error",
+        "jsx-quotes": ["warn", "prefer-double"],
+        "react/react-in-jsx-scope": "off",
         "react-hooks/rules-of-hooks": "error",
-        "indent": ["warn", 4],
+        "react/no-unknown-property": "off",
+        "jest/no-conditional-expect": "off",
         "max-len": ["error", {"code": 180}],
-        "comma-dangle": ["error", "always-multiline"],
-        "semi": ["warn", "always"],
         "no-duplicate-imports": "error",
+        "eol-last": "off",
+        "no-var": "error",
+        "eqeqeq": "error",
+        "no-use-before-define": ["error", { "functions": false }],
+        "object-curly-spacing": ["error", "always"],
+        "newline-per-chained-call": ["error", { "ignoreChainWithDepth": 2 }],
+        "prefer-template": "error",
+        "prefer-destructuring": "error",
+        "no-empty-function": "error",
+        "no-useless-return": "error",
+        "no-new-wrappers": "error",
+        "no-array-constructor": "error",
+        "no-new-func": "error",
+        "prefer-arrow-callback": "error",
+        "no-await-in-loop": "error",
+        "no-loop-func": "error",
+        "no-else-return": "error",
+        "no-prototype-builtins": "error",
+        "prefer-rest-params": "error",
+        "no-eval": "error",
+        "no-implied-eval": "error",
+        "no-useless-catch": "error",
+        "no-useless-escape": "error",
+        "no-useless-concat": "error",
+        "prefer-promise-reject-errors": "error",
+        "prefer-numeric-literals": "error",
+        "@typescript-eslint/no-explicit-any": "warn",
         "@typescript-eslint/no-inferrable-types": "off",
         "@typescript-eslint/ban-types": [
-			"error",
+            "error",
 			{
-				"types": {
-					"FC":
+                "types": {
+                    "FC":
 					"Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
 					"React.FC":
 					"Useless and has some drawbacks, see https://github.com/facebook/create-react-app/pull/8177",
@@ -31,16 +67,16 @@
 			}
 		],
         "no-magic-numbers": ["warn", {
-			"ignore": [1, 0, -1, 2], 
+            "ignore": [1, 0, -1, 2], 
 			"ignoreArrayIndexes": true,
 			"ignoreDefaultValues": true
-			}
-		],
+        }
+        ],
         "import/order": ["error", {
             "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
             "newlines-between": "always-and-inside-groups"
         }],
-        "jest/no-conditional-expect": "off",
-        "@typescript-eslint/no-explicit-any": "warn" 
+        "sonarjs/no-duplicate-string": "warn",
+		"sonarjs/prefer-immediate-return": "warn"
     }
 }

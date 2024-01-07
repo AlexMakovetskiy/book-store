@@ -1,28 +1,28 @@
-import { IAuthInput } from '../../types/common/UiLitProps';
+import { IAuthInput } from "../../types/common/UiLitProps";
 
-import './AuthInput.scss';
+import "./AuthInput.scss";
 
-function AuthInput({type, placeholder, name, onChange, error}: IAuthInput) {
-    let errorLine: string = '';
-    
-    if(!error) {
-        errorLine = 'error';
-    }
+function AuthInput({ type, placeholder, name, onChange, error }: IAuthInput) {
+	let errorLine: string = "";
 
-    return (
-        <div className="auth-input-wrap">
-            <div className={!error ? 'auth-input-container' : 'auth-input-container error'}>
-                <input 
-                    type={type} 
-                    placeholder={placeholder}
-                    name={name}
-                    className="auth-input-container__input-element"
-                    onChange={onChange}
-                />
-            </div>
-            <p className={error ? 'error-text-line' : 'error-text-line__hidden'}>{error ? error : errorLine}</p>
-        </div>
-    );
+	if (!error) {
+		errorLine = "error";
+	}
+
+	return (
+		<div className="auth-input-wrap">
+			<div className={!error ? "auth-input-container" : "auth-input-container error"}>
+				<input
+					type={type}
+					placeholder={placeholder}
+					name={name}
+					className="auth-input-container__input-element"
+					onChange={onChange}
+				/>
+			</div>
+			<p className={error ? "error-text-line" : "error-text-line__hidden"}>{error ? error : errorLine}</p>
+		</div>
+	);
 }
 
 export default AuthInput;

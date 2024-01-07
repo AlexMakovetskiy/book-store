@@ -4,18 +4,18 @@
     flex-direction: column;
 
     .cover-wrapper {
-        background: var(--color-background-calcareous-sinter);
         max-height: fit-content;
         display: flex;
         align-items: center;
         justify-content: center;
+        background: var(--color-background-calcareous-sinter);
 
         &__book-cover {
-            max-height: 264px;
-            max-width: 226px;
             left: 63px;
             top: 1px;
-            border-radius: 0px;
+            max-width: 226px;
+            max-height: 264px;
+            border-radius: 0;
         }
     }
 
@@ -34,9 +34,9 @@
         }
 
         &__price {
-            font-family: 'Bebas Neue';
-            font-style: normal;
+            font-family: var(--font-primary);
             font-weight: 700;
+            font-style: normal;
             font-size: 2.4rem;
             line-height: 3.2rem;
         }

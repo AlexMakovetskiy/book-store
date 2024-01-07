@@ -1,7 +1,7 @@
-import { RootState } from '../..';
+import { RootState } from "../..";
 
 const userDataSelector = (state: RootState) => {
-    return state.UserDataSlice;
+	return state.UserDataSlice;
 };
 
 export default userDataSelector;

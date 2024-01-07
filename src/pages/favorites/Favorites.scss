@@ -17,9 +17,9 @@
                 gap: 32px;
 
                 &__cover-wrapper {
-                    max-height: 192px;
-                    max-width: 256px;
                     width: 100%;
+                    max-width: 256px;
+                    max-height: 192px;
                     display: flex;
                     justify-content: center;
                     background: var(--color-background-purple);
@@ -69,8 +69,8 @@
     margin: 50px 0;
 
     &__title {
-        text-align: center;
         font-size: 4.6rem;
         line-height: 4.4rem;
+        text-align: center;
     }
 }

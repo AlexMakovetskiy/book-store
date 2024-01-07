@@ -14,27 +14,27 @@ html {
 }
 
 a {
-    color: grey;
     text-decoration: none;
+    color: var(--color-text-grey);
 }
 
 button {
-    cursor: pointer;
     outline: none;
     outline-offset: none;
-    background: var(--color-background-pure-white);
     border: 1px solid transparent;
+    background: var(--color-background-pure-white);
+    cursor: pointer;
     user-select: none;
 }
 
 input, textarea {
     outline: none;
-    border: solid 1px white;
+    border: solid 1px var(--color-border-pure-white);
 }
 
 img {
-    user-select: none;
     cursor: pointer;
+    user-select: none;
 }
 
 h1, h2 {

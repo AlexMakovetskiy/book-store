@@ -18,25 +18,25 @@ body {
 }
 
 input, h3, h4, h5, a, .custom-font, p, details {
-    font-family: 'Anek Bangla', Geneva, Verdana, sans-serif;
+    font-family: var(--font-header);
     font-weight: 400;
     font-style: normal;
     color: var(--color-text-system-primary);
 }
 
 h1, h2, .custom-btn {
-    font-family: 'Bebas Neue', Tahoma, sans-serif;
-    font-style: normal;
+    font-family: var(--font-primary);
     font-weight: 700;
+    font-style: normal;
     color: var(--color-text-system-primary);
 }
 
 .custom-btn {
     width: 100%;
-    background: var(--color-background-system-primary);
-    color: var(--color-text-pure-white);
-    text-transform: uppercase;
     letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-pure-white);
+    background: var(--color-background-system-primary);
 }
 
 :root {
@@ -44,13 +44,8 @@ h1, h2, .custom-btn {
     --color-text-system-primary: #313037;
     --color-text-system-primary-hover: #5B5A62;
     --color-text-secondary: #A8A8A8;
+    --color-text-grey: #808080;
     --color-text-pure-white: #fff;
-
-    --color-border-pure-black: #000;
-    --color-border-system-primary: #313037;
-    --color-border-contexual-red: #FC857F;
-    --color-border-pastel-placebo: #e7e7e7;
-
     --color-background-blur: #00000050;
     --color-background-system-primary: #313037;
     --color-background-system-primary-hover: #5B5A62;
@@ -58,7 +53,13 @@ h1, h2, .custom-btn {
     --color-background-orange: #fee9e2;
     --color-background-purple: #F4EEFD;
     --color-background-pure-white: #fff;
-
+    --color-border-pure-black: #000;
+    --color-border-system-primary: #313037;
+    --color-border-contexual-red: #FC857F;
+    --color-border-pastel-placebo: #e7e7e7;
+    --color-border-pure-white: #fff;
+    --font-primary: 'Bebas Neue', "Tahoma", sans-serif;
+    --font-header: 'Anek Bangla', "Geneva", "Verdana", sans-serif;
     --image-background-filled-heart: url("../public/assets/vector/pages/bookinfo/redHeartLogo.svg");
     --image-background-red-border-heart: url("../public/assets/vector/components/addFavotite/heart-red-border.svg");
     --image-background-details-arrow-down: url("../public/assets/vector/pages/bookinfo/details_arrow_down.svg");
@@ -66,18 +67,18 @@ h1, h2, .custom-btn {
 } 
 
 .app-wrapper {
-    margin-inline: auto;
     max-width: 1120px;
     display: flex;
     flex-direction: column;
+    margin-inline: auto;
 }
 
 .edittext-container {
-    background: var(--color-background-pure-white);
-    border: 1px solid var(--color-border-pastel-placebo);
     padding: 12px 20px;
+    border: 1px solid var(--color-border-pastel-placebo);
     font-size: 1.6rem;
     line-height: 3.2rem;
+    background: var(--color-background-pure-white);
 
     input {
         width: 100%;
@@ -85,11 +86,11 @@ h1, h2, .custom-btn {
 }
 
 .edittext-container__error {
-    background: var(--color-background-pure-white);
-    border: 1px solid var(--color-border-contexual-red);
     padding: 12px 20px;
+    border: 1px solid var(--color-border-contexual-red);
     font-size: 1.6rem;
     line-height: 3.2rem;
+    background: var(--color-background-pure-white);
 
     input {
         width: 100%;

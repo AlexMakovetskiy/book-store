@@ -1,9 +1,9 @@
 export interface IPagination {
-    currPage: number,
-    pageCount: number,
-    inputData?: string | undefined,
+	currPage: number;
+	pageCount: number;
+	inputData?: string | undefined;
 }
 
 export interface IPreview {
-    handleClose: () => void,
+	handleClose: () => void;
 }

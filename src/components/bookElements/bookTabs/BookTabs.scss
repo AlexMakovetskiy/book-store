@@ -5,13 +5,13 @@
 
     &__tab {
         padding: 10px 0 24px;
-        max-width: 160px;
         width: 100%;
+        max-width: 160px;
+        border: 1px solid transparent;
         font-size: 1.6rem;
         line-height: 2.4rem;
         text-align: center;
         color: var(--color-text-secondary);
-        border: 1px solid transparent;
         cursor: pointer;
     }
 

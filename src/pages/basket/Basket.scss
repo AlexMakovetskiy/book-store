@@ -11,15 +11,15 @@
     &__books-container {
         .basket-book-wrap {
             padding: 48px 0;
-            border-bottom: 1px solid var(--color-border-pastel-placebo);
             display: flex;
             justify-content: flex-start;
+            border-bottom: 1px solid var(--color-border-pastel-placebo);
             gap: 32px;
 
             &__cover-wrapper {
                 padding: 0 24px;
-                max-width: 256px;
                 width: 100%;
+                max-width: 256px;
                 display: flex;
                 justify-content: center;
                 background: var(--color-background-purple);
@@ -32,8 +32,8 @@
             }
 
             .book-info-container {
-                max-width: 500px;
                 width: 100%;
+                max-width: 500px;
 
                 &__title {
                     padding: 24px 0 8px;
@@ -49,9 +49,15 @@
                 }
                 
                 .set-price-container {
+                    max-width: fit-content;
                     display: flex;
                     justify-content: center;
-                    max-width: fit-content;
+
+                    &__title {
+                        padding: 12px 16px;
+                        font-size: 2.4rem;
+                        line-height: 3.2rem;
+                    }
 
                     &__decrease-price,
                     &__encrease-price {
@@ -63,12 +69,6 @@
                     &__encrease-price:hover {
                         transform: scale(1.2);
                     }
-
-                    &__title {
-                        padding: 12px 16px;
-                        font-size: 2.4rem;
-                        line-height: 3.2rem;
-                    }
                 }
             }
 
@@ -78,7 +78,6 @@
                 align-items: center;
 
                 &__title {
-                    
                     font-size: 4rem;
                     line-height: 6rem;
                 }
@@ -94,8 +93,8 @@
     .order-info-wrap {
         margin-left: 75%;
         padding-top: 48px;
-        max-width: 256px;
         width: 100%;
+        max-width: 256px;
 
         &__price-info-container {
             display: flex;
@@ -133,9 +132,9 @@
         }
 
         &__check-action {
-            width: 100%;
             margin-top: 42px;
             padding: 16px 0;
+            width: 100%;
             font-size: 2.4rem;
             line-height: 2.4rem;
             letter-spacing: 0.05em;
@@ -147,8 +146,8 @@
     margin: 50px 0;
 
     &__title {
-        text-align: center;
         font-size: 4.6rem;
         line-height: 4.4rem;
+        text-align: center;
     }
 }

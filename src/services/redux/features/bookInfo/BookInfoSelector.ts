@@ -1,7 +1,7 @@
-import { RootState } from '../..';
+import { RootState } from "../..";
 
 const bookInfoSelector = (state: RootState) => {
-    return state.BookInfoSlice;
+	return state.BookInfoSlice;
 };
 
 export default bookInfoSelector;

@@ -1,50 +1,50 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IBookInfo } from '../../../../types/pages/BookInfo';
-import { IBookInfoState } from '../../types/reduxTypes';
+import { IBookInfo } from "../../../../types/pages/BookInfo";
+import { IBookInfoState } from "../../types/reduxTypes";
 
-import  getBooksInfoData  from './BookInfoThunk';
+import getBooksInfoData from "./BookInfoThunk";
 
 const bookInfoInitialState: IBookInfoState = {
-    loading: false,
-    error: '',
-    book: {
-        title: '',
-        year: '',
-        subtitle: '',
-        error: '',
-        desc: '',
-        authors: '',
-        isbn10: '',
-        isbn13: '',
-        pages: '',
-        url: '',
-        price: 0,
-        image: '',
-        rating: '',
-        publisher: '',
-        language: '',
-    },
+	loading: false,
+	error: "",
+	book: {
+		title: "",
+		year: "",
+		subtitle: "",
+		error: "",
+		desc: "",
+		authors: "",
+		isbn10: "",
+		isbn13: "",
+		pages: "",
+		url: "",
+		price: 0,
+		image: "",
+		rating: "",
+		publisher: "",
+		language: "",
+	},
 };
 
 const bookInfoSlice = createSlice({
-    name: 'booksDescription',
-    initialState: bookInfoInitialState,
-    reducers: {},
-    extraReducers(builder){
-        builder.addCase(getBooksInfoData.pending, (state: IBookInfoState) => {
-            state.loading = true;
-        });
-        builder.addCase(getBooksInfoData.fulfilled, (state: IBookInfoState, action: PayloadAction<IBookInfo>) => {
-            state.loading = false;
-            state.book = action.payload;
-        });
+	name: "booksDescription",
+	initialState: bookInfoInitialState,
+	reducers: {},
+	extraReducers(builder) {
+		builder.addCase(getBooksInfoData.pending, (state: IBookInfoState) => {
+			state.loading = true;
+		});
+		builder.addCase(getBooksInfoData.fulfilled, (state: IBookInfoState, action: PayloadAction<IBookInfo>) => {
+			state.loading = false;
+			state.book = action.payload;
+		});
 
-        builder.addCase(getBooksInfoData.rejected, (state: IBookInfoState, action: PayloadAction<string | unknown>) => {
-            state.loading = false;
-            state.error = action.payload as string;
-        });
-    },
+		builder.addCase(getBooksInfoData.rejected, (state: IBookInfoState, action: PayloadAction<string | unknown>) => {
+			state.loading = false;
+			state.error = action.payload as string;
+		});
+	},
 });
 
 // eslint-disable-next-line no-empty-pattern

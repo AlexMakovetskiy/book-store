@@ -1,7 +1,7 @@
-import { RootState } from '../..';
+import { RootState } from "../..";
 
 const booksDataSelector = (state: RootState) => {
-    return state.BooksDataSlice;
+	return state.BooksDataSlice;
 };
 
 export default booksDataSelector;
