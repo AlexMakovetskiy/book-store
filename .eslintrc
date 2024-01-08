@@ -14,7 +14,7 @@
     "plugins": ["react", "react-hooks", "import", "prettier", "sonarjs"],
     "rules": {
         "no-console": "off",
-        "quotes": ["warn", "single"],
+        "quotes": ["warn", "double"],
         "prefer-const": "error",
         "jsx-quotes": ["warn", "prefer-double"],
         "react/react-in-jsx-scope": "off",

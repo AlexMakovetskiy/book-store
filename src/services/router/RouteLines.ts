@@ -7,5 +7,6 @@ export enum Path {
 	Basket = "/basket",
 	BookInfo = "/book-info/:id",
 	SearchPage = "/search-data/:searchLine/:page",
+	Error = "/error",
 	NotFound = "/*",
 }

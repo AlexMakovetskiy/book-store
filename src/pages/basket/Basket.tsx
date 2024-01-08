@@ -110,7 +110,7 @@ const Basket = () => {
 							<h2 className="price-container__subtitle">${resultBookPrice.toFixed(2)}</h2>
 						</div>
 					</div>
-					<Link to={"/notfound"}>
+					<Link to={Path.NotFound}>
 						<button className="order-info-wrap__check-action custom-btn">check out</button>
 					</Link>
 				</div>

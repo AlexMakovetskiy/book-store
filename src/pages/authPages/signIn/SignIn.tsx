@@ -101,7 +101,7 @@ const SignIn = () => {
 						<h2 className="top-panel__signin-wrapper__title">sign in</h2>
 					</div>
 					<div className="top-panel__signup-wrapper">
-						<Link to="/signup">
+						<Link to={Path.Signup}>
 							<h2 className="top-panel__signup-wrapper__title">sign up</h2>
 						</Link>
 					</div>
@@ -123,7 +123,7 @@ const SignIn = () => {
 						onChange={handleChange}
 						error={stateError.password ? "Error password data" : ""}
 					/>
-					<Link to={"/notfound"} className="authorization-form__link">
+					<Link to={Path.NotFound} className="authorization-form__link">
 						Forgot password?
 					</Link>
 					<button className="authorization-form__action custom-btn" type="submit">

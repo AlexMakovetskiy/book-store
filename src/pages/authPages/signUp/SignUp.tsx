@@ -8,6 +8,7 @@ import AuthInput from "../../../ui/authInput/AuthInput";
 import PopUp from "../../../ui/popUp/PopUp";
 import { signupUser } from "../../../services/api/bookstoreBackend/signupUser";
 import { emailRegexp, passwordRegexp } from "../../../helpers/RegExpFields";
+import { Path } from "../../../services/router/RouteLines";
 
 import "./SignUp.scss";
 
@@ -107,7 +108,7 @@ const SignUp = () => {
 		<main className="signup-form small-container signup">
 			<div className="top-panel">
 				<div className="top-panel__signin-wrapper">
-					<Link to="/signin">
+					<Link to={Path.Signin}>
 						<h2 className="top-panel__signin-wrapper__title">sign in</h2>
 					</Link>
 				</div>

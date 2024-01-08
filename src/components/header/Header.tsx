@@ -6,6 +6,7 @@ import useAppSelector from "../../hooks/useAppSelector";
 import { ISearchState } from "../../types/components/Header";
 import basketBooksSelector from "../../services/redux/features/basketBooks/BasketBooksSelector";
 import favoriteBooksSelector from "../../services/redux/features/favoriteBooks/FavoriteBooksSelector";
+import { Path } from "../../services/router/RouteLines";
 
 import "./Header.scss";
 
@@ -53,7 +54,7 @@ function Header() {
 
 	return (
 		<header className="header large-container">
-			<Link to="/">
+			<Link to={Path.Main}>
 				<img src="/assets/vector/components/header/BookstoreLogo.svg" alt="logo" className="header__logo" />
 			</Link>
 			<div className="search-field">
@@ -82,7 +83,7 @@ function Header() {
 				</button>
 			</div>
 			<div className="tools">
-				<Link to="/favorites">
+				<Link to={Path.Favorites}>
 					<div className="tools__link favorites">
 						{!favorites.length && (
 							<img
@@ -100,7 +101,7 @@ function Header() {
 						)}
 					</div>
 				</Link>
-				<Link to="/basket">
+				<Link to={Path.Basket}>
 					<div className="tools__link basket">
 						{!basket.length && (
 							<img
@@ -118,7 +119,7 @@ function Header() {
 						)}
 					</div>
 				</Link>
-				<Link to="/accaunt">
+				<Link to={Path.Accaunt}>
 					<div className="tools__link profile">
 						<img
 							src="/assets/vector/components/header/Toolbox/profile.svg"
